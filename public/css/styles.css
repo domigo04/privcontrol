@@ -1,0 +1,126 @@
+/* Allgemeine Layouts */
+body {
+  background: #fdfdfd;
+  color: #1a1a1a;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 999px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary {
+  background: #3c91e6;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #3179c3;
+}
+
+.btn-danger {
+  background: #f17b83;
+  border: none;
+}
+
+.btn-danger:hover {
+  background: #d95f67;
+}
+
+.btn-dark {
+  background: #111;
+  border: none;
+}
+
+.btn-outline-primary {
+  border-color: #3c91e6;
+  color: #3c91e6;
+}
+
+.btn-outline-primary:hover {
+  background: #3c91e6;
+  color: #fff;
+}
+
+/* Bilder */
+.hero-image {
+  width: 100%;
+  max-width: 550px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+
+img.rounded-4 {
+  border-radius: 20px;
+}
+
+/* Mission Section */
+section.bg-gradient-rounded {
+  background: linear-gradient(90deg, #48c6ef, #6f86d6);
+  border-radius: 25px;
+  padding: 3rem 1rem;
+  color: white;
+}
+
+/* Textgestaltung */
+h1, h2, h3, h4 {
+  color: #111;
+}
+
+.text-muted {
+  color: #666 !important;
+}
+
+/* Navbar */
+.navbar-brand img {
+  height: 30px;
+  margin-right: 0.5rem;
+}
+
+/* Containerboxen z. B. für Upload-Seite */
+.container-box {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+
+/* Dropzone für Uploads */
+.dropzone {
+  border: 2px dashed #ccc;
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  color: #777;
+  transition: border-color 0.3s ease;
+}
+
+.dropzone:hover {
+  border-color: #3c91e6;
+  background-color: #f9fbff;
+}
+
+.card {
+  border-radius: 1.5rem;
+}
+
+.card .form-control {
+  border-radius: 0.75rem;
+}
+
+.btn-primary {
+  background-color: #3c91e6;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #317acc;
+}
+

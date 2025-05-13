@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PrivControl – Private Kontrolle für Energienachweise</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- HEADER -->
+  <div id="header-placeholder"></div>
+
+  <!-- HERO SECTION -->
+  <main class="flex-grow-1">
+    <section class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h1 class="fw-bold mb-3 text-dark">
+            Ihre Kontrolle Für Sichere<br>Und Effiziente Gebäudetechnik.
+          </h1>
+          <p class="text-muted">
+            Unabhängige Private Kontrolle Für Energienachweise im Kanton Zürich.
+          </p>
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <a href="contact.html" class="btn btn-primary px-4 py-2">Kontakt</a>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <img src="assets/images/Bild-1.jpg" class="hero-image" alt="Gebäudetechniker">
+        </div>
+      </div>
+    </section>
+
+  <!-- MISSION SECTION -->
+<section class="py-5" style="background: linear-gradient(90deg, #48c6ef, #6f86d6); border-radius: 25px; margin: 0 1rem;">
+  <div class="container text-center text-white py-4">
+    <p class="text-uppercase small">Unsere Mission</p>
+    <h2 class="fw-bold mb-4">Prüfen. Bestätigen. Fertig.<br>Mit Priv Control.</h2>
+    <a href="pruefcontrol.html" class="btn btn-dark px-4 py-2">PrüfControl starten</a>
+  </div>
+</section>
+
+
+    <!-- SERVICE SECTION -->
+    <section class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <img src="assets/images/Bild-2.jpg" class="img-fluid rounded-4 shadow" alt="Teamarbeit">
+        </div>
+        <div class="col-md-6 mt-4 mt-md-0">
+          <p class="text-uppercase small text-muted">Was wir tun</p>
+          <h3 class="fw-bold mb-3">Wir übernehmen für Sie<br>die Private Kontrolle von Energienachweisen</h3>
+          <p class="text-muted">
+            Gemäss den kantonalen Energievorschriften muss bei Bauprojekten ein Energienachweis durch eine Fachperson geprüft werden. Genau hier kommen wir ins Spiel:
+          </p>
+          <a href="pruefcontrol.html" class="btn btn-outline-primary px-4 py-2 mt-2">Priv-Control starten</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <div id="footer-placeholder"></div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Nur auf Upload-Seiten laden -->
+  <script>
+    if (location.pathname.includes("offerte") || location.pathname.includes("privctrl")) {
+      const s = document.createElement("script");
+      s.src = "js/script.js";
+      document.body.appendChild(s);
+    }
+  </script>
+
+  <!-- HEADER/FOOTER FETCH -->
+  <script>
+    fetch("components/header.html").then(res => res.text()).then(data => {
+      document.getElementById("header-placeholder").innerHTML = data;
+    });
+    fetch("components/footer.html").then(res => res.text()).then(data => {
+      document.getElementById("footer-placeholder").innerHTML = data;
+    });
+  </script>
+</body>
+</html>
