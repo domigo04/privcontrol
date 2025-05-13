@@ -44,10 +44,9 @@
       </div>
 
       <div class="mb-3">
-  <label for="kundenmail" class="form-label">Ihre E-Mail-Adresse:</label>
-  <input type="email" class="form-control" id="kundenmail" placeholder="z. B. max.mustermann@mail.ch" required>
-</div>
-
+        <label for="kundenmail" class="form-label">Ihre E-Mail-Adresse:</label>
+        <input type="email" class="form-control" id="kundenmail" placeholder="z. B. max.mustermann@mail.ch" required>
+      </div>
 
       <!-- Gewerke -->
       <div class="mb-4">
@@ -73,10 +72,9 @@
       <!-- Unterkategorien -->
       <div id="dynamischerBereich"></div>
 
-      <!-- Pflichtunterlagen + Button -->
+      <!-- Pflichtunterlagen Button -->
       <div class="mb-4">
         <label class="form-label">Pflichtunterlagen:</label>
-        <ul id="pflichtunterlagen" class="list-group"></ul>
         <button class="btn btn-outline-secondary mt-2" id="sendMailBtn">Pflichtunterlagen zustellen</button>
       </div>
 
@@ -105,9 +103,25 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-  
   <script src="js/base64cd.js"></script>
   <script src="js/pruefcontrol.js"></script>
+  <script>
+    fetch("components/header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("header-placeholder").innerHTML = data;
+      });
+
+    fetch("components/footer.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("footer-placeholder").innerHTML = data;
+      });
+  </script>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    emailjs.init("9Ql82xYiywzV_Ucb6"); // Dein Public Key
+  </script>
 
 </body>
 </html>

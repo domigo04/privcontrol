@@ -8,16 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const sendMailBtn = document.getElementById("sendMailBtn");
 
   const unterkategorien = {
-    heizung: [
-      { label: "EN 103 (Heizungsersatz)", wert: 300 }
-    ],
+    heizung: [{ label: "EN 103 (Heizungsersatz)", wert: 300 }],
     lueftung: [
       { label: "Kellerlüftung", wert: 200 },
       { label: "Liftschachtentlüftung", wert: 200 }
     ],
-    klima: [
-      { label: "Split-Klimagerät Kontrolle", wert: 250 }
-    ]
+    klima: [{ label: "Split-Klimagerät Kontrolle", wert: 250 }]
   };
 
   const unterlagenMap = {
@@ -39,34 +35,34 @@ document.addEventListener("DOMContentLoaded", function () {
     preise: [],
     projektname: "",
     wunschtermin: "",
+    gesamtpreis: 0
   };
 
   function renderUntergruppen() {
     dynamischerBereich.innerHTML = "";
+
     state.ausgewaehlt.forEach((gewerk) => {
-      const unter = unterkategorien[gewerk];
-      if (unter) {
-        const wrapper = document.createElement("div");
-        wrapper.className = "untergruppe-box";
-        unter.forEach((u, i) => {
-          const id = `${gewerk}-${i}`;
-          wrapper.innerHTML += `
-            <div class="form-check">
-              <input class="form-check-input untergruppe" type="checkbox" value="${u.wert}" id="${id}">
-              <label class="form-check-label" for="${id}">${u.label}</label>
-            </div>
-          `;
-        });
-        dynamischerBereich.appendChild(wrapper);
-      } else if (gewerk === "plankontrolle") {
-        const div = document.createElement("div");
-        div.className = "untergruppe-box";
-        div.innerHTML = `
+      const wrapper = document.createElement("div");
+      wrapper.className = "untergruppe-box";
+
+      if (gewerk === "plankontrolle") {
+        wrapper.innerHTML = `
           <label for="planAnzahl" class="form-label">Anzahl Pläne zur Kontrolle:</label>
           <input type="number" id="planAnzahl" class="form-control w-25" value="0" min="0">
         `;
-        dynamischerBereich.appendChild(div);
+      } else if (unterkategorien[gewerk]) {
+        unterkategorien[gewerk].forEach((item, i) => {
+          const id = `${gewerk}-${i}`;
+          wrapper.innerHTML += `
+            <div class="form-check">
+              <input class="form-check-input untergruppe" type="checkbox" value="${item.wert}" id="${id}">
+              <label class="form-check-label" for="${id}">${item.label}</label>
+            </div>
+          `;
+        });
       }
+
+      dynamischerBereich.appendChild(wrapper);
     });
   }
 
@@ -104,14 +100,14 @@ document.addEventListener("DOMContentLoaded", function () {
     dynamischerBereich.appendChild(loading);
 
     setTimeout(() => {
-      document.getElementById("loading").remove();
-      let gesamt = 1500;
+      document.getElementById("loading")?.remove();
 
+      let gesamt = 1500;
       document.querySelectorAll(".untergruppe:checked").forEach((cb) => {
         gesamt += parseInt(cb.value) || 0;
       });
 
-      const plaene = parseInt(document.getElementById("planAnzahl")?.value || 0);
+      const plaene = parseInt(document.getElementById("planAnzahl")?.value || "0");
       if (!isNaN(plaene)) gesamt += plaene * 100;
 
       state.projektname = document.getElementById("projektname").value;
@@ -150,14 +146,32 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   sendMailBtn.addEventListener("click", () => {
-    let empfaenger = "info@privcontrol.ch";
-    if (state.ausgewaehlt.has("heizung")) empfaenger = empfaengerMap.heizung;
-    else if (state.ausgewaehlt.has("lueftung")) empfaenger = empfaengerMap.lueftung;
-    else if (state.ausgewaehlt.has("klima")) empfaenger = empfaengerMap.klima;
-    else if (state.ausgewaehlt.has("plankontrolle")) empfaenger = empfaengerMap.plankontrolle;
+    const kundenmail = document.getElementById("kundenmail").value || "kundemail@example.com";
+    const projektname = document.getElementById("projektname").value || "Unbekanntes Projekt";
 
-    const kundenmail = document.getElementById("kundenmail")?.value || "kundemail@example.com";
-    const mailto = `mailto:${empfaenger}?subject=Pflichtunterlagen%20zu%20${state.projektname}&body=Bitte senden Sie die Pflichtunterlagen an: ${kundenmail}`;
-    window.location.href = mailto;
+    let unterlagenText = "";
+    const auswahl = [...state.ausgewaehlt];
+
+    auswahl.forEach((g) => {
+      const unterlagen = unterlagenMap[g] || [];
+      if (unterlagen.length > 0) {
+        unterlagenText += `${g.toUpperCase()}:\n`;
+        unterlagen.forEach((u) => unterlagenText += `• ${u}\n`);
+        unterlagenText += `\n`;
+      }
+    });
+
+    emailjs.send("service_n2f4g3w", "template_ji16xl8", {
+      email: kundenmail,
+      projektname: projektname,
+      pflichtunterlagen: unterlagenText
+    })
+    .then(() => {
+      alert("✅ Die E-Mail wurde erfolgreich an den Kunden verschickt!");
+    })
+    .catch((error) => {
+      console.error("❌ Fehler beim Senden:", error);
+      alert("Die E-Mail konnte nicht gesendet werden.");
+    });
   });
 });
