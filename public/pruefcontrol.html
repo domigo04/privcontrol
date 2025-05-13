@@ -3,34 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PrüfControl – PDF Upload & Preisrechner</title>
+  <title>PrüfControl – Offerte zusammenstellen</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet" />
+  <style>
+    .untergruppe-box {
+      margin-left: 2rem;
+      padding-left: 1rem;
+      border-left: 3px solid #0d6efd;
+      margin-top: 1rem;
+    }
+    #loading {
+      text-align: center;
+    }
+    #loading .spinner-border {
+      width: 3rem;
+      height: 3rem;
+    }
+  </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-  <!-- HEADER -->
   <div id="header-placeholder"></div>
 
   <main class="flex-grow-1 py-5">
     <div class="container container-box">
-      <h1 class="mb-4">PrüfControl – Offerte einreichen</h1>
+      <img src="assets/images/priv-control-logo.png" alt="PrivControl Logo" style="max-width: 250px; margin-bottom: 30px">
+      <h1 class="mb-4">PrivControl – Offerte zusammenstellen</h1>
 
-      <!-- PDF Upload -->
-      <div class="mb-4">
-        <label for="pdfUpload" class="form-label">Energienachweis (PDF, max. 10MB):</label>
-        <input type="file" class="form-control" id="pdfUpload" accept="application/pdf">
-      </div>
-
-      <!-- Eingabefelder -->
-      <div class="row g-3 mb-4">
+      <div class="mb-4 row g-3">
         <div class="col-md-6">
           <label for="projektname" class="form-label">Projektname:</label>
           <input type="text" class="form-control" id="projektname" placeholder="z. B. MFH Zürich">
-        </div>
-        <div class="col-md-6">
-          <label for="einheiten" class="form-label">Anzahl Einheiten:</label>
-          <input type="number" class="form-control" id="einheiten" value="1" min="1">
         </div>
         <div class="col-md-6">
           <label for="wunschtermin" class="form-label">Wunschtermin:</label>
@@ -38,31 +43,70 @@
         </div>
       </div>
 
-      <!-- Preis -->
-      <div class="alert alert-info" id="preisBox">
-        Gesamtpreis: <strong id="preisText">CHF 1500.–</strong>
+      <div class="mb-3">
+  <label for="kundenmail" class="form-label">Ihre E-Mail-Adresse:</label>
+  <input type="email" class="form-control" id="kundenmail" placeholder="z. B. max.mustermann@mail.ch" required>
+</div>
+
+
+      <!-- Gewerke -->
+      <div class="mb-4">
+        <label class="form-label">Gewerk(e) auswählen:</label>
+        <div class="form-check">
+          <input class="form-check-input gewerk" type="checkbox" value="heizung" id="heizung" name="gewerk">
+          <label class="form-check-label" for="heizung">Heizung</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input gewerk" type="checkbox" value="lueftung" id="lueftung" name="gewerk">
+          <label class="form-check-label" for="lueftung">Lüftung</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input gewerk" type="checkbox" value="klima" id="klima" name="gewerk">
+          <label class="form-check-label" for="klima">Klima</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input gewerk" type="checkbox" value="plankontrolle" id="plankontrolle" name="gewerk">
+          <label class="form-check-label" for="plankontrolle">Plankontrolle</label>
+        </div>
       </div>
 
-      <!-- Absenden -->
-      <button class="btn btn-primary">Offerte absenden</button>
+      <!-- Unterkategorien -->
+      <div id="dynamischerBereich"></div>
+
+      <!-- Pflichtunterlagen + Button -->
+      <div class="mb-4">
+        <label class="form-label">Pflichtunterlagen:</label>
+        <ul id="pflichtunterlagen" class="list-group"></ul>
+        <button class="btn btn-outline-secondary mt-2" id="sendMailBtn">Pflichtunterlagen zustellen</button>
+      </div>
+
+      <!-- Preis und Offerte -->
+      <button class="btn btn-primary" id="berechnenBtn">Offerte berechnen</button>
+
+      <!-- MODAL -->
+      <div class="modal fade" id="offerteModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Offerte erfolgreich erstellt</h5>
+            </div>
+            <div class="modal-body">
+              <p>Die Offerte wurde berechnet und ist bereit zum Download.</p>
+              <button class="btn btn-success" id="downloadPDF">PDF herunterladen</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 
-  <!-- FOOTER -->
   <div id="footer-placeholder"></div>
 
-  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // HEADER & FOOTER LADEN
-    fetch("components/header.html").then(res => res.text()).then(data => {
-      document.getElementById("header-placeholder").innerHTML = data;
-    });
-    fetch("components/footer.html").then(res => res.text()).then(data => {
-      document.getElementById("footer-placeholder").innerHTML = data;
-    });
-
-   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+  
+  <script src="js/base64cd.js"></script>
   <script src="js/pruefcontrol.js"></script>
 
 </body>

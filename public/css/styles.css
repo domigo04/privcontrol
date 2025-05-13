@@ -124,3 +124,25 @@ h1, h2, h3, h4 {
   background-color: #317acc;
 }
 
+/* styles.css */
+
+.container-box {
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+#preisBox {
+  font-size: 1.25rem;
+  padding: 1rem;
+}
+
+.list-group-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.btn {
+  min-width: 200px;
+}
