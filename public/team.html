@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Unser Team – PrivControl</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .team-image {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+
+    .team-section {
+      background: url('assets/images/team-bg.jpg') no-repeat center center;
+      background-size: cover;
+      padding: 60px 0;
+    }
+
+    .team-quote {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .contact-btn {
+      font-size: 0.85rem;
+      padding: 4px 10px;
+      margin-top: 0.5rem;
+      background-color: #0d6efd;
+      color: white;
+      border-radius: 12px;
+      border: none;
+    }
+
+    .contact-btn:hover {
+      background-color: #0b5ed7;
+    }
+  </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- HEADER -->
+  <div id="header-placeholder"></div>
+
+  <main class="flex-grow-1">
+
+    <!-- Einleitung -->
+    <section class="text-center py-5">
+      <div class="container">
+        <h1 class="fw-bold mb-4">Wir sind PrivControl</h1>
+        <p class="lead">Unser Ziel: Effizienz, Verantwortung und Kontrolle im Energiebereich – mit technischem Know-how, das funktioniert.</p>
+      </div>
+    </section>
+
+    <!-- Teammitglieder -->
+    <section class="team-section text-dark">
+      <div class="container">
+
+        <!-- Person 1 -->
+        <div class="row align-items-center mb-5">
+          <div class="col-md-3 text-center">
+            <img src="assets/images/team-dominic.jpg" class="team-image" alt="Dominic Goulon">
+            <button class="contact-btn mt-2">Contact me</button>
+          </div>
+          <div class="col-md-9">
+            <p class="team-quote">
+              Für mich geht’s nicht nur ums Planen. Es geht darum, Verantwortung zu übernehmen – für Technik, für Entscheidungen und für smarte Lösungen in der Gebäudetechnik.
+            </p>
+            <strong>Dominic Goulon – Fachbauleitung Heizung/Kälte</strong>
+          </div>
+        </div>
+
+        <!-- Person 2 -->
+        <div class="row align-items-center mb-5 flex-md-row-reverse">
+          <div class="col-md-3 text-center">
+            <img src="assets/images/team-mike.png" class="team-image" alt="Michael Repolusk">
+            <button class="contact-btn mt-2">Contact me</button>
+          </div>
+          <div class="col-md-9">
+            <p class="team-quote">
+              Ich glaube daran, dass Technik nur dann wirklich effizient ist, wenn sie für den Menschen funktioniert – das ist unser Anspruch bei PrivControl.
+            </p>
+            <strong>Michael Repolusk – Dipl. Ing. Energie FH</strong>
+          </div>
+        </div>
+
+        <!-- Person 3 -->
+        <div class="row align-items-center mb-5">
+          <div class="col-md-3 text-center">
+            <img src="assets/images/team-kevin.png" class="team-image" alt="Kevin Holbe">
+            <button class="contact-btn mt-2">Contact me</button>
+          </div>
+          <div class="col-md-9">
+            <p class="team-quote">
+              Unsere Arbeit beginnt bei den Details – Dokumentation, Beratung, alles auf den Punkt. Nur so entstehen nachhaltige Entscheidungen.
+            </p>
+            <strong>Kevin Holbe – Dipl. Ing. Klima HF</strong>
+          </div>
+        </div>
+
+        <!-- Person 4 -->
+        <div class="row align-items-center mb-5 flex-md-row-reverse">
+          <div class="col-md-3 text-center">
+            <img src="assets/images/team-timon.jpg" class="team-image" alt="Timon Günthard">
+            <button class="contact-btn mt-2">Contact me</button>
+          </div>
+          <div class="col-md-9">
+            <p class="team-quote">
+              Ich analysiere nicht nur Zahlen, sondern echte Daten. So wird jedes Projekt nachvollziehbar, kontrollierbar und präzise.
+            </p>
+            <strong>Timon Günthard – Fachbauleitung Lüftung/Klima</strong>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    fetch("components/header.html").then(res => res.text()).then(data => {
+      document.getElementById("header-placeholder").innerHTML = data;
+    });
+    fetch("components/footer.html").then(res => res.text()).then(data => {
+      document.getElementById("footer-placeholder").innerHTML = data;
+    });
+  </script>
+</body>
+</html>
