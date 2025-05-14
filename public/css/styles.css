@@ -1,15 +1,50 @@
-/* Allgemeine Layouts */
+/* =============================
+   Farben, Schrift & Layout
+============================= */
 body {
   background: #fdfdfd;
   color: #1a1a1a;
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* Buttons */
+h1, h2, h3, h4 {
+  color: #111;
+}
+
+.text-muted {
+  color: #666 !important;
+}
+
+/* =============================
+   Container & Karten
+============================= */
+.container-box {
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.card {
+  border-radius: 1.5rem;
+}
+
+.card .form-control {
+  border-radius: 0.75rem;
+}
+
+/* =============================
+   Buttons
+============================= */
 .btn {
   border-radius: 999px;
   font-weight: 500;
   transition: all 0.2s ease-in-out;
+}
+
+/* Nur große Buttons wie z. B. "Offerte berechnen" haben eine Mindestbreite */
+.btn:not(.mini-btn):not(.btn-sm) {
+  min-width: 200px;
 }
 
 .btn-primary {
@@ -18,7 +53,7 @@ body {
 }
 
 .btn-primary:hover {
-  background: #3179c3;
+  background: #317acc;
 }
 
 .btn-danger {
@@ -45,7 +80,36 @@ body {
   color: #fff;
 }
 
-/* Bilder */
+/* Mini-Buttons wie +, PK, AK, – */
+.btn.mini-btn {
+  font-size: 0.65rem;
+  padding: 0.15rem 0.35rem;
+  line-height: 1;
+  min-width: unset;
+  width: auto;
+  white-space: nowrap;
+  border-radius: 999px;
+  text-align: center;
+}
+
+
+
+/* =============================
+   Listen & Formulare
+============================= */
+.list-group-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+#preisBox {
+  font-size: 1.25rem;
+  padding: 1rem;
+}
+
+/* =============================
+   Bilder
+============================= */
 .hero-image {
   width: 100%;
   max-width: 550px;
@@ -55,43 +119,13 @@ body {
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 
-
 img.rounded-4 {
   border-radius: 20px;
 }
 
-/* Mission Section */
-section.bg-gradient-rounded {
-  background: linear-gradient(90deg, #48c6ef, #6f86d6);
-  border-radius: 25px;
-  padding: 3rem 1rem;
-  color: white;
-}
-
-/* Textgestaltung */
-h1, h2, h3, h4 {
-  color: #111;
-}
-
-.text-muted {
-  color: #666 !important;
-}
-
-/* Navbar */
-.navbar-brand img {
-  height: 30px;
-  margin-right: 0.5rem;
-}
-
-/* Containerboxen z. B. für Upload-Seite */
-.container-box {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.05);
-}
-
-/* Dropzone für Uploads */
+/* =============================
+   Dropzone für Uploads
+============================= */
 .dropzone {
   border: 2px dashed #ccc;
   border-radius: 15px;
@@ -107,42 +141,20 @@ h1, h2, h3, h4 {
   background-color: #f9fbff;
 }
 
-.card {
-  border-radius: 1.5rem;
+/* =============================
+   Sektionen & Hintergrund
+============================= */
+section.bg-gradient-rounded {
+  background: linear-gradient(90deg, #48c6ef, #6f86d6);
+  border-radius: 25px;
+  padding: 3rem 1rem;
+  color: white;
 }
 
-.card .form-control {
-  border-radius: 0.75rem;
-}
-
-.btn-primary {
-  background-color: #3c91e6;
-  border: none;
-}
-
-.btn-primary:hover {
-  background-color: #317acc;
-}
-
-/* styles.css */
-
-.container-box {
-  background-color: #f8f9fa;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-}
-
-#preisBox {
-  font-size: 1.25rem;
-  padding: 1rem;
-}
-
-.list-group-item {
-  background-color: #fff;
-  border: 1px solid #ddd;
-}
-
-.btn {
-  min-width: 200px;
+/* =============================
+   Navbar
+============================= */
+.navbar-brand img {
+  height: 30px;
+  margin-right: 0.5rem;
 }

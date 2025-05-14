@@ -4,9 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PrüfControl – Offerte zusammenstellen</title>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet" />
+
   <style>
     .untergruppe-box {
       margin-left: 2rem;
@@ -21,13 +23,25 @@
       width: 3rem;
       height: 3rem;
     }
+  .mini-btn {
+    width: auto;
+    padding: 0.1rem 0.35rem;
+    font-size: 0.65rem;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+  }
+</style>
+
   </style>
 </head>
-<body class="d-flex flex-column min-vh-100">
 
+<body class="d-flex flex-column min-vh-100">
   <div id="header-placeholder"></div>
 
   <main class="flex-grow-1 py-5">
+</div>
+
     <div class="container container-box">
       <img src="assets/images/priv-control-logo.png" alt="PrivControl Logo" style="max-width: 250px; margin-bottom: 30px">
       <h1 class="mb-4">PrivControl – Offerte zusammenstellen</h1>
@@ -48,28 +62,7 @@
         <input type="email" class="form-control" id="kundenmail" placeholder="z. B. max.mustermann@mail.ch" required>
       </div>
 
-      <!-- Gewerke -->
-      <div class="mb-4">
-        <label class="form-label">Gewerk(e) auswählen:</label>
-        <div class="form-check">
-          <input class="form-check-input gewerk" type="checkbox" value="heizung" id="heizung" name="gewerk">
-          <label class="form-check-label" for="heizung">Heizung</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input gewerk" type="checkbox" value="lueftung" id="lueftung" name="gewerk">
-          <label class="form-check-label" for="lueftung">Lüftung</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input gewerk" type="checkbox" value="klima" id="klima" name="gewerk">
-          <label class="form-check-label" for="klima">Klima</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input gewerk" type="checkbox" value="plankontrolle" id="plankontrolle" name="gewerk">
-          <label class="form-check-label" for="plankontrolle">Plankontrolle</label>
-        </div>
-      </div>
-
-      <!-- Unterkategorien -->
+      <!-- Dynamischer Bereich für Nachweise -->
       <div id="dynamischerBereich"></div>
 
       <!-- Pflichtunterlagen Button -->
@@ -100,28 +93,38 @@
 
   <div id="footer-placeholder"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+  <!-- JS-Dateien -->
   <script src="js/base64cd.js"></script>
+  <script src="js/pruefcontrol-formulare.js"></script>
+  <script src="js/pruefcontrol-filter.js"></script>
   <script src="js/pruefcontrol.js"></script>
-  <script>
-    fetch("components/header.html")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("header-placeholder").innerHTML = data;
-      });
+  <script src="js/pruefcontrol-pdf.js"></script>
+  <script src="js/pruefcontrol-mail.js"></script>
 
-    fetch("components/footer.html")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("footer-placeholder").innerHTML = data;
-      });
-  </script>
+  <!-- EmailJS -->
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
-    emailjs.init("9Ql82xYiywzV_Ucb6"); // Dein Public Key
+    emailjs.init("9Ql82xYiywzV_Ucb6");
   </script>
 
+  <!-- Header/Footer Laden & Module starten -->
+  <script>
+    Promise.all([
+      fetch("components/header.html").then(res => res.text()),
+      fetch("components/footer.html").then(res => res.text())
+    ]).then(([headerData, footerData]) => {
+      document.getElementById("header-placeholder").innerHTML = headerData;
+      document.getElementById("footer-placeholder").innerHTML = footerData;
+
+      if (typeof initPruefControl === "function") initPruefControl();
+      if (typeof initFormularanzeige === "function") initFormularanzeige();
+      if (typeof initFilterSuche === "function") initFilterSuche();
+      if (typeof initPDF === "function") initPDF();
+      if (typeof initMail === "function") initMail();
+    });
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
