@@ -1,3 +1,5 @@
+// pruefcontrol-formulare.js
+
 function initFormularanzeige() {
   console.log("initFormularanzeige wurde ausgeführt");
 
@@ -63,7 +65,6 @@ function initFormularanzeige() {
 
       const addBtn = document.createElement("button");
       addBtn.className = "btn btn-outline-secondary mini-btn";
-      addBtn.setAttribute("data-label", "+");
       addBtn.innerText = "+";
 
       let pkBtn, akBtn, removeBtn;
@@ -73,18 +74,38 @@ function initFormularanzeige() {
 
         pkBtn = document.createElement("button");
         pkBtn.className = "btn btn-outline-primary mini-btn";
-        pkBtn.setAttribute("data-label", "PK");
         pkBtn.innerText = "PK";
+        pkBtn.setAttribute("data-label", "PK");
+        pkBtn.setAttribute("data-selected", "false");
 
         akBtn = document.createElement("button");
         akBtn.className = "btn btn-outline-success mini-btn";
-        akBtn.setAttribute("data-label", "AK");
         akBtn.innerText = "AK";
+        akBtn.setAttribute("data-label", "AK");
+        akBtn.setAttribute("data-selected", "false");
 
         removeBtn = document.createElement("button");
         removeBtn.className = "btn btn-outline-danger mini-btn";
-        removeBtn.setAttribute("data-label", "–");
         removeBtn.innerText = "–";
+
+                const select = (btn) => {
+            pkBtn.classList.remove("btn-primary");
+            akBtn.classList.remove("btn-success");
+            pkBtn.classList.remove("active");
+            akBtn.classList.remove("active");
+
+            if (btn.innerText === "PK") {
+                btn.classList.add("btn-primary");
+            } else if (btn.innerText === "AK") {
+                btn.classList.add("btn-success");
+            }
+
+            btn.classList.add("active");
+            };
+
+
+        pkBtn.addEventListener("click", () => select(pkBtn));
+        akBtn.addEventListener("click", () => select(akBtn));
 
         removeBtn.addEventListener("click", () => {
           pkBtn.remove();

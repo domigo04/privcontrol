@@ -1,41 +1,125 @@
 function initPDF() {
   const berechnenBtn = document.getElementById("berechnenBtn");
-  if (berechnenBtn) {
-    berechnenBtn.addEventListener("click", () => {
-      // PDF generieren & Modal anzeigen
-    });
-  }
-
+  const modalElement = document.getElementById("offerteModal");
   const downloadBtn = document.getElementById("downloadPDF");
-  if (downloadBtn) {
-    downloadBtn.addEventListener("click", () => {
-      // PDF wirklich herunterladen
+  const dynamischerBereich = document.getElementById("dynamischerBereich");
+
+  if (!berechnenBtn || !modalElement || !downloadBtn) return;
+
+  const modal = new bootstrap.Modal(modalElement);
+
+  berechnenBtn.addEventListener("click", () => {
+    document.getElementById("loading")?.remove();
+    const loading = document.createElement("div");
+    loading.id = "loading";
+    loading.innerHTML = `
+      <div class="text-center my-4">
+        <div class="spinner-border text-primary" role="status"></div>
+        <p class="mt-2">Offerte wird berechnet...</p>
+      </div>`;
+    dynamischerBereich.appendChild(loading);
+
+    setTimeout(() => {
+      document.getElementById("loading")?.remove();
+      modal.show();
+    }, 1000);
+  });
+
+  downloadBtn.addEventListener("click", () => {
+    const projektname = document.getElementById("projektname").value || "Unbenanntes_Projekt";
+    const wunschtermin = document.getElementById("wunschtermin").value || "Nicht angegeben";
+
+    const ausgewaehlt = [];
+    document.querySelectorAll(".mini-btn.btn-primary[data-label='PK'], .mini-btn.btn-primary[data-label='AK']").forEach(btn => {
+      const typ = btn.getAttribute("data-label");
+      const text = btn.closest("li")?.querySelector("span")?.innerText;
+      const gewerk = btn.closest(".collapse")?.previousElementSibling?.innerText.trim().split("\n")[0] || "Unbekannt";
+      if (text) {
+        ausgewaehlt.push({ titel: text, typ, gewerk });
+      }
     });
-  }
-}
 
+    // Preisberechnung
+    const GRUNDBETRAG = 1000;
+    const PREIS_PK = 200;
+    const PREIS_AK = 250;
 
-// 📁 pruefcontrol-pdf.js
+    let pkCount = ausgewaehlt.filter(n => n.typ === "PK").length;
+    let akCount = ausgewaehlt.filter(n => n.typ === "AK").length;
 
-function createPdf(state) {
-  const datum = new Date().toLocaleDateString("de-CH");
-  const ausgewaehlt = [...state.ausgewaehlt].map(g => `• ${g}`).join("\n");
-  const preis = `CHF ${state.gesamtpreis.toFixed(2)}`;
+    let gesamtpreis = GRUNDBETRAG + (pkCount * PREIS_PK) + (akCount * PREIS_AK);
 
-  const docDefinition = {
-    content: [
-      { text: "Offerte – PrüfControl", style: "header" },
-      { text: `Datum: ${datum}`, margin: [0, 10] },
-      { text: `Projekt: ${state.projektname}` },
-      { text: `Wunschtermin: ${state.wunschtermin}`, margin: [0, 0, 0, 10] },
-      { text: `Gewählte Nachweise:\n${ausgewaehlt}`, margin: [0, 10] },
-      { text: `Gesamtpreis: ${preis}`, bold: true, fontSize: 14, margin: [0, 10] },
-      { text: "Bitte senden Sie die Offerte im Anhang mit den benötigten Pflichtunterlagen zurück.", italics: true }
-    ],
-    styles: {
-      header: { fontSize: 18, bold: true }
+    const heute = new Date();
+    const termin = new Date(wunschtermin);
+    const diffStunden = (termin - heute) / (1000 * 60 * 60);
+    const expressZuschlag = (!isNaN(diffStunden) && diffStunden < 48);
+
+    let expressBetrag = 0;
+    if (expressZuschlag) {
+      expressBetrag = gesamtpreis * 0.2;
+      gesamtpreis += expressBetrag;
     }
-  };
 
-  pdfMake.createPdf(docDefinition).download(`Offerte_${state.projektname}.pdf`);
+    const datum = new Date().toLocaleDateString("de-CH");
+
+    const nachweisTabelle = [
+      [{ text: "Nachweis", bold: true }, { text: "Typ", bold: true }, { text: "Preis", bold: true }]
+    ];
+
+    // Gruppiert nach Gewerk
+    const gruppiert = {};
+    ausgewaehlt.forEach(n => {
+      if (!gruppiert[n.gewerk]) gruppiert[n.gewerk] = [];
+      const preis = n.typ === "PK" ? PREIS_PK : PREIS_AK;
+      const typLabel = n.typ === "PK" ? "PK – Prüfkontrolle" : "AK – Abschlusskontrolle";
+      gruppiert[n.gewerk].push([n.titel, typLabel, `${preis.toFixed(2)} CHF`]);
+    });
+
+    Object.keys(gruppiert).forEach(gewerk => {
+      nachweisTabelle.push([{ text: gewerk, colSpan: 3, bold: true, fillColor: '#f1f1f1' }, {}, {}]);
+      nachweisTabelle.push(...gruppiert[gewerk]);
+    });
+
+    nachweisTabelle.push([{ text: "Grundbetrag", colSpan: 2 }, "", `${GRUNDBETRAG.toFixed(2)} CHF`]);
+    if (expressZuschlag) {
+      nachweisTabelle.push([{ text: "Expresszuschlag (<48h)", colSpan: 2 }, "", `+${expressBetrag.toFixed(2)} CHF`]);
+    }
+    nachweisTabelle.push([{ text: "Gesamtpreis", colSpan: 2, bold: true }, "", `${gesamtpreis.toFixed(2)} CHF`]);
+
+    const docDefinition = {
+      content: [
+        {
+          image: typeof logoBase64 !== 'undefined' ? logoBase64 : undefined,
+          width: 100,
+          margin: [0, 0, 0, 20]
+        },
+        { text: "Offerte – PrüfControl", style: "header" },
+        { text: `Datum: ${datum}`, margin: [0, 10, 0, 5] },
+        { text: `Projekt: ${projektname}` },
+        { text: `Wunschtermin: ${wunschtermin}`, margin: [0, 0, 0, 15] },
+
+        { text: "Ausgewählte Nachweise", style: "subheader" },
+        {
+          table: {
+            headerRows: 1,
+            widths: ['*', 'auto', 'auto'],
+            body: nachweisTabelle
+          },
+          layout: 'lightHorizontalLines',
+          margin: [0, 5, 0, 15]
+        },
+
+        { text: "Bitte senden Sie die Offerte zusammen mit den Pflichtunterlagen zurück.", italics: true },
+        { text: "E-Mail:    info@priv-control.ch", italics: true },
+        { text: "Diese Offerte ist nicht rechtsverbindlich. Änderungen vorbehalten.", style: "klein", margin: [0, 30, 0, 0] }
+      ],
+      styles: {
+        header: { fontSize: 18, bold: true },
+        subheader: { fontSize: 14, bold: true, margin: [0, 10, 0, 5] },
+        klein: { fontSize: 8, color: '#888' }
+      }
+    };
+
+    pdfMake.createPdf(docDefinition).download(`Offerte_${projektname}.pdf`);
+  });
 }
