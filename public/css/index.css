@@ -1,0 +1,63 @@
+
+/* styles-index.css */
+
+/* === HERO SECTION === */
+.hero-image {
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+}
+
+/* === MISSION SECTION === */
+.section-gradient {
+  background: linear-gradient(90deg, #48c6ef, #6f86d6);
+  border-radius: 25px;
+  color: white;
+  padding: 3rem 1rem;
+  margin-top: 2rem;
+}
+
+/* === SECTION SPACING === */
+section {
+  margin-bottom: 4rem;
+}
+
+/* === BUTTONS === */
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.75rem 2rem;
+  font-weight: 500;
+}
+
+.btn-dark {
+  border-radius: 999px;
+  padding: 0.75rem 2rem;
+  font-weight: 500;
+}
+
+.btn-outline-primary {
+  border-radius: 999px;
+  padding: 0.6rem 1.8rem;
+  font-weight: 500;
+}
+
+.btn {
+  border-radius: 999px;
+  padding: 0.6rem 1.8rem;
+  font-weight: 500;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .section-gradient {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Optional: Footer spacing */
+#footer-placeholder {
+  margin-top: auto;
+}

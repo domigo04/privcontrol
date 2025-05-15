@@ -1,3 +1,4 @@
+
 /* =============================
    Farben, Schrift & Layout
 ============================= */
@@ -42,7 +43,6 @@ h1, h2, h3, h4 {
   transition: all 0.2s ease-in-out;
 }
 
-/* Nur große Buttons wie z. B. "Offerte berechnen" haben eine Mindestbreite */
 .btn:not(.mini-btn):not(.btn-sm) {
   min-width: 200px;
 }
@@ -80,7 +80,6 @@ h1, h2, h3, h4 {
   color: #fff;
 }
 
-/* Mini-Buttons wie +, PK, AK, – */
 .btn.mini-btn {
   font-size: 0.65rem;
   padding: 0.15rem 0.35rem;
@@ -91,8 +90,6 @@ h1, h2, h3, h4 {
   border-radius: 999px;
   text-align: center;
 }
-
-
 
 /* =============================
    Listen & Formulare
@@ -124,7 +121,7 @@ img.rounded-4 {
 }
 
 /* =============================
-   Dropzone für Uploads
+   Dropzone fÃ¼r Uploads
 ============================= */
 .dropzone {
   border: 2px dashed #ccc;
@@ -141,15 +138,6 @@ img.rounded-4 {
   background-color: #f9fbff;
 }
 
-/* =============================
-   Sektionen & Hintergrund
-============================= */
-section.bg-gradient-rounded {
-  background: linear-gradient(90deg, #48c6ef, #6f86d6);
-  border-radius: 25px;
-  padding: 3rem 1rem;
-  color: white;
-}
 
 /* =============================
    Navbar
