@@ -1,5 +1,4 @@
 // pruefcontrol-formulare.js
-
 function initFormularanzeige() {
   console.log("initFormularanzeige wurde ausgeführt");
 
@@ -75,34 +74,23 @@ function initFormularanzeige() {
         pkBtn = document.createElement("button");
         pkBtn.className = "btn btn-outline-primary mini-btn";
         pkBtn.innerText = "PK";
-        pkBtn.setAttribute("data-label", "PK");
-        pkBtn.setAttribute("data-selected", "false");
 
         akBtn = document.createElement("button");
-        akBtn.className = "btn btn-outline-success mini-btn";
+        akBtn.className = "btn btn-outline-primary mini-btn";
         akBtn.innerText = "AK";
-        akBtn.setAttribute("data-label", "AK");
-        akBtn.setAttribute("data-selected", "false");
 
         removeBtn = document.createElement("button");
         removeBtn.className = "btn btn-outline-danger mini-btn";
         removeBtn.innerText = "–";
 
-                const select = (btn) => {
-            pkBtn.classList.remove("btn-primary");
-            akBtn.classList.remove("btn-success");
-            pkBtn.classList.remove("active");
-            akBtn.classList.remove("active");
+        const select = (btn) => {
+          // Beide Buttons zurücksetzen
+          pkBtn.classList.remove("btn-primary");
+          akBtn.classList.remove("btn-primary");
 
-            if (btn.innerText === "PK") {
-                btn.classList.add("btn-primary");
-            } else if (btn.innerText === "AK") {
-                btn.classList.add("btn-success");
-            }
-
-            btn.classList.add("active");
-            };
-
+          // Markiere den gedrückten Button
+          btn.classList.add("btn-primary");
+        };
 
         pkBtn.addEventListener("click", () => select(pkBtn));
         akBtn.addEventListener("click", () => select(akBtn));

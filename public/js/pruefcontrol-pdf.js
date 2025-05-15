@@ -8,6 +8,15 @@ function initPDF() {
 
   const modal = new bootstrap.Modal(modalElement);
 
+  // Button-Auswahl aktivieren (Toggle zwischen aktiv/inaktiv)
+  document.querySelectorAll(".mini-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      btn.classList.toggle("btn-primary");
+      btn.classList.toggle("btn-outline-primary");
+    });
+  });
+
+  // Berechnen-Button zeigt Ladespinner + Modal
   berechnenBtn.addEventListener("click", () => {
     document.getElementById("loading")?.remove();
     const loading = document.createElement("div");
@@ -25,28 +34,30 @@ function initPDF() {
     }, 1000);
   });
 
+  // PDF generieren
   downloadBtn.addEventListener("click", () => {
     const projektname = document.getElementById("projektname").value || "Unbenanntes_Projekt";
     const wunschtermin = document.getElementById("wunschtermin").value || "Nicht angegeben";
 
     const ausgewaehlt = [];
-    document.querySelectorAll(".mini-btn.btn-primary[data-label='PK'], .mini-btn.btn-primary[data-label='AK']").forEach(btn => {
-      const typ = btn.getAttribute("data-label");
-      const text = btn.closest("li")?.querySelector("span")?.innerText;
+
+    document.querySelectorAll(".mini-btn").forEach(btn => {
+      const isActive = btn.classList.contains("btn-primary");
+      const typ = btn.innerText.trim().toUpperCase(); // PK oder AK
+      const text = btn.closest("li")?.querySelector("span")?.innerText?.trim();
       const gewerk = btn.closest(".collapse")?.previousElementSibling?.innerText.trim().split("\n")[0] || "Unbekannt";
-      if (text) {
+
+      if (isActive && (typ === "PK" || typ === "AK") && text) {
         ausgewaehlt.push({ titel: text, typ, gewerk });
       }
     });
 
-    // Preisberechnung
     const GRUNDBETRAG = 1000;
     const PREIS_PK = 200;
     const PREIS_AK = 250;
 
     let pkCount = ausgewaehlt.filter(n => n.typ === "PK").length;
     let akCount = ausgewaehlt.filter(n => n.typ === "AK").length;
-
     let gesamtpreis = GRUNDBETRAG + (pkCount * PREIS_PK) + (akCount * PREIS_AK);
 
     const heute = new Date();
@@ -66,12 +77,11 @@ function initPDF() {
       [{ text: "Nachweis", bold: true }, { text: "Typ", bold: true }, { text: "Preis", bold: true }]
     ];
 
-    // Gruppiert nach Gewerk
     const gruppiert = {};
     ausgewaehlt.forEach(n => {
       if (!gruppiert[n.gewerk]) gruppiert[n.gewerk] = [];
       const preis = n.typ === "PK" ? PREIS_PK : PREIS_AK;
-      const typLabel = n.typ === "PK" ? "PK – Prüfkontrolle" : "AK – Abschlusskontrolle";
+      const typLabel = n.typ === "PK" ? "PK – Privatkontrolle" : "AK – Ausführungskontrolle";
       gruppiert[n.gewerk].push([n.titel, typLabel, `${preis.toFixed(2)} CHF`]);
     });
 
@@ -97,7 +107,6 @@ function initPDF() {
         { text: `Datum: ${datum}`, margin: [0, 10, 0, 5] },
         { text: `Projekt: ${projektname}` },
         { text: `Wunschtermin: ${wunschtermin}`, margin: [0, 0, 0, 15] },
-
         { text: "Ausgewählte Nachweise", style: "subheader" },
         {
           table: {
@@ -108,7 +117,6 @@ function initPDF() {
           layout: 'lightHorizontalLines',
           margin: [0, 5, 0, 15]
         },
-
         { text: "Bitte senden Sie die Offerte zusammen mit den Pflichtunterlagen zurück.", italics: true },
         { text: "E-Mail:    info@priv-control.ch", italics: true },
         { text: "Diese Offerte ist nicht rechtsverbindlich. Änderungen vorbehalten.", style: "klein", margin: [0, 30, 0, 0] }

@@ -1,25 +1,31 @@
-
-/* styles-index.css */
-
 /* === HERO SECTION === */
 .hero-image {
   width: 100%;
+  height: 300px;
+  object-fit: cover;
   border-radius: 1rem;
-  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  display: block;
+  margin-left: auto;
 }
 
-/* === MISSION SECTION === */
+.hero-section {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+
+/* === MISSION GRADIENT === */
 .section-gradient {
-  background: linear-gradient(90deg, #48c6ef, #6f86d6);
+  background: linear-gradient(90deg, #48c6ef, #b46fd6);
   border-radius: 25px;
   color: white;
-  padding: 3rem 1rem;
-  margin-top: 2rem;
+  padding-top: 2.5rem !important;
+  padding-bottom: 2.5rem !important;
 }
 
 /* === SECTION SPACING === */
 section {
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
 }
 
 /* === BUTTONS === */
@@ -57,7 +63,7 @@ section {
   }
 }
 
-/* Optional: Footer spacing */
+/* === FOOTER SPACING === */
 #footer-placeholder {
   margin-top: auto;
 }
