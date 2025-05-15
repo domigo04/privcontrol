@@ -81,7 +81,7 @@ function initPDF() {
     ausgewaehlt.forEach(n => {
       if (!gruppiert[n.gewerk]) gruppiert[n.gewerk] = [];
       const preis = n.typ === "PK" ? PREIS_PK : PREIS_AK;
-      const typLabel = n.typ === "PK" ? "PK – Privatkontrolle" : "AK – Ausführungskontrolle";
+      const typLabel = n.typ === "PK" ? "Privatkontrolle" : "Ausführungskontrolle";
       gruppiert[n.gewerk].push([n.titel, typLabel, `${preis.toFixed(2)} CHF`]);
     });
 

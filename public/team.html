@@ -8,37 +8,105 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css">
   <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .gradient-wrapper {
+      background: linear-gradient(90deg, #68c4ec, #a16ec6);
+      color: white;
+      overflow: hidden;
+      transition: max-height 1.5s ease, padding 0.5s ease;
+      max-height: 22.5rem;
+      border-radius: 2rem;
+      margin: 2rem auto;
+      padding: 4rem 2rem;
+      max-width: 90%;
+    }
+    .gradient-wrapper.expanded {
+      max-height: 9999px;
+      padding-bottom: 6rem;
+    }
+    .hero-content {
+      text-align: center;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(2rem);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .hero-content .btn {
+      margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      border-radius: 2rem;
+      box-shadow: 0 0.25rem 1.25rem rgba(0,0,0,0.2);
+    }
+    .team-card {
+      background: #ffffff;
+      color: #000;
+      border-radius: 1.25rem;
+      padding: 2.5rem 1.5rem;
+      margin: 2rem auto;
+      box-shadow: 0 0.5rem 1.875rem rgba(0, 0, 0, 0.1);
+      max-width: 56rem;
+      opacity: 0;
+      transform: translateY(2.5rem);
+      animation: slideIn 1s forwards;
+    }
+    .team-card.dom .col-md-9,
+    .team-card.kevin .col-md-9 {
+      padding-left: 2.5rem;
+    }
+    .team-card.dom { animation-delay: 0s; }
+    .team-card.mike { animation-delay: 0.2s; }
+    .team-card.kevin { animation-delay: 0.4s; }
+    .team-card.timon { animation-delay: 0.6s; }
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
     .team-image {
-      width: 140px;
-      height: 140px;
+      width: 9rem;
+      height: 9rem;
       object-fit: cover;
       border-radius: 50%;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      border: 0.25rem solid white;
+      box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.3);
+      margin-bottom: 1rem;
     }
-
-    .team-section {
-      background: url('assets/images/team-bg.jpg') no-repeat center center;
-      background-size: cover;
-      padding: 60px 0;
-    }
-
-    .team-quote {
-      font-size: 1.1rem;
-      font-weight: 500;
-    }
-
-    .contact-btn {
-      font-size: 0.85rem;
-      padding: 4px 10px;
-      margin-top: 0.5rem;
-      background-color: #0d6efd;
-      color: white;
-      border-radius: 12px;
+    .join-btn {
+      background-color: #000;
+      color: #fff;
       border: none;
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem;
+      border-radius: 1.25rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .join-btn:hover {
+      background-color: #333;
+      transform: scale(1.05);
     }
 
-    .contact-btn:hover {
-      background-color: #0b5ed7;
+    @media (max-width: 768px) {
+      .gradient-wrapper {
+        padding: 3rem 1.25rem;
+        max-width: 95%;
+      }
+      .team-card {
+        padding: 2rem 1rem;
+        margin: 1.5rem auto;
+      }
+      .team-image {
+        width: 7.5rem;
+        height: 7.5rem;
+      }
+      .team-card .col-md-9 {
+        padding-left: 1rem;
+      }
     }
   </style>
 </head>
@@ -48,77 +116,64 @@
   <div id="header-placeholder"></div>
 
   <main class="flex-grow-1">
-
-    <!-- Einleitung -->
-    <section class="text-center py-5">
-      <div class="container">
-        <h1 class="fw-bold mb-4">Wir sind PrivControl</h1>
-        <p class="lead">Unser Ziel: Effizienz, Verantwortung und Kontrolle im Energiebereich – mit technischem Know-how, das funktioniert.</p>
+    <div id="gradient-wrapper" class="gradient-wrapper">
+      <div class="container hero-content">
+        <h1 class="display-5 fw-bold">Wir sind PrivControl</h1>
+        <p class="lead mt-3">Technisches Know-how. Praxisnahe Kontrolle. Einfach effizient.</p>
+        <button class="btn btn-dark" onclick="expandTeam()">Team entdecken</button>
       </div>
-    </section>
 
-    <!-- Teammitglieder -->
-    <section class="team-section text-dark">
-      <div class="container">
-
-        <!-- Person 1 -->
-        <div class="row align-items-center mb-5">
+      <div id="team-wrapper" style="display: none;">
+        <div class="team-card row align-items-center dom">
           <div class="col-md-3 text-center">
             <img src="assets/images/team-dominic.jpg" class="team-image" alt="Dominic Goulon">
-            <button class="contact-btn mt-2">Contact me</button>
+            <br><button class="join-btn mt-3">Contact me</button>
           </div>
           <div class="col-md-9">
-            <p class="team-quote">
-              Für mich geht’s nicht nur ums Planen. Es geht darum, Verantwortung zu übernehmen – für Technik, für Entscheidungen und für smarte Lösungen in der Gebäudetechnik.
-            </p>
-            <strong>Dominic Goulon – Fachbauleitung Heizung/Kälte</strong>
+            <h5>Dominic Goulon</h5>
+            <p>Fachbauleitung Heizung/Kälte – Verantwortung übernehmen für Technik, Entscheidungen und smarte Lösungen.</p>
           </div>
         </div>
 
-        <!-- Person 2 -->
-        <div class="row align-items-center mb-5 flex-md-row-reverse">
+        <div class="team-card row align-items-center flex-md-row-reverse mike">
           <div class="col-md-3 text-center">
             <img src="assets/images/team-mike.png" class="team-image" alt="Michael Repolusk">
-            <button class="contact-btn mt-2">Contact me</button>
+            <br><button class="join-btn mt-3">Contact me</button>
           </div>
           <div class="col-md-9">
-            <p class="team-quote">
-              Ich glaube daran, dass Technik nur dann wirklich effizient ist, wenn sie für den Menschen funktioniert – das ist unser Anspruch bei PrivControl.
-            </p>
-            <strong>Michael Repolusk – Dipl. Ing. Energie FH</strong>
+            <h5>Michael Repolusk</h5>
+            <p>Dipl. Ing. Energie FH – Technik, die funktioniert – für Menschen, die auf Effizienz setzen.</p>
           </div>
         </div>
 
-        <!-- Person 3 -->
-        <div class="row align-items-center mb-5">
+        <div class="team-card row align-items-center kevin">
           <div class="col-md-3 text-center">
             <img src="assets/images/team-Kevin.png" class="team-image" alt="Kevin Holbe">
-            <button class="contact-btn mt-2">Contact me</button>
+            <br><button class="join-btn mt-3">Contact me</button>
           </div>
           <div class="col-md-9">
-            <p class="team-quote">
-              Unsere Arbeit beginnt bei den Details – Dokumentation, Beratung, alles auf den Punkt. Nur so entstehen nachhaltige Entscheidungen.
-            </p>
-            <strong>Kevin Holbe – Dipl. Ing. Klima HF</strong>
+            <h5>Kevin Holbe</h5>
+            <p>Dipl. Ing. Klima HF – Dokumentation, Beratung, Präzision – für nachhaltige Entscheidungen.</p>
           </div>
         </div>
 
-        <!-- Person 4 -->
-        <div class="row align-items-center mb-5 flex-md-row-reverse">
+        <div class="team-card row align-items-center flex-md-row-reverse timon">
           <div class="col-md-3 text-center">
             <img src="assets/images/team-timon.jpg" class="team-image" alt="Timon Günthard">
-            <button class="contact-btn mt-2">Contact me</button>
+            <br><button class="join-btn mt-3">Contact me</button>
           </div>
           <div class="col-md-9">
-            <p class="team-quote">
-              Ich analysiere nicht nur Zahlen, sondern echte Daten. So wird jedes Projekt nachvollziehbar, kontrollierbar und präzise.
-            </p>
-            <strong>Timon Günthard – Fachbauleitung Lüftung/Klima</strong>
+            <h5>Timon Günthard</h5>
+            <p>Fachbauleitung Lüftung/Klima – Ich mache Daten greifbar – für Kontrolle, Nachvollziehbarkeit und Präzision.</p>
           </div>
         </div>
 
+        <div class="text-center mt-5">
+          <h4>Möchtest du auch Teil unseres Teams werden?</h4>
+          <a href="mailto:info@privcontrol.ch" class="btn btn-dark mt-2">Jetzt bewerben</a>
+        </div>
       </div>
-    </section>
+    </div>
   </main>
 
   <!-- FOOTER -->
@@ -133,6 +188,16 @@
     fetch("components/footer.html").then(res => res.text()).then(data => {
       document.getElementById("footer-placeholder").innerHTML = data;
     });
+
+    function expandTeam() {
+      const wrapper = document.getElementById("gradient-wrapper");
+      const content = document.getElementById("team-wrapper");
+      wrapper.classList.add("expanded");
+      setTimeout(() => {
+        content.style.display = "block";
+        content.scrollIntoView({ behavior: 'smooth' });
+      }, 500);
+    }
   </script>
 </body>
 </html>
