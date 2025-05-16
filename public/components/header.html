@@ -1,8 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+<link href="css/header.css" rel="stylesheet" />
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" href="index.html">
       <img src="assets/images/priv-control-logo.png" alt="PrivControl Logo" style="height: 40px; margin-right: 10px;">
-   </a>
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -12,17 +14,44 @@
         <li class="nav-item">
           <a class="nav-link" href="index.html">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="pruefcontrol.html">Offerte</a>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="angebotDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Angebot
+          </a>
+          <ul class="dropdown-menu" id="angebotMenu">
+            <li><a class="dropdown-item" href="pruefcontrol.html">Offerten-Tool</a></li>
+            <li><a class="dropdown-item" href="auftragsbestaetigung.html">Auftragsbestätigung</a></li>
+            <li><a class="dropdown-item" href="ablauf.html">Ablauf & Leistungen</a></li>
+          </ul>
         </li>
-         <li class="nav-item">
+
+        <li class="nav-item">
           <a class="nav-link" href="team.html">Team</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="contact.html">Kontakt</a>
         </li>
-      
       </ul>
     </div>
   </div>
 </nav>
+
+<!-- Nur auf mobilen Geräten Dropdown umfunktionieren -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const angebotToggle = document.getElementById('angebotDropdown');
+    const angebotMenu = document.getElementById('angebotMenu');
+
+    function isMobile() {
+      return window.innerWidth < 992;
+    }
+
+    angebotToggle.addEventListener('click', function (e) {
+      if (isMobile()) {
+        e.preventDefault();
+        angebotMenu.classList.toggle('show');
+      }
+    });
+  });
+</script>

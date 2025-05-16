@@ -67,3 +67,12 @@ section {
 #footer-placeholder {
   margin-top: auto;
 }
+
+section h2, section h5 {
+  color: #2c2c2c;
+}
+
+section img {
+  max-height: 300px;
+  object-fit: cover;
+}

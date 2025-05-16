@@ -75,6 +75,8 @@
 <body class="d-flex flex-column min-vh-100">
   <div id="header-placeholder"></div>
 
+  <section class="py-5">
+
   <main class="flex-grow-1">
     <div class="container container-box">
       <h1>Offerte zusammenstellen</h1>
@@ -113,17 +115,20 @@
 
       <div id="dynamischerBereich"></div>
 
-      <div class="mb-4">
-        <button type="button" class="btn btn-light border shadow-sm w-100 py-3" id="sendMailBtn">
-          Pflichtunterlagen zustellen
-        </button>
-      </div>
-
-      <div id="preisBox" class="fw-bold fs-5"></div>
-
       <button class="btn btn-primary w-100 py-3" id="berechnenBtn" type="button">
         Offerte berechnen
       </button>
+
+    <div class="mt-3">
+        <button type="button" class="btn btn-light border shadow-sm w-100 py-3" id="sendMailBtn">
+           Checkout mit Mail
+        </button>
+      </div>
+      
+    </section>
+      <div id="preisBox" class="fw-bold fs-5"></div>
+
+     
 
       <div class="modal fade" id="offerteModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">

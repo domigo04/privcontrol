@@ -1,0 +1,105 @@
+/* ---------- Dropdown-Menü: modern + ohne weißen Rand ---------- */
+.navbar .dropdown-menu {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border: none !important;
+  border-radius: 0.335rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 0;
+  margin-top: 0.5rem;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(10px);
+  visibility: hidden;
+  pointer-events: none;
+  display: block;
+}
+
+.navbar .dropdown-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* ---------- Dropdown-Einträge ---------- */
+.navbar .dropdown-menu .dropdown-item {
+  padding: 0.7rem 1.5rem;
+  color: #503737;
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.2s ease;
+  border-radius: 0.5rem;
+}
+
+.navbar .dropdown-menu .dropdown-item:hover {
+  background-color: rgba(79, 70, 229, 0.1);
+  color: #4f46e5;
+  transform: translateX(4px);
+}
+
+/* ---------- Menü-Links (Hover & Underline) ---------- */
+.navbar .nav-link {
+  position: relative;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  color: #0f172a;
+  transition: all 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #4f46e5;
+  transform: translateY(-2px);
+}
+
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0.2rem;
+  left: 1rem;
+  width: 0;
+  height: 2px;
+  background-color: #4f46e5;
+  transition: width 0.3s ease;
+}
+
+.navbar .nav-link:hover::after {
+  width: calc(100% - 2rem);
+}
+
+.navbar .nav-link.active {
+  color: #4f46e5;
+}
+
+.navbar .nav-link.active::after {
+  width: calc(100% - 2rem);
+}
+
+/* ---------- Mobiles Verhalten (Dropdown als Akkordeon) ---------- */
+@media (max-width: 991.98px) {
+  .navbar .dropdown-menu {
+    position: static;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    backdrop-filter: none;
+    padding-left: 1rem;
+    margin: 0;
+    display: none;
+  }
+
+  .navbar .dropdown-menu.show {
+    display: block;
+    animation: fadeDown 0.3s ease;
+  }
+
+  @keyframes fadeDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
