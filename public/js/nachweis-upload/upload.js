@@ -1,35 +1,34 @@
-const button = document.getElementById('auftragAbsendenBtn');
-    const statusDiv = document.getElementById('status');
+document.getElementById('auftragAbsendenBtn').addEventListener('click', async () => {
+  const status = document.getElementById('status');
+  const nachweisDatei = document.getElementById('nachweisDatei').files[0];
+  const zusatzDateien = document.getElementById('zusatzDateien').files;
+  const lieferdatum = document.getElementById('lieferdatum').value;
 
-    button.addEventListener('click', async () => {
-      const nachweisDatei = document.getElementById('nachweisDatei').files[0];
-      const zusatzDateien = document.getElementById('zusatzDateien').files;
-      const lieferdatum = document.getElementById('lieferdatum').value;
+  if (!nachweisDatei) {
+    status.textContent = "Bitte den Energienachweis hochladen.";
+    return;
+  }
 
-      if (!nachweisDatei) {
-        alert('Bitte lade zuerst den Energienachweis hoch.');
-        return;
-      }
+  const formData = new FormData();
+  formData.append("nachweis", nachweisDatei);
+  for (const file of zusatzDateien) {
+    formData.append("zusatz", file);
+  }
+  formData.append("lieferdatum", lieferdatum);
 
-      const formData = new FormData();
-      formData.append('dateien', nachweisDatei);
-      for (const file of zusatzDateien) {
-        formData.append('dateien', file);
-      }
-      formData.append('lieferdatum', lieferdatum);
-
-      statusDiv.innerHTML = '<div class="spinner-border" role="status"></div> Upload läuft...';
-
-      try {
-        const res = await fetch('https://<DEINE-FUNCTION-URL>.azurewebsites.net/api/<FUNCTION-NAME>', {
-          method: 'POST',
-          body: formData
-        });
-
-        const result = await res.text();
-        statusDiv.innerHTML = `<div class="alert alert-success mt-3">✅ Erfolgreich hochgeladen: <br>${result}</div>`;
-      } catch (err) {
-        statusDiv.innerHTML = '<div class="alert alert-danger mt-3">❌ Fehler beim Hochladen</div>';
-        console.error(err);
-      }
+  try {
+    status.textContent = "⏳ Hochladen läuft...";
+    
+    const response = await fetch("/api/uploadNachweis", {
+      method: "POST",
+      body: formData
     });
+
+    const result = await response.text();
+    status.textContent = result;
+    
+  } catch (err) {
+    console.error(err);
+    status.textContent = "❌ Fehler beim Upload.";
+  }
+});
