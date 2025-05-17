@@ -7,34 +7,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
   <link href="css/ablauf.css" rel="stylesheet" />
-  <style>
-    .timeline-section {
-      display: none;
-    }
-    #step-8::after {
-      display: none;
-    }
-    .detail-text {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-    }
-    .detail-text.open {
-      max-height: 150px;
-    }
-    @media (max-width: 768px) {
-      .timeline-item .content {
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .timeline::before,
-      .timeline-item::after {
-        display: none !important;
-      }
-    }
-  </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
+
 
 <!-- HEADER -->
 <div id="header-placeholder"></div>
@@ -151,7 +126,9 @@
 </section>
 
 <!-- FOOTER -->
-<div id="footer-placeholder"></div>
+<footer class="mt-auto bg-light py-">
+  <div id="footer-placeholder"></div>
+</footer>
 
 <script>
   // Header/Footer laden
