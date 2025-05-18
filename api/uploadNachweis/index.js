@@ -4,6 +4,7 @@ module.exports = async function (context, req) {
   if (req.method !== "POST") {
     context.res = {
       status: 405,
+      headers: { "Content-Type": "text/plain" },
       body: "Nur POST erlaubt",
     };
     return;
@@ -19,9 +20,7 @@ module.exports = async function (context, req) {
       });
     });
 
-    console.log("✅ Hochgeladene Felder:", data.fields);
-    console.log("📁 Hochgeladene Dateien:", data.files);
-
+    // ✅ Dateianzahl ausgeben
     const uploadedCount = Object.keys(data.files).reduce(
       (sum, key) => sum + data.files[key].length,
       0
