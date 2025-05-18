@@ -1,6 +1,8 @@
 const formidable = require("formidable");
 
 module.exports = async function (context, req) {
+  console.log("📥 UPLOAD gestartet");
+
   if (req.method !== "POST") {
     context.res = {
       status: 405,
@@ -15,6 +17,11 @@ module.exports = async function (context, req) {
   await new Promise((resolve, reject) => {
     form.parse(req, (err, fields, files) => {
       if (err) {
+        context.res = {
+          status: 500,
+          headers: { "Content-Type": "text/plain" },
+          body: `❌ Fehler beim Hochladen: ${err.message}`,
+        };
         reject(err);
         return;
       }
