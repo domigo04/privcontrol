@@ -1,21 +1,24 @@
 const formidable = require("formidable");
 
 module.exports = async function (context, req) {
-  console.log("📥 UPLOAD gestartet");
+  context.log("📥 UPLOAD gestartet");
 
   if (req.method !== "POST") {
     context.res = {
       status: 405,
       headers: { "Content-Type": "text/plain" },
-      body: "Nur POST erlaubt",
+      body: "❌ Nur POST erlaubt",
     };
     return;
   }
 
   const form = formidable({ multiples: true });
 
+  // formidable erwartet einen Stream → Azure req.body ist Buffer bei dataType: binary
+  const mockReq = require("streamifier").createReadStream(req.body);
+
   await new Promise((resolve, reject) => {
-    form.parse(req, (err, fields, files) => {
+    form.parse(mockReq, (err, fields, files) => {
       if (err) {
         context.res = {
           status: 500,
