@@ -1,42 +1,48 @@
 const formidable = require("formidable");
+const streamifier = require("streamifier");
 
 module.exports = async function (context, req) {
-  context.log("📥 UPLOAD gestartet");
+  context.log("📥 Upload gestartet");
 
   if (req.method !== "POST") {
     context.res = {
       status: 405,
-      headers: { "Content-Type": "text/plain" },
-      body: "❌ Nur POST erlaubt",
+      body: "❌ Nur POST erlaubt"
     };
     return;
   }
 
-  const form = formidable({ multiples: true });
+  try {
+    const form = formidable({ multiples: true });
 
-  // formidable erwartet einen Stream → Azure req.body ist Buffer bei dataType: binary
-  const mockReq = require("streamifier").createReadStream(req.body);
+    const stream = streamifier.createReadStream(req.body);
 
-  await new Promise((resolve, reject) => {
-    form.parse(mockReq, (err, fields, files) => {
-      if (err) {
+    await new Promise((resolve, reject) => {
+      form.parse(stream, (err, fields, files) => {
+        if (err) {
+          context.log("❌ Fehler:", err);
+          context.res = {
+            status: 500,
+            body: "❌ Fehler beim Hochladen: " + err.message
+          };
+          reject(err);
+          return;
+        }
+
+        const uploadedCount = Object.values(files).flat().length;
+
         context.res = {
-          status: 500,
-          headers: { "Content-Type": "text/plain" },
-          body: `❌ Fehler beim Hochladen: ${err.message}`,
+          status: 200,
+          body: `✅ Upload erfolgreich: ${uploadedCount} Datei(en)`
         };
-        reject(err);
-        return;
-      }
-
-      const uploadedCount = Object.values(files).flat().length;
-
-      context.res = {
-        status: 200,
-        headers: { "Content-Type": "text/plain" },
-        body: `✅ Upload erfolgreich: ${uploadedCount} Datei(en) empfangen.`,
-      };
-      resolve();
+        resolve();
+      });
     });
-  });
+  } catch (err) {
+    context.log("❌ Unerwarteter Fehler:", err);
+    context.res = {
+      status: 500,
+      body: "❌ Unerwarteter Fehler: " + err.message
+    };
+  }
 };
