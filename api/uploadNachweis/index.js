@@ -1,4 +1,5 @@
 const multiparty = require("multiparty");
+const { Readable } = require("stream");
 
 module.exports = async function (context, req) {
   if (req.method !== "POST") {
@@ -10,6 +11,12 @@ module.exports = async function (context, req) {
     return;
   }
 
+  // 🔧 Azure Functions "req" ist kein richtiger Stream – wir brauchen einen!
+  const stream = new Readable();
+  stream.push(req.body);
+  stream.push(null);
+  req.pipe = stream.pipe.bind(stream); // ← Workaround, damit multiparty es „frisst“
+
   const form = new multiparty.Form();
 
   try {
@@ -20,7 +27,6 @@ module.exports = async function (context, req) {
       });
     });
 
-    // ✅ Dateianzahl ausgeben
     const uploadedCount = Object.keys(data.files).reduce(
       (sum, key) => sum + data.files[key].length,
       0

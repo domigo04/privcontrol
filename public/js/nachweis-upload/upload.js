@@ -19,16 +19,17 @@ document.getElementById('auftragAbsendenBtn').addEventListener('click', async ()
   try {
     status.textContent = "⏳ Hochladen läuft...";
     
-    const response = await fetch("/api/uploadNachweis", {
-      method: "POST",
-      body: formData
-    });
+  const response = await fetch("/api/uploadNachweis", {
+  method: "POST",
+  body: formData
+});
 
     const result = await response.text();
     status.textContent = result;
     
-  } catch (err) {
-    console.error(err);
-    status.textContent = "❌ Fehler beim Upload.";
-  }
+} catch (err) {
+  console.error("❌ Fehler beim Upload:", err);
+  status.textContent = "❌ Fehler beim Upload: " + err.message;
+}
+
 });
