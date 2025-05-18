@@ -46,3 +46,19 @@ __pycache__/
 __blobstorage__
 __queuestorage__
 __azurite_db*__.json
+uploadNachweis/host.json
+.gitignore
+
+# VS Code Settings
+.vscode
+
+# Node
+node_modules
+package-lock.json
+
+# Azure Function falsch generiert
+uploadNachweis/host.json
+uploadNachweis/.vscode/
+uploadNachweis/.funcignore
+uploadNachweis/package.json
+uploadNachweis/local.settings.json
