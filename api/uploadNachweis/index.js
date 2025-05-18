@@ -7,33 +7,43 @@ module.exports = async function (context, req) {
     context.res = {
       status: 405,
       headers: { "Content-Type": "text/plain" },
-      body: "❌ Nur POST erlaubt"
+      body: "❌ Nur POST erlaubt",
     };
     return;
   }
 
-  const form = formidable({ multiples: true });
+  try {
+    const form = formidable({ multiples: true });
 
-  await new Promise((resolve, reject) => {
-    form.parse(req, (err, fields, files) => {
-      if (err) {
-        context.log("❌ Fehler beim Parsen:", err);
+    await new Promise((resolve, reject) => {
+      form.parse(req, (err, fields, files) => {
+        if (err) {
+          context.log("❌ Fehler beim Parsen:", err);
+          context.res = {
+            status: 500,
+            headers: { "Content-Type": "text/plain" },
+            body: "❌ Fehler beim Parsen: " + err.message,
+          };
+          return reject(err);
+        }
+
+        const uploadedFiles = Object.values(files).flat();
+        context.log(`✅ Upload erfolgreich – empfangen: ${uploadedFiles.length} Datei(en)`);
+
         context.res = {
-          status: 500,
+          status: 200,
           headers: { "Content-Type": "text/plain" },
-          body: "❌ Fehler beim Hochladen: " + err.message
+          body: `✅ Upload erfolgreich: ${uploadedFiles.length} Datei(en)`,
         };
-        return reject(err);
-      }
-
-      const uploadedCount = Object.values(files).flat().length;
-
-      context.res = {
-        status: 200,
-        headers: { "Content-Type": "text/plain" },
-        body: `✅ Upload erfolgreich: ${uploadedCount} Datei(en)`
-      };
-      resolve();
+        resolve();
+      });
     });
-  });
+  } catch (error) {
+    context.log("❌ Unerwarteter Fehler:", error);
+    context.res = {
+      status: 500,
+      headers: { "Content-Type": "text/plain" },
+      body: "❌ Unerwarteter Fehler: " + error.message,
+    };
+  }
 };
