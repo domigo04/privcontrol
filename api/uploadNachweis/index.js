@@ -1,3 +1,4 @@
+import { BlobServiceClient } from "@azure/storage-blob";
 const formidable = require("formidable");
 
 module.exports = async function (context, req) {
@@ -13,37 +14,42 @@ module.exports = async function (context, req) {
   }
 
   try {
-    const form = formidable({ multiples: true });
+    const form = formidable({ multiples: false });
 
-    await new Promise((resolve, reject) => {
+    const { fields, files } = await new Promise((resolve, reject) => {
       form.parse(req, (err, fields, files) => {
-        if (err) {
-          context.log("❌ Fehler beim Parsen:", err);
-          context.res = {
-            status: 500,
-            headers: { "Content-Type": "text/plain" },
-            body: "❌ Fehler beim Parsen: " + err.message,
-          };
-          return reject(err);
-        }
-
-        const uploadedFiles = Object.values(files).flat();
-        context.log(`✅ Upload erfolgreich – empfangen: ${uploadedFiles.length} Datei(en)`);
-
-        context.res = {
-          status: 200,
-          headers: { "Content-Type": "text/plain" },
-          body: `✅ Upload erfolgreich: ${uploadedFiles.length} Datei(en)`,
-        };
-        resolve();
+        if (err) reject(err);
+        else resolve({ fields, files });
       });
     });
+
+    const uploadedFile = files.file; // 'file' = Feldname im Upload-Formular
+    const fileStream = uploadedFile.filepath
+      ? require("fs").createReadStream(uploadedFile.filepath)
+      : null;
+
+    if (!fileStream) throw new Error("📄 Datei konnte nicht gelesen werden");
+
+    const sasUrl = "https://<your-account>.blob.core.windows.net?<SAS-token>";
+    const containerName = "my-container";
+
+    const blobServiceClient = new BlobServiceClient(sasUrl);
+    const containerClient = blobServiceClient.getContainerClient(containerName);
+    const blockBlobClient = containerClient.getBlockBlobClient(uploadedFile.originalFilename);
+
+    await blockBlobClient.uploadStream(fileStream, undefined, undefined, {
+      blobHTTPHeaders: { blobContentType: uploadedFile.mimetype },
+    });
+
+    context.res = {
+      status: 200,
+      body: "✅ Upload erfolgreich",
+    };
   } catch (error) {
-    context.log("❌ Unerwarteter Fehler:", error);
+    context.log("❌ Fehler:", error);
     context.res = {
       status: 500,
-      headers: { "Content-Type": "text/plain" },
-      body: "❌ Unerwarteter Fehler: " + error.message,
+      body: "❌ Upload fehlgeschlagen: " + error.message,
     };
   }
 };
