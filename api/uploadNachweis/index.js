@@ -1,5 +1,6 @@
-import { BlobServiceClient } from "@azure/storage-blob";
+const { BlobServiceClient } = require("@azure/storage-blob");
 const formidable = require("formidable");
+const fs = require("fs");
 
 module.exports = async function (context, req) {
   context.log("📥 Upload gestartet");
@@ -23,18 +24,17 @@ module.exports = async function (context, req) {
       });
     });
 
-    const uploadedFile = files.file; // 'file' = Feldname im Upload-Formular
-    const fileStream = uploadedFile.filepath
-      ? require("fs").createReadStream(uploadedFile.filepath)
-      : null;
+    const uploadedFile = files.file;
 
-    if (!fileStream) throw new Error("📄 Datei konnte nicht gelesen werden");
+    const fileStream = fs.createReadStream(uploadedFile.filepath);
 
-    const sasUrl = "https://<your-account>.blob.core.windows.net?<SAS-token>";
-    const containerName = "my-container";
+    const connectionString =
+      "DefaultEndpointsProtocol=https;AccountName=privcontrolstorage;AccountKey=HMtqb4ae0Lm0a7/6kGmv+3nuSZRz0RZm4zjQINbUsMBdQsfc0V43xx3ud0EfNIb/SGze7AwxRw8f+ASt2NHA3w==;EndpointSuffix=core.windows.net";
 
-    const blobServiceClient = new BlobServiceClient(sasUrl);
+    const containerName = "uploads";
+    const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
     const containerClient = blobServiceClient.getContainerClient(containerName);
+
     const blockBlobClient = containerClient.getBlockBlobClient(uploadedFile.originalFilename);
 
     await blockBlobClient.uploadStream(fileStream, undefined, undefined, {
@@ -43,10 +43,10 @@ module.exports = async function (context, req) {
 
     context.res = {
       status: 200,
-      body: "✅ Upload erfolgreich",
+      body: "✅ Datei erfolgreich hochgeladen.",
     };
   } catch (error) {
-    context.log("❌ Fehler:", error);
+    context.log("❌ Fehler beim Upload:", error);
     context.res = {
       status: 500,
       body: "❌ Upload fehlgeschlagen: " + error.message,
