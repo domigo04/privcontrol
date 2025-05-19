@@ -15,7 +15,7 @@ module.exports = async function (context, req) {
   }
 
   try {
-    const form = formidable({ multiples: false });
+    const form = new formidable.IncomingForm({ multiples: false });
 
     const { fields, files } = await new Promise((resolve, reject) => {
       form.parse(req, (err, fields, files) => {
@@ -24,7 +24,7 @@ module.exports = async function (context, req) {
       });
     });
 
-    const uploadedFile = files.file;
+    const uploadedFile = files.file; // 'file' ist der Feldname im Upload-Formular
 
     const fileStream = fs.createReadStream(uploadedFile.filepath);
 
