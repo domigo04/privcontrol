@@ -1,0 +1,100 @@
+ body {
+      background-color: #f8f9fa;
+    }
+    .gradient-wrapper {
+      background: linear-gradient(90deg, #68c4ec, #a16ec6);
+      color: white;
+      overflow: hidden;
+      transition: max-height 1.5s ease, padding 0.5s ease;
+      max-height: 22.5rem;
+      border-radius: 2rem;
+      margin: 2rem auto;
+      padding: 4rem 2rem;
+      max-width: 90%;
+    }
+    .gradient-wrapper.expanded {
+      max-height: 9999px;
+      padding-bottom: 6rem;
+    }
+    .hero-content {
+      text-align: center;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(2rem);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .hero-content .btn {
+      margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      border-radius: 2rem;
+      box-shadow: 0 0.25rem 1.25rem rgba(0,0,0,0.2);
+    }
+    .team-card {
+      background: #ffffff;
+      color: #000;
+      border-radius: 1.25rem;
+      padding: 2.5rem 1.5rem;
+      margin: 2rem auto;
+      box-shadow: 0 0.5rem 1.875rem rgba(0, 0, 0, 0.1);
+      max-width: 56rem;
+      opacity: 0;
+      transform: translateY(2.5rem);
+      animation: slideIn 1s forwards;
+    }
+    .team-card.dom .col-md-9,
+    .team-card.kevin .col-md-9 {
+      padding-left: 2.5rem;
+    }
+    .team-card.dom { animation-delay: 0.1s; }
+    .team-card.mike { animation-delay: 0.3s; }
+    .team-card.kevin { animation-delay: 0.5s; }
+    .team-card.timon { animation-delay: 0.9s; }
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .team-image {
+      width: 9rem;
+      height: 9rem;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 0.25rem solid white;
+      box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.3);
+      margin-bottom: 1rem;
+    }
+    .join-btn {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem;
+      border-radius: 1.25rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .join-btn:hover {
+      background-color: #333;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      .gradient-wrapper {
+        padding: 3rem 1.25rem;
+        max-width: 95%;
+      }
+      .team-card {
+        padding: 2rem 1rem;
+        margin: 1.5rem auto;
+      }
+      .team-image {
+        width: 7.5rem;
+        height: 7.5rem;
+      }
+      .team-card .col-md-9 {
+        padding-left: 1rem;
+      }
+    }

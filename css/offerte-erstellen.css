@@ -1,0 +1,436 @@
+/* Offerte Erstellen - Vereinfachtes Design */
+
+/* Body & Layout */
+body.bg-light {
+  background-color: #f8f9fa !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Hero Section */
+.hero-section {
+  background: white;
+  padding: 3rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.hero-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #212529;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: #6c757d;
+}
+
+/* Main Card */
+.main-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 2rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.card-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #212529;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #28a745;
+  font-size: 0.9rem;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+/* Form Sections */
+.form-section {
+  margin-bottom: 3rem;
+}
+
+.section-header {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #212529;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: #6c757d;
+  margin-bottom: 0;
+}
+
+/* Form Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #212529;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.form-control {
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.form-control.is-invalid {
+  border-color: #dc3545;
+}
+
+.form-text {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-top: 0.25rem;
+}
+
+/* Accordion */
+.accordion {
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.accordion-item {
+  border: none;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+.accordion-button {
+  background: #f8f9fa;
+  border: none;
+  padding: 1.25rem;
+  font-weight: 500;
+  color: #212529;
+}
+
+.accordion-button:not(.collapsed) {
+  background: #e9ecef;
+  box-shadow: none;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+  border-color: #e9ecef;
+}
+
+.accordion-icon {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.accordion-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.accordion-title {
+  font-weight: 600;
+  color: #212529;
+}
+
+.accordion-subtitle {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.accordion-body {
+  padding: 1.5rem;
+  background: white;
+}
+
+/* Gewerk Items */
+.gewerk-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.gewerk-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  background: #f8f9fa;
+}
+
+.gewerk-info h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #212529;
+  margin-bottom: 0.25rem;
+}
+
+.gewerk-info p {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-bottom: 0;
+}
+
+.gewerk-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.mini-btn {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  border-radius: 4px;
+  border: 1px solid #0d6efd;
+  background: white;
+  color: #0d6efd;
+  transition: all 0.15s ease-in-out;
+  min-width: 60px;
+}
+
+.mini-btn:hover {
+  background: #0d6efd;
+  color: white;
+}
+
+.mini-btn.btn-primary {
+  background: #0d6efd;
+  color: white;
+  border-color: #0d6efd;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  min-width: 280px;
+}
+
+/* Info Section */
+.info-section {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+.steps-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.step-number {
+  background: #0d6efd;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.step-content h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #212529;
+  margin-bottom: 0.25rem;
+}
+
+.step-content p {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-bottom: 0;
+}
+
+/* Alerts */
+.alert {
+  border-radius: 6px;
+  border: none;
+  padding: 0.75rem 1rem;
+}
+
+.alert-warning {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.alert-danger {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.alert-success {
+  background: #d1f2dd;
+  color: #0f5132;
+}
+
+/* Modal */
+.modal-content {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+  border-bottom: 1px solid #e9ecef;
+  padding: 1.5rem;
+}
+
+.modal-body {
+  padding: 2rem 1.5rem;
+}
+
+/* Loading */
+.spinner-border {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 2rem 0;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .card-header,
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .gewerk-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .steps-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .btn-lg {
+    min-width: 100%;
+  }
+}
+
+/* Google Places Autocomplete Styling */
+.pac-container {
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.pac-item {
+  padding: 0.75rem;
+  border-bottom: 1px solid #e9ecef;
+  cursor: pointer;
+}
+
+.pac-item:hover {
+  background: #f8f9fa;
+}
+
+.pac-item-selected {
+  background: #e9ecef;
+}
+
+/* Footer */
+footer {
+  background: #f8f9fa !important;
+  border-top: 1px solid #e9ecef !important;
+  color: #6c757d;
+}
+
+footer p,
+footer small {
+  color: #6c757d;
+}
+
+/* Utility Classes */
+.text-primary {
+  color: #0d6efd !important;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}

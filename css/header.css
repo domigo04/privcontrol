@@ -1,0 +1,145 @@
+
+/* 🔷 Farbverlauf-Balken ganz oben */
+#top-gradient-bar {
+  height: 8px;
+  width: 100%;
+  background: linear-gradient(90deg, #cb46e5, #e03bf6, #06b6d4) !important; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+}
+
+/* 🔹 Platz schaffen, damit Navbar nicht verdeckt wird */
+.navbar {
+  margin-top: 8px;
+}
+
+
+/* 🔹 Navbar-Design */
+.navbar {
+  margin-top: 8px; /* Platz für oberen Balken */
+  background: #ffffffee;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #eee;
+}
+
+.navbar-brand img {
+  height: 40px !important;
+  max-height: 40px !important;
+  width: auto !important;
+}
+
+
+/* 🔹 Dropdown-Style */
+.navbar .dropdown-menu {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  padding: 0.75rem 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.navbar .dropdown-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  visibility: visible;
+}
+
+/* 🔹 Menüeinträge */
+.navbar .dropdown-item {
+  padding: 0.6rem 1.5rem;
+  color: #1e293b;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.navbar .dropdown-item:hover {
+  background-color: rgba(79, 70, 229, 0.1);
+  color: #4f46e5;
+  transform: translateX(4px);
+}
+
+/* 🔹 Menü-Links */
+.navbar .nav-link {
+  position: relative;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  color: #0f172a;
+  transition: all 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #4f46e5;
+  transform: translateY(-2px);
+}
+
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0.2rem;
+  left: 1rem;
+  width: 0;
+  height: 2px;
+  background-color: #4f46e5;
+  transition: width 0.3s ease;
+}
+
+.navbar .nav-link:hover::after {
+  width: calc(100% - 2rem);
+}
+
+.navbar .nav-link.active {
+  color: #4f46e5;
+}
+
+.navbar .nav-link.active::after {
+  width: calc(100% - 2rem);
+}
+
+/* 🔹 Mobiles Dropdown */
+@media (max-width: 991.98px) {
+  .navbar .dropdown-menu {
+    position: static;
+    background: transparent;
+    box-shadow: none;
+    padding-left: 1rem;
+    display: none;
+  }
+
+  .navbar .dropdown-menu.show {
+    display: block;
+    animation: fadeDown 0.3s ease;
+  }
+
+  @keyframes fadeDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* 🔷 Farbverlauf-Balken ganz oben */
+#top-gradient-bar {
+  height: 8px;
+  width: 100%;
+  background: linear-gradient(90deg, #4f46e5, #3b82f6, #06b6d4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1100;
+}
+

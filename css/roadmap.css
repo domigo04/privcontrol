@@ -1,0 +1,112 @@
+body {
+  background-color: #f4f6f9;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Container */
+.roadmap {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+/* Timeline Step */
+.step {
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border-left: 4px solid #810dfd;
+  transition: transform 0.3s ease;
+}
+
+.step:hover {
+  transform: scale(1.01);
+}
+
+/* Timeline Dot */
+.step::before {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  left: -0.75rem;
+  width: 16px;
+  height: 16px;
+  background-color: #0d6efd;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px #0d6efd;
+}
+
+/* Title + Icon */
+.step h5 {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  gap: 10px;
+  margin-bottom: 0.6rem;
+}
+
+.step h5 i {
+  color: #0d6efd;
+  font-size: 1.3rem;
+}
+
+/* Badge */
+.badge {
+  font-size: 0.75rem;
+}
+
+/* Description */
+.step p {
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+  color: #333;
+}
+
+/* More Info Button */
+.more-info {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  padding: 5px 10px;
+}
+
+/* Collapsible content */
+.more-info-content {
+  display: none;
+  margin-top: 0.75rem;
+  border-left: 3px solid #0d6efd;
+  padding-left: 1rem;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+/* Headline */
+h2 {
+  font-weight: 700;
+  font-size: 2rem;
+  color: #111;
+}
+
+/* Mobile optimization */
+@media (max-width: 576px) {
+  .roadmap {
+    padding: 10px;
+  }
+  .step {
+    padding: 1.25rem 1.25rem 1.25rem 2rem;
+  }
+  .step h5 {
+    font-size: 1rem;
+  }
+  .step p,
+  .more-info-content {
+    font-size: 0.9rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+}

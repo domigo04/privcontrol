@@ -1,0 +1,129 @@
+.timeline-section {
+  display: none;
+}
+
+.timeline {
+  position: relative;
+  padding: 2rem 0;
+  margin: 0 auto;
+  max-width: 1140px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  background: #0d6efd;
+  z-index: 0;
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease;
+}
+
+.timeline-item.left {
+  justify-content: flex-start;
+}
+.timeline-item.right {
+  justify-content: flex-end;
+}
+.timeline-item.center {
+  justify-content: center;
+}
+
+.timeline-item .content {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(6px);
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #0d6efd;
+  z-index: 1;
+}
+
+.timeline-item.left::after {
+  right: calc(50% - 10px);
+}
+.timeline-item.right::after {
+  left: calc(50% - 10px);
+}
+.timeline-item.center::after {
+  display: none;
+}
+
+.scroll-arrow {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: top 0.6s ease, opacity 0.3s ease;
+  opacity: 0;
+  z-index: 10;
+}
+.scroll-arrow.visible {
+  opacity: 1;
+}
+
+.detail-text {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.detail-text.open {
+  max-height: 160px;
+}
+
+/* Mobile Layout */
+@media (max-width: 991.98px) {
+  .timeline::before {
+    display: none;
+  }
+
+  .timeline-item,
+  .timeline-item.left,
+  .timeline-item.right,
+  .timeline-item.center {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .timeline-item::after {
+    display: none;
+  }
+
+  .timeline-item .content {
+    margin: 0 auto;
+    text-align: center;
+  }
+}
