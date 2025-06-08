@@ -3,30 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Priv-Control – Offerte bestätigen & Dokumente hochladen</title>
-  
-  <!-- Bootstrap CSS -->
+  <title>Priv-Control – Dokumente hochladen & Offerte bestätigen</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-  
-  <!-- FontAwesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-  
-  <!-- Dropzone CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css" />
-  
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/header.css" />
   <link rel="stylesheet" href="css/upload-bestaetigung.css" />
 </head>
 <body>
   <div id="header-placeholder"></div>
-  
-  <!-- Hero Section -->
+
   <div class="hero-section">
     <div class="container">
       <div class="text-center">
-        <h1 class="display-4 fw-bold mb-3">Offerte bestätigen</h1>
-        <p class="lead">Prüfen Sie Ihre Bestellung und laden Sie Ihre Dokumente hoch</p>
+        <h1 class="display-4 fw-bold mb-3">Dokumente hochladen</h1>
+        <p class="lead">Laden Sie zuerst Ihre Dokumente hoch, dann können Sie die Offerte bestätigen</p>
         <div class="status-badge mt-3">
           <i class="fas fa-file-contract me-2"></i>
           Projekt-ID: <span id="projektIdDisplay">Wird geladen...</span>
@@ -36,120 +27,72 @@
   </div>
 
   <div class="container">
-    <!-- Bestätigungs-Sektion -->
-    <div id="confirmationSection">
-      <div class="confirmation-card">
-        <div class="card-header-custom">
-          <div class="row align-items-center">
-            <div class="col">
-              <h2 class="mb-0">
-                <i class="fas fa-clipboard-check me-3"></i>
-                <span id="projektNameDisplay">Projektname wird geladen...</span>
-              </h2>
-            </div>
-            <div class="col-auto">
-              <span class="badge bg-light text-dark">
-                <i class="fas fa-clock me-1"></i>
-                Bestätigung ausstehend
-              </span>
-            </div>
-          </div>
+    <div class="project-info-compact">
+      <div class="row align-items-center mb-3">
+        <div class="col">
+          <h3 class="mb-0">
+            <i class="fas fa-clipboard-check me-2 text-primary"></i>
+            <span id="projektNameDisplay">Projektname wird geladen...</span>
+          </h3>
         </div>
+        <div class="col-auto">
+          <span class="badge bg-light text-dark">
+            <i class="fas fa-clock me-1"></i>
+            Upload ausstehend
+          </span>
+        </div>
+      </div>
 
-        <div class="card-body p-0">
-          <!-- Projekt-Übersicht -->
-          <div class="p-4">
-            <h4 class="mb-3">
-              <i class="fas fa-info-circle me-2 text-primary"></i>
-              Projekt-Übersicht
-            </h4>
-            
-            <div class="project-overview">
-              <div class="info-grid" id="projektInfoGrid">
-                <!-- Wird dynamisch gefüllt -->
-              </div>
-            </div>
+      <div class="info-grid" id="projektInfoGrid"></div>
 
-            <!-- Ausgewählte Leistungen -->
-            <h4 class="mb-3">
-              <i class="fas fa-tools me-2 text-primary"></i>
-              Ausgewählte Leistungen
-            </h4>
-            
-            <div class="services-list" id="servicesList">
-              <!-- Wird dynamisch gefüllt -->
-            </div>
+      <div class="mt-3">
+        <h6 class="text-muted mb-2">Ausgewählte Leistungen:</h6>
+        <div class="services-compact" id="servicesList"></div>
+      </div>
 
-            <!-- Preiszusammenfassung -->
-            <div class="price-summary">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h5 class="mb-0">Gesamtpreis</h5>
-                  <small class="opacity-75">Inkl. aller Leistungen</small>
-                </div>
-                <div class="col-auto">
-                  <h3 class="mb-0" id="totalPrice">CHF 0.00</h3>
-                </div>
-              </div>
-            </div>
+      <div class="price-highlight">
+        <div class="row align-items-center">
+          <div class="col">
+            <strong>Gesamtpreis:</strong>
           </div>
-
-          <!-- Bestätigungs-Bereich -->
-          <div class="confirm-section">
-            <h4 class="mb-3">Offerte bestätigen</h4>
-            <p class="text-muted mb-4">
-              Mit der Bestätigung erteilen Sie uns den Auftrag zur Durchführung der gewählten Energienachweise.
-            </p>
-            
-            <div class="form-check mb-4">
-              <input class="form-check-input" type="checkbox" id="agbCheck">
-              <label class="form-check-label" for="agbCheck">
-                Ich akzeptiere die <a href="#" target="_blank">Allgemeinen Geschäftsbedingungen</a> und <a href="#" target="_blank">Datenschutzbestimmungen</a>
-              </label>
-            </div>
-            
-            <button class="btn confirm-btn" id="confirmOrderBtn" disabled>
-              <i class="fas fa-check-circle me-2"></i>
-              Offerte bestätigen & Dokumente hochladen
-            </button>
+          <div class="col-auto">
+            <h4 class="mb-0 text-white" id="totalPrice">CHF 0.00</h4>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Upload-Sektion (nach Bestätigung) -->
-    <div id="uploadSection" class="upload-section">
+    <div id="uploadSection" class="upload-section active">
       <div class="confirmation-card">
         <div class="card-header-custom">
           <h2 class="mb-0">
             <i class="fas fa-cloud-upload-alt me-3"></i>
-            Dokumente hochladen
+            1. Dokumente hochladen
           </h2>
-          <p class="mb-0 mt-2 opacity-90">Laden Sie Ihre Energienachweis-Unterlagen hoch</p>
+          <p class="mb-0 mt-2 opacity-90">Schritt 1: Laden Sie Ihre Energienachweis-Unterlagen hoch</p>
         </div>
 
         <div class="card-body">
-          <!-- Benötigte Dokumente -->
+          <div class="upload-first-notice">
+            <i class="fas fa-info-circle me-2"></i>
+            <strong>Wichtig:</strong> Laden Sie zuerst Ihre Dokumente hoch. Die Bestätigung der Offerte ist erst nach erfolgreichem Upload möglich.
+          </div>
+
           <div class="mb-4">
             <h5 class="mb-3">
               <i class="fas fa-file-alt me-2 text-primary"></i>
               Benötigte Dokumente
             </h5>
-            <div id="dokumentenListe">
-              <!-- Wird dynamisch gefüllt -->
-            </div>
+            <div id="dokumentenListe"></div>
           </div>
 
-          <!-- Upload-Bereich -->
           <h5 class="mb-3">
             <i class="fas fa-cloud-upload-alt me-2 text-primary"></i>
             Dateien hochladen
           </h5>
-          
-          <!-- Hidden field für Projekt-ID -->
+
           <input type="hidden" id="projektId" value="">
-          
-          <!-- Dropzone -->
+
           <form action="/upload" class="dropzone modern-dropzone" id="nachweisDropzone" enctype="multipart/form-data">
             <div class="dropzone-icon">
               <i class="fas fa-cloud-upload-alt"></i>
@@ -164,42 +107,82 @@
               <span class="file-type">JPG</span>
             </div>
           </form>
-          
-          <!-- Upload Button -->
+
           <div class="text-center mt-4">
             <button class="btn upload-btn" id="uploadBtn" type="button" disabled>
               <i class="fas fa-upload me-2"></i>
-              <span>Upload starten</span>
+              <span>Dateien hinzufügen und hochladen</span>
             </button>
           </div>
-          
-          <!-- Status Anzeige -->
+
           <div id="status" class="alert text-center d-none mt-3" role="alert"></div>
         </div>
       </div>
     </div>
 
-    <!-- Success Message -->
-    <div id="successMessage" class="success-message" style="display: none;">
-      <div class="row align-items-center">
-        <div class="col">
-          <h4 class="mb-2">
-            <i class="fas fa-check-circle me-2"></i>
-            Upload erfolgreich abgeschlossen!
+    <div class="confirm-section" id="confirmSection">
+      <div class="text-center mb-4">
+        <i class="fas fa-check-circle text-success fa-3x mb-3"></i>
+        <h3 class="text-success">Dateien erfolgreich hochgeladen!</h3>
+        <p class="text-muted">Jetzt können Sie Ihre Offerte bestätigen</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header bg-success text-white">
+          <h4 class="mb-0">
+            <i class="fas fa-file-signature me-2"></i>
+            2. Offerte bestätigen
           </h4>
-          <p class="mb-0">Ihre Dokumente wurden erfolgreich hochgeladen und werden nun bearbeitet.</p>
         </div>
-        <div class="col-auto">
-          <a href="offerte-erstellen.html" class="btn btn-light">
+        <div class="card-body">
+          <p class="mb-4">
+            Mit der Bestätigung erteilen Sie uns den Auftrag zur Durchführung der gewählten Energienachweise.
+          </p>
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" id="agbCheck">
+            <label class="form-check-label" for="agbCheck">
+              Ich akzeptiere die <a href="#" target="_blank">Allgemeinen Geschäftsbedingungen</a> und <a href="#" target="_blank">Datenschutzbestimmungen</a>
+            </label>
+          </div>
+          <div class="text-center">
+            <button class="btn confirm-btn btn-lg" id="confirmOrderBtn" disabled>
+              <i class="fas fa-check-circle me-2"></i>
+              Offerte jetzt bestätigen
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="successMessage" class="success-message" style="display: none;">
+      <div class="card border-success">
+        <div class="card-header bg-success text-white text-center">
+          <h3 class="mb-0">
+            <i class="fas fa-check-circle me-2"></i>
+            Auftrag erfolgreich erteilt!
+          </h3>
+        </div>
+        <div class="card-body text-center">
+          <i class="fas fa-check-circle text-success fa-4x mb-4"></i>
+          <h4>Vielen Dank für Ihren Auftrag!</h4>
+          <p class="lead mb-4">Ihre Dokumente wurden hochgeladen und die Offerte wurde bestätigt.</p>
+          <div class="alert alert-info">
+            <h6>Nächste Schritte:</h6>
+            <ul class="list-unstyled mb-0">
+              <li>✅ Sie erhalten eine Bestätigungs-E-Mail</li>
+              <li>📞 Wir kontaktieren Sie für die Terminvereinbarung</li>
+              <li>📋 Die Energienachweise werden erstellt</li>
+            </ul>
+          </div>
+          <a href="offerte-erstellen.html" class="btn btn-primary">
             <i class="fas fa-plus me-2"></i>
-            Neues Projekt
+            Neues Projekt erstellen
           </a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Loading Overlay -->
   <div id="loadingOverlay" class="loading-overlay" style="display: none;">
     <div class="loading-content">
       <div class="loading-spinner"></div>
@@ -208,7 +191,6 @@
     </div>
   </div>
 
-  <!-- Success Modal -->
   <div id="uploadSuccessModal" class="modal fade" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -219,13 +201,13 @@
           </h5>
         </div>
         <div class="modal-body text-center">
-          <i class="fas fa-check-circle text-success fa-3x mb-3"></i>
-          <h5>Alle Dateien erfolgreich hochgeladen!</h5>
-          <p class="text-muted">Ihre Dokumente werden nun verarbeitet und Sie erhalten eine Bestätigung per E-Mail.</p>
+          <i class="fas fa-cloud-upload-alt text-success fa-3x mb-3"></i>
+          <h5>Alle Dateien erfolgreich zu Azure hochgeladen!</h5>
+          <p class="text-muted">Ihre Dokumente sind sicher gespeichert. Sie können jetzt die Offerte bestätigen.</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-success" id="closeModalBtn">
-            <i class="fas fa-check me-2"></i>Verstanden
+            <i class="fas fa-check me-2"></i>Zur Bestätigung
           </button>
         </div>
       </div>
@@ -236,25 +218,17 @@
     <div id="footer-placeholder"></div>
   </footer>
 
-  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
-  
-  <!-- Custom JavaScript -->
   <script src="js/upload-bestaetigung.js"></script>
-  
   <script>
-    // Initialisierung starten
     document.addEventListener('DOMContentLoaded', function() {
-      // Header und Footer laden
       Promise.all([
         fetch("components/header.html").then(res => res.text()),
         fetch("components/footer.html").then(res => res.text())
       ]).then(([headerData, footerData]) => {
         document.getElementById("header-placeholder").innerHTML = headerData;
         document.getElementById("footer-placeholder").innerHTML = footerData;
-        
-        // Upload-Bestätigung initialisieren
         if (typeof initUploadConfirmation === "function") {
           initUploadConfirmation();
         }

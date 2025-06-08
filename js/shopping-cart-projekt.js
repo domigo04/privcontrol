@@ -53,21 +53,45 @@ function initEventListeners() {
   console.log("🎯 Initialisiere Event Listeners");
   
   // Start Button
-  document.getElementById('startProjektBtn').addEventListener('click', startWorkflow);
+  const startBtn = document.getElementById('startProjektBtn');
+  if (startBtn) {
+    startBtn.addEventListener('click', startWorkflow);
+    console.log("✅ Start Button Event Listener hinzugefügt");
+  } else {
+    console.error("❌ Start Button nicht gefunden!");
+  }
   
   // Navigation Buttons
-  document.getElementById('step1Next').addEventListener('click', () => navigateToStep(2));
-  document.getElementById('step2Back').addEventListener('click', () => navigateToStep(1));
-  document.getElementById('step2Next').addEventListener('click', () => navigateToStep(3));
-  document.getElementById('step3Back').addEventListener('click', () => navigateToStep(2));
-  document.getElementById('step3Next').addEventListener('click', () => navigateToStep(4));
-  document.getElementById('step4Back').addEventListener('click', () => navigateToStep(3));
+  const step1Next = document.getElementById('step1Next');
+  if (step1Next) step1Next.addEventListener('click', () => navigateToStep(2));
+  
+  const step2Back = document.getElementById('step2Back');
+  if (step2Back) step2Back.addEventListener('click', () => navigateToStep(1));
+  
+  const step2Next = document.getElementById('step2Next');
+  if (step2Next) step2Next.addEventListener('click', () => navigateToStep(3));
+  
+  const step3Back = document.getElementById('step3Back');
+  if (step3Back) step3Back.addEventListener('click', () => navigateToStep(2));
+  
+  const step3Next = document.getElementById('step3Next');
+  if (step3Next) step3Next.addEventListener('click', () => navigateToStep(4));
+  
+  const step4Back = document.getElementById('step4Back');
+  if (step4Back) step4Back.addEventListener('click', () => navigateToStep(3));
   
   // Action Buttons
-  document.getElementById('createProjectBtn').addEventListener('click', handleProjektErstellen);
-  document.getElementById('downloadOfferteBtn').addEventListener('click', handleDownloadOfferte);
-  document.getElementById('neuesProjektBtn').addEventListener('click', handleNeuesProjekt);
-  document.getElementById('resetBtn').addEventListener('click', handleReset);
+  const createBtn = document.getElementById('createProjectBtn');
+  if (createBtn) createBtn.addEventListener('click', handleProjektErstellen);
+  
+  const downloadBtn = document.getElementById('downloadOfferteBtn');
+  if (downloadBtn) downloadBtn.addEventListener('click', handleDownloadOfferte);
+  
+  const neuesBtn = document.getElementById('neuesProjektBtn');
+  if (neuesBtn) neuesBtn.addEventListener('click', handleNeuesProjekt);
+  
+  const resetBtn = document.getElementById('resetBtn');
+  if (resetBtn) resetBtn.addEventListener('click', handleReset);
   
   // Form Validation
   initFormValidation();
@@ -76,20 +100,27 @@ function initEventListeners() {
 function initFormValidation() {
   // Real-time Validierung für E-Mail
   const emailInput = document.getElementById('kundenmail');
-  emailInput.addEventListener('blur', function() {
-    validateEmail(this);
-  });
+  if (emailInput) {
+    emailInput.addEventListener('blur', function() {
+      validateEmail(this);
+    });
+  }
   
   // Datum-Validierung
   const datumInput = document.getElementById('wunschtermin');
-  datumInput.addEventListener('change', function() {
-    validateDate(this);
-  });
+  if (datumInput) {
+    datumInput.addEventListener('change', function() {
+      validateDate(this);
+    });
+  }
 }
 
 function setMinDateToday() {
   const today = new Date().toISOString().split('T')[0];
-  document.getElementById('wunschtermin').min = today;
+  const wunschterminInput = document.getElementById('wunschtermin');
+  if (wunschterminInput) {
+    wunschterminInput.min = today;
+  }
 }
 
 // =============================================================================
@@ -100,17 +131,22 @@ function startWorkflow() {
   console.log("🚀 Workflow gestartet");
   
   // Hero ausblenden, Container anzeigen
-  document.getElementById('heroSection').style.display = 'none';
-  document.getElementById('workflowContainer').classList.remove('d-none');
+  const heroSection = document.getElementById('heroSection');
+  const workflowContainer = document.getElementById('workflowContainer');
+  
+  if (heroSection) heroSection.style.display = 'none';
+  if (workflowContainer) workflowContainer.classList.remove('d-none');
   
   // Zum ersten Schritt navigieren
   navigateToStep(1);
   
   // Smooth scroll zum Container
-  document.getElementById('workflowContainer').scrollIntoView({ 
-    behavior: 'smooth', 
-    block: 'start' 
-  });
+  if (workflowContainer) {
+    workflowContainer.scrollIntoView({ 
+      behavior: 'smooth', 
+      block: 'start' 
+    });
+  }
 }
 
 function navigateToStep(stepNumber) {
@@ -145,7 +181,9 @@ function navigateToStep(stepNumber) {
   
   // Smooth scroll zum Schritt
   setTimeout(() => {
-    targetStep?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (targetStep) {
+      targetStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }, 100);
 }
 
@@ -153,9 +191,14 @@ function updateProgress(stepNumber) {
   const progressBar = document.getElementById('progressBar');
   const currentStepSpan = document.getElementById('currentStep');
   
-  const progressPercentage = (stepNumber / 4) * 100;
-  progressBar.style.width = `${progressPercentage}%`;
-  currentStepSpan.textContent = stepNumber;
+  if (progressBar) {
+    const progressPercentage = (stepNumber / 4) * 100;
+    progressBar.style.width = `${progressPercentage}%`;
+  }
+  
+  if (currentStepSpan) {
+    currentStepSpan.textContent = stepNumber;
+  }
 }
 
 function validateCurrentStep() {
@@ -185,9 +228,9 @@ function validateStep1() {
     
     if (!value) {
       errors.push(getFieldLabel(fieldId));
-      input?.classList.add('is-invalid');
+      if (input) input.classList.add('is-invalid');
     } else {
-      input?.classList.remove('is-invalid');
+      if (input) input.classList.remove('is-invalid');
     }
   });
   
@@ -215,9 +258,9 @@ function validateStep2() {
     
     if (!value) {
       errors.push(getFieldLabel(fieldId));
-      input?.classList.add('is-invalid');
+      if (input) input.classList.add('is-invalid');
     } else {
-      input?.classList.remove('is-invalid');
+      if (input) input.classList.remove('is-invalid');
     }
   });
   
@@ -232,11 +275,13 @@ function validateStep2() {
 function validateStep3() {
   if (shoppingCart.length === 0) {
     showStepError('Bitte wählen Sie mindestens eine Leistung aus.');
-    document.getElementById('gewerkValidierung')?.classList.remove('d-none');
+    const validationDiv = document.getElementById('gewerkValidierung');
+    if (validationDiv) validationDiv.classList.remove('d-none');
     return false;
   }
   
-  document.getElementById('gewerkValidierung')?.classList.add('d-none');
+  const validationDiv = document.getElementById('gewerkValidierung');
+  if (validationDiv) validationDiv.classList.add('d-none');
   return true;
 }
 
@@ -338,6 +383,8 @@ function updateCartDisplay() {
   const cartItemsContainer = document.getElementById('cartItems');
   const subtotalElement = document.getElementById('subtotal');
   
+  if (!cartItemsContainer || !subtotalElement) return;
+  
   if (shoppingCart.length === 0) {
     cartItemsContainer.innerHTML = `
       <p class="text-muted text-center py-3">
@@ -375,10 +422,12 @@ function updateCartDisplay() {
 function updateGewerkValidation() {
   const validationDiv = document.getElementById('gewerkValidierung');
   
-  if (shoppingCart.length === 0) {
-    validationDiv?.classList.remove('d-none');
-  } else {
-    validationDiv?.classList.add('d-none');
+  if (validationDiv) {
+    if (shoppingCart.length === 0) {
+      validationDiv.classList.remove('d-none');
+    } else {
+      validationDiv.classList.add('d-none');
+    }
   }
 }
 
@@ -390,18 +439,42 @@ function updateSummary() {
   console.log("📊 Update Zusammenfassung");
   
   // Projektdaten anzeigen
-  document.getElementById('summaryProjektname').textContent = 
-    document.getElementById('projektname').value;
-  document.getElementById('summaryTermin').textContent = 
-    new Date(document.getElementById('wunschtermin').value).toLocaleDateString('de-CH');
-  document.getElementById('summaryEmail').textContent = 
-    document.getElementById('kundenmail').value;
-  document.getElementById('summaryAdresse').textContent = 
-    `${document.getElementById('adresse').value}, ${document.getElementById('gemeinde').value}`;
-  document.getElementById('summaryGebaeudeart').textContent = 
-    document.getElementById('art_des_gebaeudes').value;
-  document.getElementById('summaryParzelle').textContent = 
-    `${document.getElementById('parzellennummer').value} / ${document.getElementById('gebaeudenummer').value}`;
+  const summaryProjektname = document.getElementById('summaryProjektname');
+  if (summaryProjektname) {
+    summaryProjektname.textContent = document.getElementById('projektname')?.value || '';
+  }
+  
+  const summaryTermin = document.getElementById('summaryTermin');
+  if (summaryTermin) {
+    const wunschtermin = document.getElementById('wunschtermin')?.value;
+    if (wunschtermin) {
+      summaryTermin.textContent = new Date(wunschtermin).toLocaleDateString('de-CH');
+    }
+  }
+  
+  const summaryEmail = document.getElementById('summaryEmail');
+  if (summaryEmail) {
+    summaryEmail.textContent = document.getElementById('kundenmail')?.value || '';
+  }
+  
+  const summaryAdresse = document.getElementById('summaryAdresse');
+  if (summaryAdresse) {
+    const adresse = document.getElementById('adresse')?.value || '';
+    const gemeinde = document.getElementById('gemeinde')?.value || '';
+    summaryAdresse.textContent = `${adresse}, ${gemeinde}`;
+  }
+  
+  const summaryGebaeudeart = document.getElementById('summaryGebaeudeart');
+  if (summaryGebaeudeart) {
+    summaryGebaeudeart.textContent = document.getElementById('art_des_gebaeudes')?.value || '';
+  }
+  
+  const summaryParzelle = document.getElementById('summaryParzelle');
+  if (summaryParzelle) {
+    const parzelle = document.getElementById('parzellennummer')?.value || '';
+    const gebaeude = document.getElementById('gebaeudenummer')?.value || '';
+    summaryParzelle.textContent = `${parzelle} / ${gebaeude}`;
+  }
   
   // Services anzeigen
   updateSummaryServices();
@@ -412,6 +485,7 @@ function updateSummary() {
 
 function updateSummaryServices() {
   const container = document.getElementById('summaryServices');
+  if (!container) return;
   
   if (shoppingCart.length === 0) {
     container.innerHTML = '<p class="text-muted">Keine Leistungen ausgewählt</p>';
@@ -466,14 +540,14 @@ function updateFinalCalculation() {
   subtotal += servicesTotal;
   
   // Express-Zuschlag prüfen
-  const wunschtermin = document.getElementById('wunschtermin').value;
+  const wunschtermin = document.getElementById('wunschtermin')?.value;
   const heute = new Date();
   const termin = new Date(wunschtermin);
   const diffStunden = (termin - heute) / (1000 * 60 * 60);
   const isExpress = diffStunden < 48;
   
   let expressZuschlag = 0;
-  if (isExpress) {
+  if (isExpress && !isNaN(diffStunden)) {
     expressZuschlag = subtotal * 0.2;
   }
   
@@ -496,7 +570,7 @@ function updateFinalCalculation() {
     `;
   }
   
-  if (isExpress) {
+  if (isExpress && !isNaN(diffStunden)) {
     html += `
       <div class="d-flex justify-content-between mb-2">
         <span>Express-Zuschlag (&lt;48h):</span>
@@ -505,62 +579,223 @@ function updateFinalCalculation() {
     `;
   }
   
-  document.getElementById('finalCalculation').innerHTML = html;
-  document.getElementById('finalTotal').textContent = `${gesamtpreis.toFixed(2)} CHF`;
-}
-
-// =============================================================================
-// 🏗️ PROJEKT-ERSTELLUNG
-// =============================================================================
-
-async function handleProjektErstellen(e) {
-  e.preventDefault();
-  console.log("🏗️ Projekt erstellen - START");
+  const finalCalculation = document.getElementById('finalCalculation');
+  if (finalCalculation) {
+    finalCalculation.innerHTML = html;
+  }
   
-  const step4 = document.getElementById('step4');
-  
-  // Loading anzeigen
-  showLoadingInContainer(step4, "Projekt wird erstellt und gespeichert...");
-  
-  try {
-    // Projektdaten sammeln
-    const projektData = collectFormData();
-    
-    // Projekt-ID generieren
-    const projektId = generateProjektId();
-    projektData.projektId = projektId;
-    projektData.erstelltAm = new Date().toISOString();
-    projektData.status = 'erstellt';
-    projektData.ausgewaehlteGewerke = [...shoppingCart];
-    
-    console.log("📊 Projekt-Daten:", projektData);
-    
-    // Simuliere Speicherung in Datenbank
-    await saveProjektToDatabase(projektData);
-    
-    // E-Mail senden
-    try {
-      await sendOfferEmail(projektData, projektId);
-      console.log("✅ E-Mail gesendet");
-    } catch (emailError) {
-      console.warn("⚠️ E-Mail-Versand fehlgeschlagen:", emailError);
-    }
-    
-    // Aktuelles Projekt setzen
-    currentProject = projektData;
-    
-    // Loading ausblenden
-    hideLoadingInContainer(step4);
-    
-    // Zum Success-Schritt navigieren
-    navigateToSuccess();
-    
-  } catch (error) {
-    console.error("❌ Fehler bei Projekt-Erstellung:", error);
-    hideLoadingInContainer(step4);
-    showStepError("Fehler bei der Projekt-Erstellung. Bitte versuchen Sie es erneut.");
+  const finalTotal = document.getElementById('finalTotal');
+  if (finalTotal) {
+    finalTotal.textContent = `${gesamtpreis.toFixed(2)} CHF`;
   }
 }
+
+// =============================================================================
+// 🏗️ PROJEKT-ERSTELLUNG (KORRIGIERT)
+// =============================================================================
+
+async function handleProjektErstellen() {
+    console.log('🏗️ Projekt wird erstellt...');
+    
+    try {
+        // 1. Projektdaten sammeln
+        const projektData = generateProjektData();
+        console.log('📦 Projektdaten gesammelt:', projektData);
+        
+        // 2. Projekt im Backend speichern
+        const result = await saveProjektToDatabase(projektData);
+        console.log('💾 Backend-Response:', result);
+        
+        if (result && result.success && result.projektId) {
+            const echteBackendId = result.projektId;
+            console.log('🔑 Echte Backend-ID erhalten:', echteBackendId);
+            
+            // 3. Projektdaten mit echter ID aktualisieren
+            projektData.projektId = echteBackendId;
+            currentProject = projektData;
+            
+            // 4. E-Mail mit RICHTIGER Backend-ID senden
+            console.log('📧 E-Mail wird mit Backend-ID gesendet:', echteBackendId);
+            await sendOfferEmail(projektData, echteBackendId);
+            
+            // 5. Erfolg anzeigen
+            console.log('✅ Projekt erfolgreich erstellt und E-Mail versendet!');
+            navigateToSuccess();
+            
+        } else {
+            throw new Error('Keine gültige Backend-ID erhalten');
+        }
+        
+    } catch (error) {
+        console.error('❌ Fehler beim Projekt erstellen:', error);
+        showStepError('Fehler beim Erstellen des Projekts: ' + error.message);
+    }
+}
+
+// Fehlende generateProjektData Funktion
+function generateProjektData() {
+    // Sammle Formulardaten
+    const formData = collectFormData();
+    
+    // Generiere Frontend-ID (wird später durch Backend-ID ersetzt)
+    const projektId = generateProjektId();
+    
+    // Erstelle vollständige Projektdaten
+    const projektData = {
+        ...formData,
+        projektId: projektId,
+        ausgewaehlteGewerke: shoppingCart.map(item => ({
+            gewerk: item.gewerk,
+            nachweis: item.nachweis,
+            typ: item.typ,
+            typLabel: item.typLabel,
+            preis: item.preis,
+            titel: item.titel
+        })),
+        gesamtpreis: calculateTotalPrice(),
+        erstelltAm: new Date().toISOString(),
+        status: 'erstellt'
+    };
+    
+    console.log('📊 Generierte Projektdaten:', projektData);
+    return projektData;
+}
+
+// Hilfsfunktion für Gesamtpreis-Berechnung
+function calculateTotalPrice() {
+    let total = PREISE.GRUNDBETRAG;
+    
+    shoppingCart.forEach(item => {
+        total += item.preis;
+    });
+    
+    // Express-Zuschlag prüfen
+    const wunschtermin = document.getElementById('wunschtermin')?.value;
+    if (wunschtermin) {
+        const heute = new Date();
+        const termin = new Date(wunschtermin);
+        const diffStunden = (termin - heute) / (1000 * 60 * 60);
+        
+        if (!isNaN(diffStunden) && diffStunden < 48) {
+            total += total * 0.2; // 20% Express-Zuschlag
+        }
+    }
+    
+    return total;
+}
+
+// =============================================================================
+// 💾 BACKEND-INTEGRATION (KORRIGIERT)
+// =============================================================================
+
+async function saveProjektToDatabase(projektData) {
+  console.log("💾 Speichere Projekt im Backend");
+  
+  try {
+    // Backend-API aufrufen
+    const response = await fetch('/projekt-anlegen', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(projektData)
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Backend-Fehler: ${response.status}`);
+    }
+    
+    const result = await response.json();
+    console.log("📨 Backend-Response:", result);
+    
+    if (!result.success) {
+      throw new Error(result.message || 'Unbekannter Backend-Fehler');
+    }
+    
+    console.log("✅ Projekt erfolgreich im Backend gespeichert");
+    console.log("🔑 Backend Projekt-ID:", result.projektId);
+    console.log("📊 Interne ID:", result.interneId);
+    
+    // Auch in localStorage mit ECHTER ID speichern
+    if (result.projektId) {
+      projektData.projektId = result.projektId; // ID aktualisieren
+      localStorage.setItem(`projekt_${result.projektId}`, JSON.stringify(projektData));
+      console.log("💾 Projekt in localStorage gespeichert mit echter ID:", result.projektId);
+    }
+    
+    return result; // Enthält: { success: true, projektId: "25015", interneId: "...", message: "..." }
+    
+  } catch (error) {
+    console.error("❌ Fehler beim Speichern im Backend:", error);
+    
+    // FALLBACK: Nur in localStorage speichern
+    console.warn("⚠️ Fallback: Speichere nur in localStorage");
+    localStorage.setItem(`projekt_${projektData.projektId}`, JSON.stringify(projektData));
+    
+    return { 
+      success: true, 
+      projektId: projektData.projektId, // Frontend-ID als Fallback
+      fallback: true,
+      error: error.message 
+    };
+  }
+}
+
+// =============================================================================
+// 📧 E-MAIL FUNKTIONALITÄT (KORRIGIERT)
+// =============================================================================
+
+async function sendOfferEmail(projektData, projektId) {
+  console.log("📧 Sende Offerte-E-Mail - START");
+  console.log("📧 Verwende Projekt-ID für E-Mail:", projektId);
+  
+  try {
+    if (typeof emailjs === 'undefined') {
+      throw new Error('EmailJS ist nicht geladen');
+    }
+    
+    const emailData = {
+      to_email: projektData.kundenmail,
+      to_name: projektData.projektname,
+      projekt_id: projektId, // ✅ ECHTE BACKEND-ID
+      projektname: projektData.projektname,
+      gemeinde: projektData.gemeinde,
+      parzellennummer: projektData.parzellennummer,
+      gebaeudenummer: projektData.gebaeudenummer,
+      art_des_gebaeudes: projektData.art_des_gebaeudes,
+      wunschtermin: projektData.wunschtermin,
+      adresse: projektData.adresse,
+      datum: new Date().toLocaleDateString('de-CH'),
+      uhrzeit: new Date().toLocaleTimeString('de-CH', { 
+        hour: '2-digit', 
+        minute: '2-digit' 
+      }),
+      gewerke_liste: projektData.ausgewaehlteGewerke.map(g => 
+        `${g.gewerk}: ${g.nachweis} (${g.typ})`
+      ).join(', '),
+      // ✅ UPLOAD-LINK mit ECHTER BACKEND-ID
+      upload_link: `${window.location.origin}/upload-bestaetigung.html?projekt=${encodeURIComponent(projektId)}`
+    };
+    
+    console.log("📧 E-Mail Upload-Link:", emailData.upload_link);
+    
+    const serviceId = 'service_n2f4g3w';
+    const templateId = 'template_offerte_bestaet';
+    
+    const response = await emailjs.send(serviceId, templateId, emailData);
+    
+    console.log("✅ E-Mail erfolgreich gesendet:", response);
+    return { success: true, response };
+    
+  } catch (error) {
+    console.error("❌ E-Mail-Versand Fehler:", error);
+    return { success: false, error: error.message };
+  }
+}
+
+// =============================================================================
+// 🔄 SUCCESS & NAVIGATION
+// =============================================================================
 
 function navigateToSuccess() {
   // Alle Schritte ausblenden
@@ -569,114 +804,76 @@ function navigateToSuccess() {
   });
   
   // Success-Sektion anzeigen
-  document.getElementById('successSection').classList.add('active');
+  const successSection = document.getElementById('successSection');
+  if (successSection) {
+    successSection.classList.add('active');
+  }
   
   // Projektdaten anzeigen
   showSuccessData();
   
   // Progress auf 100% setzen
-  document.getElementById('progressBar').style.width = '100%';
-  document.getElementById('currentStep').textContent = '✓';
+  const progressBar = document.getElementById('progressBar');
+  if (progressBar) {
+    progressBar.style.width = '100%';
+  }
+  
+  const currentStepSpan = document.getElementById('currentStep');
+  if (currentStepSpan) {
+    currentStepSpan.textContent = '✓';
+  }
   
   // Smooth scroll
   setTimeout(() => {
-    document.getElementById('successSection').scrollIntoView({ 
-      behavior: 'smooth', 
-      block: 'start' 
-    });
+    if (successSection) {
+      successSection.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    }
   }, 100);
 }
 
 function showSuccessData() {
   if (!currentProject) return;
   
-  document.getElementById('displayProjektId').textContent = currentProject.projektId;
-  document.getElementById('displayProjektname').textContent = currentProject.projektname;
-  document.getElementById('displayAdresse').textContent = `${currentProject.adresse}, ${currentProject.gemeinde}`;
-  document.getElementById('displayWunschtermin').textContent = 
-    new Date(currentProject.wunschtermin).toLocaleDateString('de-CH');
-  document.getElementById('displayEmail').textContent = currentProject.kundenmail;
+  const displayProjektId = document.getElementById('displayProjektId');
+  if (displayProjektId) {
+    displayProjektId.textContent = currentProject.projektId;
+  }
+  
+  const displayProjektname = document.getElementById('displayProjektname');
+  if (displayProjektname) {
+    displayProjektname.textContent = currentProject.projektname;
+  }
+  
+  const displayAdresse = document.getElementById('displayAdresse');
+  if (displayAdresse) {
+    displayAdresse.textContent = `${currentProject.adresse}, ${currentProject.gemeinde}`;
+  }
+  
+  const displayWunschtermin = document.getElementById('displayWunschtermin');
+  if (displayWunschtermin) {
+    displayWunschtermin.textContent = new Date(currentProject.wunschtermin).toLocaleDateString('de-CH');
+  }
+  
+  const displayEmail = document.getElementById('displayEmail');
+  if (displayEmail) {
+    displayEmail.textContent = currentProject.kundenmail;
+  }
   
   const gewerkeText = currentProject.ausgewaehlteGewerke
     .map(g => `${g.nachweis} (${g.typ})`)
     .join(', ');
-  document.getElementById('displayGewerke').textContent = gewerkeText;
-}
-
-// =============================================================================
-// 💾 DATENBANK FUNKTIONEN
-// =============================================================================
-
-async function saveProjektToDatabase(projektData) {
-  console.log("💾 Speichere Projekt in Datenbank");
   
-  // Simulation für Demo-Zwecke
-  await new Promise(resolve => setTimeout(resolve, 2000));
-  
-  // JSON-Struktur für die Datenbank
-  const dbEntry = {
-    id: projektData.projektId,
-    projektname: projektData.projektname,
-    kundendaten: {
-      email: projektData.kundenmail,
-      adresse: projektData.adresse,
-      gemeinde: projektData.gemeinde,
-      parzellennummer: projektData.parzellennummer,
-      gebaeudenummer: projektData.gebaeudenummer,
-      art_des_gebaeudes: projektData.art_des_gebaeudes
-    },
-    projektstatus: {
-      status: projektData.status,
-      erstelltAm: projektData.erstelltAm,
-      wunschtermin: projektData.wunschtermin
-    },
-    gewerke: projektData.ausgewaehlteGewerke.map(g => ({
-      id: g.id,
-      gewerk: g.gewerk,
-      nachweis: g.nachweis,
-      typ: g.typ,
-      preis: g.preis,
-      status: 'offen'
-    })),
-    offerte: {
-      erstellt: true,
-      versendet: false,
-      gesamtpreis: calculateTotalPrice(projektData.ausgewaehlteGewerke, projektData.wunschtermin)
-    }
-  };
-  
-  console.log("💾 JSON für Datenbank:", JSON.stringify(dbEntry, null, 2));
-  
-  return { success: true, id: projektData.projektId };
-}
-
-function generateProjektId() {
-  const timestamp = Date.now();
-  const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
-  return `PROJ-${timestamp}-${random}`;
-}
-
-function calculateTotalPrice(gewerke, wunschtermin) {
-  let total = PREISE.GRUNDBETRAG;
-  
-  gewerke.forEach(g => {
-    total += g.preis;
-  });
-  
-  // Express-Zuschlag
-  const heute = new Date();
-  const termin = new Date(wunschtermin);
-  const diffStunden = (termin - heute) / (1000 * 60 * 60);
-  
-  if (diffStunden < 48) {
-    total += total * 0.2;
+  const displayGewerke = document.getElementById('displayGewerke');
+  if (displayGewerke) {
+    displayGewerke.textContent = gewerkeText;
   }
-  
-  return total;
 }
 
 // =============================================================================
-// 🔄 RESET & NEUE PROJEKTE
+// 🔄 RESET & NAVIGATION
 // =============================================================================
 
 function handleReset() {
@@ -684,17 +881,22 @@ function handleReset() {
   
   if (confirm('Möchten Sie wirklich neu starten? Alle Eingaben gehen verloren.')) {
     // Container ausblenden, Hero anzeigen
-    document.getElementById('workflowContainer').classList.add('d-none');
-    document.getElementById('heroSection').style.display = 'flex';
+    const workflowContainer = document.getElementById('workflowContainer');
+    const heroSection = document.getElementById('heroSection');
+    
+    if (workflowContainer) workflowContainer.classList.add('d-none');
+    if (heroSection) heroSection.style.display = 'flex';
     
     // Alles zurücksetzen
     resetWorkflow();
     
     // Zum Hero scrollen
-    document.getElementById('heroSection').scrollIntoView({ 
-      behavior: 'smooth', 
-      block: 'start' 
-    });
+    if (heroSection) {
+      heroSection.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    }
   }
 }
 
@@ -702,17 +904,22 @@ function handleNeuesProjekt() {
   console.log("🆕 Neues Projekt");
   
   // Zum Hero zurückkehren
-  document.getElementById('workflowContainer').classList.add('d-none');
-  document.getElementById('heroSection').style.display = 'flex';
+  const workflowContainer = document.getElementById('workflowContainer');
+  const heroSection = document.getElementById('heroSection');
+  
+  if (workflowContainer) workflowContainer.classList.add('d-none');
+  if (heroSection) heroSection.style.display = 'flex';
   
   // Alles zurücksetzen
   resetWorkflow();
   
   // Zum Hero scrollen
-  document.getElementById('heroSection').scrollIntoView({ 
-    behavior: 'smooth', 
-    block: 'start' 
-  });
+  if (heroSection) {
+    heroSection.scrollIntoView({ 
+      behavior: 'smooth', 
+      block: 'start' 
+    });
+  }
 }
 
 function handleDownloadOfferte() {
@@ -748,8 +955,15 @@ function resetWorkflow() {
   hideAllErrors();
   
   // Progress zurücksetzen
-  document.getElementById('progressBar').style.width = '20%';
-  document.getElementById('currentStep').textContent = '1';
+  const progressBar = document.getElementById('progressBar');
+  if (progressBar) {
+    progressBar.style.width = '20%';
+  }
+  
+  const currentStepSpan = document.getElementById('currentStep');
+  if (currentStepSpan) {
+    currentStepSpan.textContent = '1';
+  }
   
   // Alle Schritte ausblenden
   document.querySelectorAll('.step-section').forEach(section => {
@@ -758,6 +972,234 @@ function resetWorkflow() {
   
   // Datum neu setzen
   setMinDateToday();
+}
+
+// =============================================================================
+// 🔧 HILFSFUNKTIONEN
+// =============================================================================
+
+function collectFormData() {
+  return {
+    projektname: document.getElementById('projektname')?.value?.trim() || '',
+    wunschtermin: document.getElementById('wunschtermin')?.value || '',
+    adresse: document.getElementById('adresse')?.value?.trim() || '',
+    gemeinde: document.getElementById('gemeinde')?.value?.trim() || '',
+    parzellennummer: document.getElementById('parzellennummer')?.value?.trim() || '',
+    gebaeudenummer: document.getElementById('gebaeudenummer')?.value?.trim() || '',
+    art_des_gebaeudes: document.getElementById('art_des_gebaeudes')?.value || '',
+    kundenmail: document.getElementById('kundenmail')?.value?.trim() || ''
+  };
+}
+
+function generateProjektId() {
+  const timestamp = Date.now();
+  const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+  return `PROJ-${timestamp}-${random}`;
+}
+
+function getGewerkFullName(gewerk, nachweis) {
+  const gewerkNames = {
+    'EN101': 'Gebäudehülle',
+    'EN102': 'Fenster & Türen', 
+    'EN103': 'Heizungsverteilung',
+    'EN104': 'Warmwasseranlage',
+    'EN105': 'Wärmeerzeugung',
+    'EN106': 'Lüftungsanlage',
+    'EN107': 'Klimaanlage',
+    'EN108': 'Wärmepumpe'
+  };
+  
+  return gewerkNames[nachweis] || nachweis;
+}
+
+function showLoadingInContainer(container, message = "Wird verarbeitet...") {
+  const oldLoading = container.querySelector('#loading');
+  if (oldLoading) oldLoading.remove();
+
+  const loading = document.createElement("div");
+  loading.id = "loading";
+  loading.innerHTML = `
+    <div class="text-center my-4">
+      <div class="spinner-border text-primary" role="status"></div>
+      <p class="mt-2">${message}</p>
+    </div>`;
+  container.appendChild(loading);
+}
+
+function hideLoadingInContainer(container) {
+  const loading = container.querySelector('#loading');
+  if (loading) loading.remove();
+}
+
+function showStepError(message) {
+  const oldError = document.querySelector('.step-error');
+  if (oldError) oldError.remove();
+  
+  const errorDiv = document.createElement('div');
+  errorDiv.className = 'alert alert-danger mt-3 step-error';
+  errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle me-2"></i>${message}`;
+  
+  const activeStep = document.querySelector('.step-section.active');
+  if (activeStep) {
+    const cardBody = activeStep.querySelector('.card-body');
+    if (cardBody) {
+      cardBody.appendChild(errorDiv);
+      errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+}
+
+// Fehlende showError Funktion hinzugefügt
+function showError(message) {
+  showStepError(message);
+}
+
+function hideAllErrors() {
+  document.querySelectorAll('.step-error').forEach(error => error.remove());
+  const validationDiv = document.getElementById('gewerkValidierung');
+  if (validationDiv) validationDiv.classList.add('d-none');
+}
+
+// =============================================================================
+// 📄 PDF FUNKTIONALITÄT (VOLLSTÄNDIG)
+// =============================================================================
+
+function generatePDF(projektData) {
+  console.log("📄 Generiere PDF für:", projektData.projektname);
+  
+  // Prüfe ob pdfMake verfügbar ist
+  if (typeof pdfMake === 'undefined') {
+    console.error("❌ pdfMake ist nicht geladen!");
+    showStepError("PDF-Bibliothek nicht verfügbar. Bitte Seite neu laden.");
+    return;
+  }
+  
+  const projektname = projektData.projektname || "Unbenanntes_Projekt";
+  const wunschtermin = projektData.wunschtermin || "Nicht angegeben";
+  const adresse = projektData.adresse || "Nicht angegeben";
+  const gemeinde = projektData.gemeinde || "Nicht angegeben";
+
+  // Ausgewählte Nachweise aus Projektdaten
+  const ausgewaehlt = projektData.ausgewaehlteGewerke || [];
+  
+  // Preisberechnung
+  let gesamtpreis = PREISE.GRUNDBETRAG;
+  ausgewaehlt.forEach(item => {
+    gesamtpreis += item.preis;
+  });
+  
+  // Express-Zuschlag prüfen
+  const heute = new Date();
+  const termin = new Date(wunschtermin);
+  const diffStunden = (termin - heute) / (1000 * 60 * 60);
+  const expressZuschlag = (!isNaN(diffStunden) && diffStunden < 48);
+
+  let expressBetrag = 0;
+  if (expressZuschlag) {
+    expressBetrag = gesamtpreis * 0.2;
+    gesamtpreis += expressBetrag;
+  }
+
+  const datum = new Date().toLocaleDateString("de-CH");
+
+  // PDF-Tabelle erstellen
+  const nachweisTabelle = [
+    [{ text: "Nachweis", bold: true }, { text: "Typ", bold: true }, { text: "Preis", bold: true }]
+  ];
+
+  // Gruppierung nach Gewerk
+  const gruppiert = {};
+  ausgewaehlt.forEach(item => {
+    if (!gruppiert[item.gewerk]) gruppiert[item.gewerk] = [];
+    gruppiert[item.gewerk].push([
+      item.titel || `${item.nachweis} – ${item.gewerk}`, 
+      item.typLabel, 
+      `${item.preis.toFixed(2)} CHF`
+    ]);
+  });
+
+  // Tabelle aufbauen
+  Object.keys(gruppiert).forEach(gewerk => {
+    nachweisTabelle.push([
+      { text: gewerk, colSpan: 3, bold: true, fillColor: '#f8f9fa' }, 
+      {}, 
+      {}
+    ]);
+    nachweisTabelle.push(...gruppiert[gewerk]);
+  });
+
+  // Summen hinzufügen
+  nachweisTabelle.push([
+    { text: "Grundbetrag", colSpan: 2 }, 
+    "", 
+    `${PREISE.GRUNDBETRAG.toFixed(2)} CHF`
+  ]);
+  
+  if (expressZuschlag) {
+    nachweisTabelle.push([
+      { text: "Expresszuschlag (<48h)", colSpan: 2 }, 
+      "", 
+      `+${expressBetrag.toFixed(2)} CHF`
+    ]);
+  }
+  
+  nachweisTabelle.push([
+    { text: "Gesamtpreis", colSpan: 2, bold: true, fillColor: '#e9ecef' }, 
+    "", 
+    { text: `${gesamtpreis.toFixed(2)} CHF`, bold: true }
+  ]);
+
+  // PDF-Definition
+  const docDefinition = {
+    pageSize: 'A4',
+    pageMargins: [50, 80, 50, 80],
+
+    content: [
+      { text: "Offerte – Priv-Control", style: "header" },
+      { text: `Datum: ${datum}`, margin: [0, 10, 0, 5] },
+      { text: `Projekt-ID: ${projektData.projektId}`, margin: [0, 0, 0, 5] },
+      { text: `Projekt: ${projektname}`, margin: [0, 0, 0, 5] },
+      { text: `Adresse: ${adresse}, ${gemeinde}`, margin: [0, 0, 0, 5] },
+      { text: `Wunschtermin: ${new Date(wunschtermin).toLocaleDateString('de-CH')}`, margin: [0, 0, 0, 20] },
+      
+      { text: "Ausgewählte Nachweise", style: "subheader" },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', 'auto', 'auto'],
+          body: nachweisTabelle
+        },
+        layout: 'lightHorizontalLines',
+        margin: [0, 5, 0, 20]
+      },
+      
+      { text: "Nächste Schritte:", style: "subheader" },
+      { text: "1. Offerte prüfen und bei Einverständnis zurücksenden" },
+      { text: "2. Termine werden nach Auftragserteilung koordiniert" },
+      { text: "3. Unterlagen gemäss Checkliste bereitstellen", margin: [0, 0, 0, 15] },
+      
+      { text: "Kontakt:", style: "subheader" },
+      { text: "E-Mail: info@priv-control.ch" },
+      { text: "Telefon: +41 76 817 53 63" },
+      { text: "Diese Offerte ist 30 Tage gültig. Änderungen vorbehalten.", style: "klein", margin: [0, 30, 0, 0] }
+    ],
+    styles: {
+      header: { fontSize: 18, bold: true, color: '#0d6efd' },
+      subheader: { fontSize: 14, bold: true, margin: [0, 15, 0, 5] },
+      klein: { fontSize: 8, color: '#6c757d' }
+    }
+  };
+
+  try {
+    const safeProjektname = projektname.replace(/[^a-zA-Z0-9\-_]/g, '_');
+    const filename = `Offerte_${projektData.projektId}_${safeProjektname}.pdf`;
+    
+    pdfMake.createPdf(docDefinition).download(filename);
+    console.log("✅ PDF erfolgreich generiert:", filename);
+  } catch (error) {
+    console.error("❌ Fehler beim PDF-Export:", error);
+    showStepError("Fehler beim PDF-Export. Bitte versuchen Sie es erneut.");
+  }
 }
 
 // =============================================================================
@@ -770,6 +1212,11 @@ function initGooglePlaces() {
   const adresseInput = document.getElementById('adresse');
   if (!adresseInput) {
     console.error("❌ Adresse-Input nicht gefunden");
+    return;
+  }
+
+  if (typeof google === 'undefined' || !google.maps || !google.maps.places) {
+    console.warn("⚠️ Google Places API nicht verfügbar");
     return;
   }
 
@@ -819,262 +1266,10 @@ function initGooglePlaces() {
 }
 
 // =============================================================================
-// 📧 E-MAIL FUNKTIONALITÄT
-// =============================================================================
-
-async function sendOfferEmail(projektData, projektId) {
-  console.log("📧 Sende Offerte-E-Mail - START");
-  
-  try {
-    if (typeof emailjs === 'undefined') {
-      throw new Error('EmailJS ist nicht geladen');
-    }
-    
-    const emailData = {
-      to_email: projektData.kundenmail,
-      to_name: projektData.projektname,
-      projekt_id: projektId,
-      projektname: projektData.projektname,
-      gemeinde: projektData.gemeinde,
-      parzellennummer: projektData.parzellennummer,
-      gebaeudenummer: projektData.gebaeudenummer,
-      art_des_gebaeudes: projektData.art_des_gebaeudes,
-      wunschtermin: projektData.wunschtermin,
-      adresse: projektData.adresse,
-      datum: new Date().toLocaleDateString('de-CH'),
-      uhrzeit: new Date().toLocaleTimeString('de-CH', { 
-        hour: '2-digit', 
-        minute: '2-digit' 
-      }),
-      gewerke_liste: projektData.ausgewaehlteGewerke.map(g => 
-        `${g.gewerk}: ${g.nachweis} (${g.typ})`
-      ).join(', ')
-    };
-    
-    const serviceId = 'service_n2f4g3w';
-    const templateId = 'template_offerte_bestaet';
-    
-    const response = await emailjs.send(serviceId, templateId, emailData);
-    
-    console.log("✅ E-Mail erfolgreich gesendet:", response);
-    return { success: true, response };
-    
-  } catch (error) {
-    console.error("❌ E-Mail-Versand Fehler:", error);
-    return { success: false, error: error.message };
-  }
-}
-
-// =============================================================================
-// 📄 PDF FUNKTIONALITÄT
-// =============================================================================
-
-function generatePDF(projektData) {
-  console.log("📄 Generiere PDF");
-  
-  const projektname = projektData.projektname || "Unbenanntes_Projekt";
-  const wunschtermin = projektData.wunschtermin || "Nicht angegeben";
-  const adresse = projektData.adresse || "Nicht angegeben";
-  const gemeinde = projektData.gemeinde || "Nicht angegeben";
-
-  // Ausgewählte Nachweise aus Projektdaten
-  const ausgewaehlt = projektData.ausgewaehlteGewerke || [];
-  
-  // Preisberechnung
-  let gesamtpreis = PREISE.GRUNDBETRAG;
-  ausgewaehlt.forEach(item => {
-    gesamtpreis += item.preis;
-  });
-  
-  // Express-Zuschlag prüfen
-  const heute = new Date();
-  const termin = new Date(wunschtermin);
-  const diffStunden = (termin - heute) / (1000 * 60 * 60);
-  const expressZuschlag = (!isNaN(diffStunden) && diffStunden < 48);
-
-  let expressBetrag = 0;
-  if (expressZuschlag) {
-    expressBetrag = gesamtpreis * 0.2;
-    gesamtpreis += expressBetrag;
-  }
-
-  const datum = new Date().toLocaleDateString("de-CH");
-
-  // PDF-Tabelle erstellen
-  const nachweisTabelle = [
-    [{ text: "Nachweis", bold: true }, { text: "Typ", bold: true }, { text: "Preis", bold: true }]
-  ];
-
-  // Gruppierung nach Gewerk
-  const gruppiert = {};
-  ausgewaehlt.forEach(item => {
-    if (!gruppiert[item.gewerk]) gruppiert[item.gewerk] = [];
-    gruppiert[item.gewerk].push([item.titel, item.typLabel, `${item.preis.toFixed(2)} CHF`]);
-  });
-
-  // Tabelle aufbauen
-  Object.keys(gruppiert).forEach(gewerk => {
-    nachweisTabelle.push([{ text: gewerk, colSpan: 3, bold: true, fillColor: '#f8f9fa' }, {}, {}]);
-    nachweisTabelle.push(...gruppiert[gewerk]);
-  });
-
-  // Summen hinzufügen
-  nachweisTabelle.push([{ text: "Grundbetrag", colSpan: 2 }, "", `${PREISE.GRUNDBETRAG.toFixed(2)} CHF`]);
-  if (expressZuschlag) {
-    nachweisTabelle.push([{ text: "Expresszuschlag (<48h)", colSpan: 2 }, "", `+${expressBetrag.toFixed(2)} CHF`]);
-  }
-  nachweisTabelle.push([{ text: "Gesamtpreis", colSpan: 2, bold: true, fillColor: '#e9ecef' }, "", { text: `${gesamtpreis.toFixed(2)} CHF`, bold: true }]);
-
-  // PDF-Definition
-  const docDefinition = {
-    pageSize: 'A4',
-    pageMargins: [50, companyLogo ? 120 : 80, 50, 80],
-    
-    header: companyLogo ? function(currentPage, pageCount) {
-      return {
-        margin: [50, 20, 50, 20],
-        table: {
-          widths: ['*', 'auto'],
-          body: [
-            [
-              { image: companyLogo, width: 120, border: [false, false, false, false] },
-              { 
-                text: `Seite ${currentPage} von ${pageCount}`, 
-                alignment: 'right', 
-                fontSize: 8, 
-                color: '#6c757d',
-                border: [false, false, false, false]
-              }
-            ]
-          ]
-        },
-        layout: 'noBorders'
-      };
-    } : undefined,
-
-    content: [
-      { text: "Offerte – PrüfControl", style: "header" },
-      { text: `Datum: ${datum}`, margin: [0, 10, 0, 5] },
-      { text: `Projekt-ID: ${projektData.projektId}`, margin: [0, 0, 0, 5] },
-      { text: `Projekt: ${projektname}`, margin: [0, 0, 0, 5] },
-      { text: `Adresse: ${adresse}, ${gemeinde}`, margin: [0, 0, 0, 5] },
-      { text: `Wunschtermin: ${new Date(wunschtermin).toLocaleDateString('de-CH')}`, margin: [0, 0, 0, 20] },
-      
-      { text: "Ausgewählte Nachweise", style: "subheader" },
-      {
-        table: {
-          headerRows: 1,
-          widths: ['*', 'auto', 'auto'],
-          body: nachweisTabelle
-        },
-        layout: 'lightHorizontalLines',
-        margin: [0, 5, 0, 20]
-      },
-      
-      { text: "Nächste Schritte:", style: "subheader" },
-      { text: "1. Offerte prüfen und bei Einverständnis zurücksenden" },
-      { text: "2. Termine werden nach Auftragserteilung koordiniert" },
-      { text: "3. Unterlagen gemäß Checkliste bereitstellen", margin: [0, 0, 0, 15] },
-      
-      { text: "Kontakt:", style: "subheader" },
-      { text: "E-Mail: info@priv-control.ch" },
-      { text: "Diese Offerte ist 30 Tage gültig. Änderungen vorbehalten.", style: "klein", margin: [0, 30, 0, 0] }
-    ],
-    styles: {
-      header: { fontSize: 18, bold: true, color: '#0d6efd' },
-      subheader: { fontSize: 14, bold: true, margin: [0, 15, 0, 5] },
-      klein: { fontSize: 8, color: '#6c757d' }
-    }
-  };
-
-  try {
-    pdfMake.createPdf(docDefinition).download(`Offerte_${projektData.projektId}_${projektname.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`);
-    console.log("✅ PDF erfolgreich generiert");
-  } catch (error) {
-    console.error("❌ Fehler beim PDF-Export:", error);
-    showStepError("Fehler beim PDF-Export. Bitte versuchen Sie es erneut.");
-  }
-}
-
-function getGewerkFullName(gewerk, nachweis) {
-  const gewerkNames = {
-    'EN101': 'Gebäudehülle',
-    'EN102': 'Fenster & Türen', 
-    'EN103': 'Heizungsverteilung',
-    'EN104': 'Warmwasseranlage',
-    'EN105': 'Wärmeerzeugung',
-    'EN106': 'Lüftungsanlage',
-    'EN107': 'Klimaanlage',
-    'EN108': 'Wärmepumpe'
-  };
-  
-  return gewerkNames[nachweis] || nachweis;
-}
-
-// =============================================================================
-// 🔧 HILFSFUNKTIONEN
-// =============================================================================
-
-function collectFormData() {
-  return {
-    projektname: document.getElementById('projektname')?.value?.trim() || '',
-    wunschtermin: document.getElementById('wunschtermin')?.value || '',
-    adresse: document.getElementById('adresse')?.value?.trim() || '',
-    gemeinde: document.getElementById('gemeinde')?.value?.trim() || '',
-    parzellennummer: document.getElementById('parzellennummer')?.value?.trim() || '',
-    gebaeudenummer: document.getElementById('gebaeudenummer')?.value?.trim() || '',
-    art_des_gebaeudes: document.getElementById('art_des_gebaeudes')?.value || '',
-    kundenmail: document.getElementById('kundenmail')?.value?.trim() || ''
-  };
-}
-
-function showLoadingInContainer(container, message = "Wird verarbeitet...") {
-  const oldLoading = container.querySelector('#loading');
-  if (oldLoading) oldLoading.remove();
-
-  const loading = document.createElement("div");
-  loading.id = "loading";
-  loading.innerHTML = `
-    <div class="text-center my-4">
-      <div class="spinner-border text-primary" role="status"></div>
-      <p class="mt-2">${message}</p>
-    </div>`;
-  container.appendChild(loading);
-}
-
-function hideLoadingInContainer(container) {
-  const loading = container.querySelector('#loading');
-  if (loading) loading.remove();
-}
-
-function showStepError(message) {
-  const oldError = document.querySelector('.step-error');
-  if (oldError) oldError.remove();
-  
-  const errorDiv = document.createElement('div');
-  errorDiv.className = 'alert alert-danger mt-3 step-error';
-  errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle me-2"></i>${message}`;
-  
-  const activeStep = document.querySelector('.step-section.active');
-  if (activeStep) {
-    const cardBody = activeStep.querySelector('.card-body');
-    if (cardBody) {
-      cardBody.appendChild(errorDiv);
-      errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  }
-}
-
-function hideAllErrors() {
-  document.querySelectorAll('.step-error').forEach(error => error.remove());
-  document.getElementById('gewerkValidierung')?.classList.add('d-none');
-}
-
-// =============================================================================
 // 🌍 GLOBALE EXPORTS
 // =============================================================================
 
 window.initShoppingCartProjekt = initShoppingCartProjekt;
 window.initGooglePlaces = initGooglePlaces;
 
-console.log("✅ Shopping Cart Projekt JavaScript geladen");
+console.log("✅ Shopping Cart Projekt JavaScript geladen (BACKEND-ID KORRIGIERT)");

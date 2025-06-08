@@ -1120,9 +1120,6 @@
     <div id="footer-placeholder"></div>
   </footer>
 
-  <!-- Google Maps API -->
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALZO8X0R_t8Y2Ic9cPPDtc_Yz0L5GgGxQ&libraries=places&callback=initGoogleMaps"></script>
-  
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <!-- EmailJS v4 mit Cache-Busting -->
@@ -1224,5 +1221,31 @@
     
     console.log("ℹ️ Rufen Sie checkEmailJS() in der Konsole auf für Debug-Infos");
   </script>
+  <!-- Google Maps API KORRIGIERT -->
+<script>
+  // Google Maps initialisieren
+  function initGoogleMaps() {
+    console.log("🗺️ Google Maps callback ausgeführt");
+    if (typeof initGooglePlaces === "function") {
+      initGooglePlaces();
+    }
+  }
+  
+  // Google Places API laden
+  function loadGoogleMapsAPI() {
+    const script = document.createElement('script');
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyALZO8X0R_t8Y2Ic9cPPDtc_Yz0L5GgGxQ&libraries=places&callback=initGoogleMaps';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  }
+  
+  // Lade Google Maps API wenn DOM bereit ist
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadGoogleMapsAPI);
+  } else {
+    loadGoogleMapsAPI();
+  }
+</script>
 </body>
 </html>
