@@ -76,3 +76,33 @@ section img {
   max-height: 300px;
   object-fit: cover;
 }
+
+.modal-content {
+  border-radius: 1rem;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-body {
+  font-size: 1.1rem;
+}
+.roadmap-toast {
+  position: fixed;
+  bottom: 2rem;
+  right: -400px; /* Startposition */
+  max-width: 320px;
+  background-color: #ffffff;
+  border-left: 4px solid #0d6efd;
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  z-index: 1055;
+  opacity: 0;
+  transition: right 0.7s ease, opacity 0.7s ease;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+}
+.roadmap-toast.show {
+  right: 2rem;
+  opacity: 1;
+}

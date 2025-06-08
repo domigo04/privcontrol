@@ -1,195 +1,4 @@
-// =============================================================================
-// 📧 E-MAIL FUNKTIONALITÄT
-// =============================================================================
-
-async function sendOfferEmail(projektData, projektId) {
-  console.log("📧 Sende Offerte-E-Mail - START (KOMPATIBILITÄT)");
-  console.log("📊 Projekt-Daten:", projektData);
-  
-  try {
-    // 1. EmailJS verfügbar?
-    if (typeof emailjs === 'undefined') {
-      console.error("❌ EmailJS ist nicht geladen!");
-      throw new Error('EmailJS ist nicht geladen. Bitte Seite neu laden.');
-    }
-    
-    console.log("✅ EmailJS ist verfügbar");
-    console.log("📧 EmailJS Objekt:", emailjs);
-    
-    // 2. E-Mail-Daten vorbereiten (mit Priv-Control Absender)
-    const emailData = {
-      // Empfänger
-      to_email: projektData.kundenmail,
-      to_name: projektData.projektname,
-      
-      // ABSENDER (so erscheint es als von Priv-Control)
-      from_name: "Priv-Control",
-      from_email: "info@priv-control.ch",
-      reply_to: "info@priv-control.ch",
-      
-      // Projekt-Details
-      projekt_id: projektId,
-      projektname: projektData.projektname,
-      gemeinde: projektData.gemeinde,
-      parzellennummer: projektData.parzellennummer,
-      gebaeudenummer: projektData.gebaeudenummer,
-      art_des_gebaeudes: projektData.art_des_gebaeudes,
-      wunschtermin: projektData.wunschtermin,
-      adresse: projektData.adresse,
-      
-      // Zeitstempel
-      datum: new Date().toLocaleDateString('de-CH'),
-      uhrzeit: new Date().toLocaleTimeString('de-CH', { 
-        hour: '2-digit', 
-        minute: '2-digit' 
-      }),
-      
-      // Gewerke-Liste
-      gewerke_liste: projektData.ausgewaehlteGewerke.map(g => 
-        `${g.gewerk}: ${g.nachweis} (${g.typ})`
-      ).join(', '),
-      
-      // Upload-Link (für den E-Mail-Template)
-      upload_link: `${window.location.origin}/nachweise-upload.html?projekt=${projektId}`,
-      
-      // Zusätzliche professionelle Daten
-      company_name: "Priv-Control",
-      company_website: "www.priv-control.ch",
-      company_phone: "+41 XX XXX XX XX"
-    };
-    
-    console.log("📨 E-Mail-Daten bereit:", emailData);
-
-    // 3. Service und Template IDs (aus Screenshot bestätigt)
-    const serviceId = 'service_n2f4g3w';
-    const templateId = 'template_offerte_bestaet';
-    
-    console.log("🆔 Service ID:", serviceId);
-    console.log("🆔 Template ID:", templateId);
-    
-    // 4. WICHTIG: User ID setzen (für alte Version)
-    if (emailjs.init && typeof emailjs.init === 'function') {
-      // Neue Version - v4 Syntax
-      console.log("📤 Verwende EmailJS v4 Syntax");
-      emailjs.init({
-        publicKey: "9Ql82xYiywzV_Ucb6"
-      });
-    } else {
-      // Alte Version - v3 Syntax  
-      console.log("📤 Verwende EmailJS v3 Syntax (Fallback)");
-      if (emailjs.init) {
-        emailjs.init("9Ql82xYiywzV_Ucb6");
-      }
-    }
-    
-    // 5. E-Mail senden (funktioniert mit beiden Versionen)
-    console.log("📤 Sende E-Mail...");
-    
-    const response = await emailjs.send(serviceId, templateId, emailData);
-    
-    console.log("✅ E-Mail erfolgreich gesendet!");
-    console.log("📧 Response:", response);
-    
-    return { success: true, response };
-    
-  } catch (error) {
-    console.error("❌ E-Mail-Versand Fehler:");
-    console.error("❌ Error:", error);
-    console.error("❌ Error Details:", {
-      message: error.message,
-      status: error.status,
-      text: error.text,
-      stack: error.stack
-    });
-    
-    // WORKAROUND für Status 418: Verwende originalen funktionierenden Code
-    if (error.status === 418) {
-      console.log("🔄 Status 418 - Versuche Workaround...");
-      
-      try {
-        // Direkte E-Mail mit ursprünglicher Methode
-        const fallbackResponse = await sendEmailWithOriginalMethod(projektData, projektId);
-        return fallbackResponse;
-      } catch (fallbackError) {
-        console.error("❌ Auch Fallback fehlgeschlagen:", fallbackError);
-      }
-    }
-    
-    return { 
-      success: false, 
-      error: error.message || error.text || `E-Mail-Fehler (Status: ${error.status})`
-    };
-  }
-}
-
-// Fallback mit originaler funktionierender Methode
-async function sendEmailWithOriginalMethod(projektData, projektId) {
-  console.log("🔄 Versuche originale E-Mail-Methode...");
-  
-  try {
-    // User-ID setzen (falls nötig)
-    emailjs.init("9Ql82xYiywzV_Ucb6");
-    
-    // E-Mail-Daten (mit Priv-Control Branding)
-    const emailData = {
-      // Empfänger
-      to_email: projektData.kundenmail,
-      to_name: projektData.projektname,
-      
-      // ABSENDER (Priv-Control)
-      from_name: "Priv-Control",
-      from_email: "info@priv-control.ch",
-      reply_to: "info@priv-control.ch",
-      
-      // Projekt-Details
-      projekt_id: projektId,
-      projektname: projektData.projektname,
-      gemeinde: projektData.gemeinde,
-      parzellennummer: projektData.parzellennummer,
-      gebaeudenummer: projektData.gebaeudenummer,
-      art_des_gebaeudes: projektData.art_des_gebaeudes,
-      wunschtermin: projektData.wunschtermin,
-      adresse: projektData.adresse,
-      datum: new Date().toLocaleDateString('de-CH'),
-      uhrzeit: new Date().toLocaleTimeString('de-CH', { 
-        hour: '2-digit', 
-        minute: '2-digit' 
-      }),
-      gewerke_liste: projektData.ausgewaehlteGewerke.map(g => 
-        `${g.gewerk}: ${g.nachweis} (${g.typ})`
-      ).join(', '),
-      
-      // Upload-Link
-      upload_link: `${window.location.origin}/nachweise-upload.html?projekt=${projektId}`,
-      
-      // Company Info
-      company_name: "Priv-Control",
-      company_website: "www.priv-control.ch"
-    };
-    
-    console.log("🔄 Fallback E-Mail-Daten:", emailData);
-    
-    // Mit timeout
-    const timeoutPromise = new Promise((_, reject) => 
-      setTimeout(() => reject(new Error('E-Mail Timeout nach 15 Sekunden')), 15000)
-    );
-    
-    const emailPromise = emailjs.send('service_n2f4g3w', 'template_offerte_bestaet', emailData);
-    
-    const response = await Promise.race([emailPromise, timeoutPromise]);
-    
-    console.log("✅ Fallback E-Mail erfolgreich!", response);
-    return { success: true, response, fallback: true };
-    
-  } catch (fallbackError) {
-    console.error("❌ Fallback auch fehlgeschlagen:", fallbackError);
-    return {
-      success: false,
-      error: 'Alle E-Mail-Methoden fehlgeschlagen. Bitte manuell kontaktieren.',
-      fallback: true
-    };
-  }
-}// 🛒 Shopping Cart Projekt-Erstellung
+// 🛒 Shopping Cart Projekt-Erstellung
 // Datei: js/shopping-cart-projekt.js
 
 // 🔧 Globale Variablen
@@ -257,7 +66,6 @@ function initEventListeners() {
   // Action Buttons
   document.getElementById('createProjectBtn').addEventListener('click', handleProjektErstellen);
   document.getElementById('downloadOfferteBtn').addEventListener('click', handleDownloadOfferte);
-  document.getElementById('uploadDokumenteBtn').addEventListener('click', handleUploadDokumente);
   document.getElementById('neuesProjektBtn').addEventListener('click', handleNeuesProjekt);
   document.getElementById('resetBtn').addEventListener('click', handleReset);
   
@@ -730,22 +538,22 @@ async function handleProjektErstellen(e) {
     // Simuliere Speicherung in Datenbank
     await saveProjektToDatabase(projektData);
     
-    // E-Mail senden (mit bewährter Methode)
-    const emailResult = await sendOfferEmail(projektData, projektId);
-    console.log("📧 E-Mail-Ergebnis:", emailResult);
+    // E-Mail senden
+    try {
+      await sendOfferEmail(projektData, projektId);
+      console.log("✅ E-Mail gesendet");
+    } catch (emailError) {
+      console.warn("⚠️ E-Mail-Versand fehlgeschlagen:", emailError);
+    }
     
     // Aktuelles Projekt setzen
     currentProject = projektData;
-    currentProject.emailResult = emailResult; // Für später speichern
     
     // Loading ausblenden
     hideLoadingInContainer(step4);
     
     // Zum Success-Schritt navigieren
     navigateToSuccess();
-    
-    // E-Mail-Status anzeigen
-    showEmailStatusInSuccess(emailResult);
     
   } catch (error) {
     console.error("❌ Fehler bei Projekt-Erstellung:", error);
@@ -795,41 +603,6 @@ function showSuccessData() {
   document.getElementById('displayGewerke').textContent = gewerkeText;
 }
 
-// E-Mail-Status in Success-Section anzeigen
-function showEmailStatusInSuccess(emailResult) {
-  const successSection = document.getElementById('successSection');
-  const cardBody = successSection.querySelector('.card-body');
-  
-  // Entferne alten E-Mail-Status
-  const oldStatus = successSection.querySelector('#emailStatusSuccess');
-  if (oldStatus) oldStatus.remove();
-  
-  // Erstelle neuen Status
-  const statusDiv = document.createElement('div');
-  statusDiv.id = 'emailStatusSuccess';
-  statusDiv.className = `alert ${emailResult.success ? 'alert-success' : 'alert-warning'} mt-3`;
-  
-  if (emailResult.success) {
-    statusDiv.innerHTML = `
-      <i class="fas fa-envelope-check me-2"></i>
-      <strong>E-Mail versendet!</strong><br>
-      <small>Eine Bestätigung wurde an ${currentProject.kundenmail} gesendet.</small>
-    `;
-  } else {
-    statusDiv.innerHTML = `
-      <i class="fas fa-exclamation-triangle me-2"></i>
-      <strong>E-Mail-Versand fehlgeschlagen</strong><br>
-      <small>Das Projekt wurde trotzdem erfolgreich erstellt. Sie können die Offerte als PDF herunterladen.</small>
-    `;
-  }
-  
-  // Nach der ersten Card einfügen
-  const firstCard = cardBody.querySelector('.card');
-  if (firstCard) {
-    firstCard.parentNode.insertBefore(statusDiv, firstCard.nextSibling);
-  }
-}
-
 // =============================================================================
 // 💾 DATENBANK FUNKTIONEN
 // =============================================================================
@@ -873,27 +646,6 @@ async function saveProjektToDatabase(projektData) {
   };
   
   console.log("💾 JSON für Datenbank:", JSON.stringify(dbEntry, null, 2));
-  
-  // WICHTIG: Projektdaten auch im localStorage speichern für Upload-Seite
-  try {
-    localStorage.setItem(`projekt_${projektData.projektId}`, JSON.stringify({
-      projektId: projektData.projektId,
-      projektname: projektData.projektname,
-      kundenmail: projektData.kundenmail,
-      adresse: projektData.adresse,
-      gemeinde: projektData.gemeinde,
-      parzellennummer: projektData.parzellennummer,
-      gebaeudenummer: projektData.gebaeudenummer,
-      art_des_gebaeudes: projektData.art_des_gebaeudes,
-      wunschtermin: projektData.wunschtermin,
-      gewerke: projektData.ausgewaehlteGewerke,
-      status: 'erstellt',
-      erstelltAm: projektData.erstelltAm
-    }));
-    console.log("✅ Projektdaten im localStorage gespeichert für Upload-Seite");
-  } catch (storageError) {
-    console.warn("⚠️ LocalStorage Fehler:", storageError);
-  }
   
   return { success: true, id: projektData.projektId };
 }
@@ -970,19 +722,6 @@ function handleDownloadOfferte() {
     generatePDF(currentProject);
   } else {
     showStepError("Keine Projektdaten verfügbar für PDF-Download.");
-  }
-}
-
-function handleUploadDokumente() {
-  console.log("📤 Weiterleitung zu Dokumente hochladen");
-  
-  if (currentProject && currentProject.projektId) {
-    // Zur richtigen Upload-Seite weiterleiten
-    const uploadUrl = `nachweise-upload.html?projekt=${currentProject.projektId}`;
-    console.log("🔗 Weiterleitung zu:", uploadUrl);
-    window.location.href = uploadUrl;
-  } else {
-    showStepError("Keine Projekt-ID verfügbar für Dokument-Upload.");
   }
 }
 

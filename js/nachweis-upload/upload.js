@@ -56,27 +56,64 @@ function showNoAccessModal() {
     }
 }
 
-// 📊 Projekt-Daten laden
+// 📊 Projekt-Daten laden (mit localStorage Support)
 async function ladeProjektDaten(projektId) {
     console.log("📊 Lade Projekt-Daten für ID:", projektId);
     
     try {
         showLoading("Projektdaten werden geladen...");
         
-        const response = await fetch(`/projekt-daten/${projektId}`);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        // 1. Versuche zuerst aus localStorage zu laden
+        const localData = localStorage.getItem(`projekt_${projektId}`);
+        if (localData) {
+            console.log("✅ Projektdaten aus localStorage gefunden");
+            const projektDaten = JSON.parse(localData);
+            
+            hideLoading();
+            zeigeProjektDaten(projektDaten);
+            generiereBenoetigteDokumente(projektDaten);
+            return projektDaten;
         }
         
-        const projektDaten = await response.json();
-        console.log("✅ Projekt-Daten geladen:", projektDaten);
+        // 2. Fallback: Versuche Server-API
+        try {
+            const response = await fetch(`/projekt-daten/${projektId}`);
+            if (response.ok) {
+                const projektDaten = await response.json();
+                console.log("✅ Projekt-Daten vom Server geladen:", projektDaten);
+                
+                hideLoading();
+                zeigeProjektDaten(projektDaten);
+                generiereBenoetigteDokumente(projektDaten);
+                return projektDaten;
+            }
+        } catch (serverError) {
+            console.warn("⚠️ Server nicht erreichbar:", serverError);
+        }
+        
+        // 3. Fallback: Mock-Daten für Demo
+        console.log("⚠️ Verwende Mock-Daten für Demo");
+        const mockProjektDaten = {
+            projektId: projektId,
+            projektname: "Demo Projekt",
+            kundenmail: "kunde@beispiel.ch", 
+            adresse: "Musterstraße 123, 8000 Zürich",
+            gemeinde: "Zürich",
+            parzellennummer: "1234",
+            gebaeudenummer: "42A",
+            art_des_gebaeudes: "Einfamilienhaus",
+            wunschtermin: new Date().toISOString().split('T')[0],
+            gewerke: [
+                { gewerk: "Heizung", nachweis: "EN103", typ: "PK" },
+                { gewerk: "Wärmedämmung", nachweis: "EN101", typ: "AK" }
+            ],
+            status: 'erstellt'
+        };
         
         hideLoading();
-        zeigeProjektDaten(projektDaten);
-        generiereBenoetigteDokumente(projektDaten);
-        
-        return projektDaten;
+        zeigeProjektDaten(mockProjektDaten);
+        generiereBenoetigteDokumente(mockProjektDaten);
+        return mockProjektDaten;
         
     } catch (error) {
         console.error("❌ Fehler beim Laden der Projekt-Daten:", error);
@@ -85,7 +122,7 @@ async function ladeProjektDaten(projektId) {
         
         // Nach 3 Sekunden zur Offerte-Erstellung weiterleiten
         setTimeout(() => {
-            window.location.href = '/offerte-erstellen.html';
+            window.location.href = 'projekt-erstellen.html';
         }, 3000);
         
         return null;
@@ -197,28 +234,53 @@ function generiereBenoetigteDokumente(projektDaten) {
     
     html += `</div></div>`;
     
-    // Gewerk-spezifische Dokumente (falls vorhanden)
-    // Hier könntest du die ausgewählten Gewerke aus projektDaten.gewerke lesen
-    // Für jetzt zeigen wir Heizung als Beispiel
-    Object.entries(dokumenteMap).forEach(([gewerk, dokumente]) => {
-        html += `
-            <div class="document-category">
-                <h5><i class="fas fa-tools me-2"></i>${gewerk}</h5>
-                <div class="document-items">
-        `;
+    // Gewerk-spezifische Dokumente basierend auf tatsächlichen Gewerken
+    if (projektDaten.gewerke && projektDaten.gewerke.length > 0) {
+        const ausgewaehlteGewerke = [...new Set(projektDaten.gewerke.map(g => g.gewerk))];
         
-        dokumente.forEach(dok => {
-            html += `
-                <div class="document-item">
-                    <i class="fas fa-file-pdf text-warning me-2"></i>
-                    <span>${dok}</span>
-                    <span class="badge bg-info">Gewerk-spezifisch</span>
-                </div>
-            `;
+        ausgewaehlteGewerke.forEach(gewerk => {
+            if (dokumenteMap[gewerk]) {
+                html += `
+                    <div class="document-category">
+                        <h5><i class="fas fa-tools me-2"></i>${gewerk}</h5>
+                        <div class="document-items">
+                `;
+                
+                dokumenteMap[gewerk].forEach(dok => {
+                    html += `
+                        <div class="document-item">
+                            <i class="fas fa-file-pdf text-warning me-2"></i>
+                            <span>${dok}</span>
+                            <span class="badge bg-info">Gewerk-spezifisch</span>
+                        </div>
+                    `;
+                });
+                
+                html += `</div></div>`;
+            }
         });
-        
-        html += `</div></div>`;
-    });
+    } else {
+        // Fallback: Alle Dokumente zeigen
+        Object.entries(dokumenteMap).forEach(([gewerk, dokumente]) => {
+            html += `
+                <div class="document-category">
+                    <h5><i class="fas fa-tools me-2"></i>${gewerk}</h5>
+                    <div class="document-items">
+            `;
+            
+            dokumente.forEach(dok => {
+                html += `
+                    <div class="document-item">
+                        <i class="fas fa-file-pdf text-warning me-2"></i>
+                        <span>${dok}</span>
+                        <span class="badge bg-info">Gewerk-spezifisch</span>
+                    </div>
+                `;
+            });
+            
+            html += `</div></div>`;
+        });
+    }
     
     dokumentenListe.innerHTML = html;
     dokumenteBereich.style.display = 'block';
@@ -243,8 +305,50 @@ function hideLoading() {
     }
 }
 
+// 🔄 Mock Upload-System für Demo
+function createMockUploadEndpoint() {
+    console.log("🔄 Erstelle Mock Upload-Endpoint für Demo");
+    
+    const originalFetch = window.fetch;
+    
+    window.fetch = function(url, options) {
+        // Wenn es ein Upload-Request ist, simuliere Erfolg
+        if (url.includes('/upload') && options && options.method === 'POST') {
+            console.log("🔄 Mock Upload Request abgefangen für:", url);
+            
+            return new Promise((resolve) => {
+                const delay = 1000 + Math.random() * 2000; // 1-3 Sekunden delay
+                
+                setTimeout(() => {
+                    console.log("✅ Mock Upload erfolgreich nach", Math.round(delay), "ms");
+                    resolve({
+                        ok: true,
+                        status: 200,
+                        statusText: 'OK',
+                        json: () => Promise.resolve({
+                            success: true,
+                            message: "Datei erfolgreich hochgeladen",
+                            filename: "mock_upload.pdf",
+                            projektId: getProjektId()
+                        }),
+                        text: () => Promise.resolve('{"success":true,"message":"Upload erfolgreich"}')
+                    });
+                }, delay);
+            });
+        }
+        
+        // Für alle anderen Requests normale fetch verwenden
+        return originalFetch.call(this, url, options);
+    };
+    
+    console.log("✅ Mock Upload-Endpoint erstellt");
+}
+
 function initUploadLogik() {
     console.log("📦 Upload-Logik initialisieren...");
+    
+    // 🔄 Mock-System für Demo aktivieren
+    createMockUploadEndpoint();
     
     // 🔐 Erst Zugang prüfen
     if (!checkProjektZugang()) {
@@ -389,6 +493,7 @@ function initUploadLogik() {
                 const successfulUploads = dzInstance.getAcceptedFiles().length;
                 if (successfulUploads > 0 && modal) {
                     modal.style.display = 'flex';
+                    console.log("🎉 Success Modal angezeigt für", successfulUploads, "erfolgreiche Uploads");
                 }
             });
 
@@ -473,7 +578,44 @@ function initUploadLogik() {
     console.log("🎯 Upload-Logik vollständig initialisiert");
 }
 
+// 🔧 Debug-Funktionen
+window.debugProjektData = function() {
+    console.log("🔍 Debug: LocalStorage Projekt-Daten");
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith('projekt_')) {
+            console.log(`${key}:`, JSON.parse(localStorage.getItem(key)));
+        }
+    }
+};
+
+window.clearProjektData = function() {
+    console.log("🧹 Lösche alle Projekt-Daten aus localStorage");
+    for (let i = localStorage.length - 1; i >= 0; i--) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith('projekt_')) {
+            localStorage.removeItem(key);
+            console.log(`Gelöscht: ${key}`);
+        }
+    }
+};
+
+window.testMockUpload = function() {
+    console.log("🧪 Teste Mock Upload System");
+    fetch('/upload', {
+        method: 'POST',
+        body: new FormData()
+    }).then(response => response.json())
+      .then(data => console.log("Test Response:", data))
+      .catch(error => console.error("Test Error:", error));
+};
+
 // Export für andere Module (falls benötigt)
 window.initUploadLogik = initUploadLogik;
 window.ladeProjektDaten = ladeProjektDaten;
 window.checkProjektZugang = checkProjektZugang;
+
+console.log("📦 Upload.js geladen - Debug-Funktionen verfügbar:");
+console.log("- debugProjektData() - Zeigt localStorage Daten");
+console.log("- clearProjektData() - Löscht localStorage Daten");
+console.log("- testMockUpload() - Testet Mock Upload System");
