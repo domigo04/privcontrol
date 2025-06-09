@@ -1,0 +1,37 @@
+{
+  "projektname": "Test 1.8",
+  "wunschtermin": "2025-06-09",
+  "adresse": "Haltelhusstrasse, Mörschwil, Schweiz",
+  "gemeinde": "Mörschwil",
+  "parzellennummer": "8413",
+  "gebaeudenummer": "156",
+  "art_des_gebaeudes": "Industriegebäude",
+  "kundenmail": "dominicgoulon@icloud.com",
+  "projektId": "25018",
+  "ausgewaehlteGewerke": [
+    {
+      "gewerk": "Heizung",
+      "nachweis": "EN103",
+      "typ": "PK",
+      "typLabel": "Privatkontrolle",
+      "preis": 200,
+      "titel": "EN103 – Heizungsverteilung"
+    },
+    {
+      "gewerk": "Klima",
+      "nachweis": "EN107",
+      "typ": "PK",
+      "typLabel": "Privatkontrolle",
+      "preis": 200,
+      "titel": "EN107 – Klimaanlage"
+    }
+  ],
+  "gesamtpreis": 1680,
+  "erstelltAm": "2025-06-08T22:19:51.392Z",
+  "status": "bestätigt",
+  "interneId": "20250608_Industrieg_Mörschwil_HA3Z",
+  "letzteAenderung": "2025-06-08T22:27:18.419Z",
+  "dokumentiertAm": "2025-06-08T22:27:01.564Z",
+  "bestaetigtAm": "2025-06-08T22:27:18.393Z",
+  "dokumenteHochgeladen": 1
+}

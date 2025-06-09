@@ -1,0 +1,26 @@
+{
+  "projektname": "qr4",
+  "wunschtermin": "2025-06-19",
+  "adresse": "Hal",
+  "gemeinde": "ads",
+  "parzellennummer": "124e",
+  "gebaeudenummer": "124",
+  "art_des_gebaeudes": "Mehrfamilienhaus",
+  "kundenmail": "dominicgoulon@icloud.com",
+  "projektId": "25014",
+  "erstelltAm": "2025-06-08T21:15:48.705Z",
+  "status": "offerte_generiert",
+  "ausgewaehlteGewerke": [
+    {
+      "id": "EN106-PK",
+      "gewerk": "Lüftung",
+      "nachweis": "EN106",
+      "typ": "PK",
+      "preis": 200,
+      "titel": "EN106 – Lüftungsanlage",
+      "typLabel": "Privatkontrolle"
+    }
+  ],
+  "interneId": "20250608_Mehrfamili_ads_MYG9",
+  "letzteAenderung": "2025-06-08T21:15:48.705Z"
+}

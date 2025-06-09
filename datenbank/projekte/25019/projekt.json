@@ -1,0 +1,69 @@
+{
+  "projektname": "Test 2.0",
+  "wunschtermin": "2025-06-21",
+  "adresse": "Ausstellungsstrasse, Zürich, Schweiz",
+  "gemeinde": "Zürich",
+  "parzellennummer": "2q34",
+  "gebaeudenummer": "68",
+  "art_des_gebaeudes": "Bürogebäude",
+  "kundenmail": "dominicgoulon@icloud.com",
+  "projektId": "25019",
+  "ausgewaehlteGewerke": [
+    {
+      "gewerk": "Lüftung",
+      "nachweis": "EN106",
+      "typ": "PK",
+      "typLabel": "Privatkontrolle",
+      "preis": 200,
+      "titel": "EN106 – Lüftungsanlage"
+    },
+    {
+      "gewerk": "Klima",
+      "nachweis": "EN108",
+      "typ": "AK",
+      "typLabel": "Ausführungskontrolle",
+      "preis": 250,
+      "titel": "EN108 – Wärmepumpe"
+    },
+    {
+      "gewerk": "Wärmedämmung",
+      "nachweis": "EN101",
+      "typ": "AK",
+      "typLabel": "Ausführungskontrolle",
+      "preis": 250,
+      "titel": "EN101 – Gebäudehülle"
+    },
+    {
+      "gewerk": "Sanitär",
+      "nachweis": "EN104",
+      "typ": "PK",
+      "typLabel": "Privatkontrolle",
+      "preis": 200,
+      "titel": "EN104 – Warmwasseranlage"
+    },
+    {
+      "gewerk": "Sanitär",
+      "nachweis": "EN104",
+      "typ": "AK",
+      "typLabel": "Ausführungskontrolle",
+      "preis": 250,
+      "titel": "EN104 – Warmwasseranlage"
+    },
+    {
+      "gewerk": "Heizung",
+      "nachweis": "EN105",
+      "typ": "PK",
+      "typLabel": "Privatkontrolle",
+      "preis": 200,
+      "titel": "EN105 – Wärmeerzeugung"
+    }
+  ],
+  "gesamtpreis": 2350,
+  "erstelltAm": "2025-06-08T22:30:30.534Z",
+  "status": "dokumentiert",
+  "interneId": "20250608_Bürogebäud_Zürich_NC0Q",
+  "letzteAenderung": "2025-06-08T22:40:23.442Z",
+  "dokumentiertAm": "2025-06-08T22:40:23.419Z",
+  "bestaetigtAm": "2025-06-08T22:31:07.214Z",
+  "dokumenteHochgeladen": 1
+}

@@ -1,0 +1,26 @@
+{
+  "projektname": "124",
+  "wunschtermin": "2025-06-22",
+  "adresse": "Aarbergergasse, Bern, Schweiz",
+  "gemeinde": "Bern",
+  "parzellennummer": "ads",
+  "gebaeudenummer": "w",
+  "art_des_gebaeudes": "Bürogebäude",
+  "kundenmail": "dominicgoulon@icloud.com",
+  "projektId": "25021",
+  "ausgewaehlteGewerke": [
+    {
+      "gewerk": "Wärmedämmung",
+      "nachweis": "EN102",
+      "typ": "AK",
+      "typLabel": "Ausführungskontrolle",
+      "preis": 250,
+      "titel": "EN102 – Fenster & Türen"
+    }
+  ],
+  "gesamtpreis": 1250,
+  "erstelltAm": "2025-06-08T23:26:06.174Z",
+  "status": "offerte_generiert",
+  "interneId": "20250608_Bürogebäud_Bern_NLRL",
+  "letzteAenderung": "2025-06-08T23:26:06.174Z"
+}

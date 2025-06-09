@@ -1,0 +1,26 @@
+{
+  "projektname": "Test 1.7",
+  "wunschtermin": "2025-06-19",
+  "adresse": "Augustinergasse, Zürich, Schweiz",
+  "gemeinde": "Zürich",
+  "parzellennummer": "214",
+  "gebaeudenummer": "0",
+  "art_des_gebaeudes": "Industriegebäude",
+  "kundenmail": "dominicgoulon@icloud.com",
+  "projektId": "25017",
+  "ausgewaehlteGewerke": [
+    {
+      "gewerk": "Heizung",
+      "nachweis": "EN103",
+      "typ": "AK",
+      "typLabel": "Ausführungskontrolle",
+      "preis": 250,
+      "titel": "EN103 – Heizungsverteilung"
+    }
+  ],
+  "gesamtpreis": 1250,
+  "erstelltAm": "2025-06-08T22:09:25.983Z",
+  "status": "offerte_generiert",
+  "interneId": "20250608_Industrieg_Zürich_73KJ",
+  "letzteAenderung": "2025-06-08T22:09:25.983Z"
+}

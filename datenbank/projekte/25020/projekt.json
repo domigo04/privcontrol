@@ -1,0 +1,53 @@
+{
+  "projektname": "Haus am See",
+  "wunschtermin": "2025-06-10",
+  "adresse": "Haltenstrasse, Neftenbach, Schweiz",
+  "gemeinde": "Neftenbach",
+  "parzellennummer": "841825",
+  "gebaeudenummer": "84a",
+  "art_des_gebaeudes": "Einfamilienhaus",
+  "kundenmail": "dominicgoulon@icloud.com",
+  "projektId": "25020",
+  "ausgewaehlteGewerke": [
+    {
+      "gewerk": "Heizung",
+      "nachweis": "EN103",
+      "typ": "PK",
+      "typLabel": "Privatkontrolle",
+      "preis": 200,
+      "titel": "EN103 – Heizungsverteilung"
+    },
+    {
+      "gewerk": "Lüftung",
+      "nachweis": "EN106",
+      "typ": "AK",
+      "typLabel": "Ausführungskontrolle",
+      "preis": 250,
+      "titel": "EN106 – Lüftungsanlage"
+    },
+    {
+      "gewerk": "Sanitär",
+      "nachweis": "EN104",
+      "typ": "PK",
+      "typLabel": "Privatkontrolle",
+      "preis": 200,
+      "titel": "EN104 – Warmwasseranlage"
+    },
+    {
+      "gewerk": "Klima",
+      "nachweis": "EN107",
+      "typ": "PK",
+      "typLabel": "Privatkontrolle",
+      "preis": 200,
+      "titel": "EN107 – Klimaanlage"
+    }
+  ],
+  "gesamtpreis": 2220,
+  "erstelltAm": "2025-06-08T22:58:38.363Z",
+  "status": "bestätigt",
+  "interneId": "20250608_Einfamilie_Neftenbach_NF78",
+  "letzteAenderung": "2025-06-08T23:00:02.248Z",
+  "dokumentiertAm": "2025-06-08T22:59:55.098Z",
+  "bestaetigtAm": "2025-06-08T23:00:02.229Z",
+  "dokumenteHochgeladen": 1
+}

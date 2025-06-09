@@ -1,0 +1,26 @@
+{
+  "projektname": "Test 1.5",
+  "wunschtermin": "2025-06-12",
+  "adresse": "Haltikon, Küssnacht, Schweiz",
+  "gemeinde": "Küssnacht",
+  "parzellennummer": "124523",
+  "gebaeudenummer": "45g",
+  "art_des_gebaeudes": "Bürogebäude",
+  "kundenmail": "dominicgoulon@icloud.com",
+  "projektId": "25016",
+  "erstelltAm": "2025-06-08T21:41:23.062Z",
+  "status": "offerte_generiert",
+  "ausgewaehlteGewerke": [
+    {
+      "id": "EN103-AK",
+      "gewerk": "Heizung",
+      "nachweis": "EN103",
+      "typ": "AK",
+      "preis": 250,
+      "titel": "EN103 – Heizungsverteilung",
+      "typLabel": "Ausführungskontrolle"
+    }
+  ],
+  "interneId": "20250608_Bürogebäud_Küssnacht_AILO",
+  "letzteAenderung": "2025-06-08T21:41:23.062Z"
+}

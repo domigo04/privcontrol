@@ -1,0 +1,26 @@
+{
+  "projektname": "34253",
+  "wunschtermin": "2025-06-19",
+  "adresse": "Aareschlucht, Innertkirchen, Schweiz",
+  "gemeinde": "Innertkirchen",
+  "parzellennummer": "adsa",
+  "gebaeudenummer": "qe",
+  "art_des_gebaeudes": "Geschäftshaus",
+  "kundenmail": "dominicgoulon@icloud.com",
+  "projektId": "25015",
+  "erstelltAm": "2025-06-08T21:30:44.277Z",
+  "status": "offerte_generiert",
+  "ausgewaehlteGewerke": [
+    {
+      "id": "EN103-AK",
+      "gewerk": "Heizung",
+      "nachweis": "EN103",
+      "typ": "AK",
+      "preis": 250,
+      "titel": "EN103 – Heizungsverteilung",
+      "typLabel": "Ausführungskontrolle"
+    }
+  ],
+  "interneId": "20250608_Geschäftsh_Innertkirc_S7ZC",
+  "letzteAenderung": "2025-06-08T21:30:44.277Z"
+}
