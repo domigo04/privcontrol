@@ -7,6 +7,7 @@ let companyLogo = null;
 let currentProject = null;
 let shoppingCart = [];
 let currentStep = 1;
+const TOTAL_STEPS = 4; // ✅ Konstantendefinition für Progressbar
 
 // Preise
 const PREISE = {
@@ -152,8 +153,9 @@ function startWorkflow() {
 function navigateToStep(stepNumber) {
   console.log(`📍 Navigiere zu Schritt ${stepNumber}`);
   
-  // Validierung des aktuellen Schritts (außer bei Zurück-Navigation)
+  // ✅ KORRIGIERT: Validierung nur bei Vorwärts-Navigation
   if (stepNumber > currentStep && !validateCurrentStep()) {
+    console.log("❌ Validierung fehlgeschlagen, bleibe bei Schritt", currentStep);
     return;
   }
   
@@ -166,9 +168,12 @@ function navigateToStep(stepNumber) {
   const targetStep = document.getElementById(`step${stepNumber}`);
   if (targetStep) {
     targetStep.classList.add('active');
+    console.log(`✅ Schritt ${stepNumber} aktiviert`);
+  } else {
+    console.error(`❌ Schritt ${stepNumber} nicht gefunden!`);
   }
   
-  // Progress Bar und Schritt-Anzeige aktualisieren
+  // ✅ KORRIGIERT: Progress Bar und Current Step korrekt aktualisieren
   updateProgress(stepNumber);
   currentStep = stepNumber;
   
@@ -187,17 +192,27 @@ function navigateToStep(stepNumber) {
   }, 100);
 }
 
+// ✅ KORRIGIERT: Progressbar-Update Funktion
 function updateProgress(stepNumber) {
   const progressBar = document.getElementById('progressBar');
   const currentStepSpan = document.getElementById('currentStep');
   
+  console.log(`📊 Update Progress: Schritt ${stepNumber} von ${TOTAL_STEPS}`);
+  
   if (progressBar) {
-    const progressPercentage = (stepNumber / 4) * 100;
+    // ✅ KORRIGIERT: Korrekte Prozentberechnung
+    const progressPercentage = (stepNumber / TOTAL_STEPS) * 100;
     progressBar.style.width = `${progressPercentage}%`;
+    console.log(`📊 Progress Bar: ${progressPercentage}%`);
+  } else {
+    console.error("❌ Progress Bar Element nicht gefunden!");
   }
   
   if (currentStepSpan) {
     currentStepSpan.textContent = stepNumber;
+    console.log(`📊 Current Step Display: ${stepNumber}`);
+  } else {
+    console.error("❌ Current Step Span nicht gefunden!");
   }
 }
 
@@ -472,7 +487,7 @@ function updateSummary() {
   const summaryParzelle = document.getElementById('summaryParzelle');
   if (summaryParzelle) {
     const parzelle = document.getElementById('parzellennummer')?.value || '';
-    const gebaeude = document.getElementById('gebaeudenummer')?.value || '';
+    const gebaeude = document.getElementById('gebaeudenummer')?.value?.trim() || '';
     summaryParzelle.textContent = `${parzelle} / ${gebaeude}`;
   }
   
@@ -623,7 +638,7 @@ async function handleProjektErstellen() {
             navigateToSuccess();
             
         } else {
-            throw new Error('Keine gültige Backend-ID erhalten');
+            throw new Error('Backend-Speicherung fehlgeschlagen: ' + (result?.error || 'Unbekannter Fehler'));
         }
         
     } catch (error) {
@@ -685,7 +700,7 @@ function calculateTotalPrice() {
 }
 
 // =============================================================================
-// 💾 BACKEND-INTEGRATION (KORRIGIERT)
+// 💾 BACKEND-INTEGRATION (KORRIGIERT - KEIN FALLBACK)
 // =============================================================================
 
 async function saveProjektToDatabase(projektData) {
@@ -702,14 +717,14 @@ async function saveProjektToDatabase(projektData) {
     });
     
     if (!response.ok) {
-      throw new Error(`Backend-Fehler: ${response.status}`);
+      throw new Error(`Backend-Fehler: ${response.status} - ${response.statusText}`);
     }
     
     const result = await response.json();
     console.log("📨 Backend-Response:", result);
     
     if (!result.success) {
-      throw new Error(result.message || 'Unbekannter Backend-Fehler');
+      throw new Error(result.message || 'Backend meldet Fehler');
     }
     
     console.log("✅ Projekt erfolgreich im Backend gespeichert");
@@ -723,21 +738,13 @@ async function saveProjektToDatabase(projektData) {
       console.log("💾 Projekt in localStorage gespeichert mit echter ID:", result.projektId);
     }
     
-    return result; // Enthält: { success: true, projektId: "25015", interneId: "...", message: "..." }
+    return result; // Enthält: { success: true, projektId: "25001", interneId: "...", message: "..." }
     
   } catch (error) {
     console.error("❌ Fehler beim Speichern im Backend:", error);
     
-    // FALLBACK: Nur in localStorage speichern
-    console.warn("⚠️ Fallback: Speichere nur in localStorage");
-    localStorage.setItem(`projekt_${projektData.projektId}`, JSON.stringify(projektData));
-    
-    return { 
-      success: true, 
-      projektId: projektData.projektId, // Frontend-ID als Fallback
-      fallback: true,
-      error: error.message 
-    };
+    // ✅ KORRIGIERT: KEIN FALLBACK - Echten Fehler werfen
+    throw new Error(`Backend nicht erreichbar: ${error.message}`);
   }
 }
 
@@ -812,7 +819,7 @@ function navigateToSuccess() {
   // Projektdaten anzeigen
   showSuccessData();
   
-  // Progress auf 100% setzen
+  // ✅ KORRIGIERT: Progress auf 100% setzen
   const progressBar = document.getElementById('progressBar');
   if (progressBar) {
     progressBar.style.width = '100%';
@@ -954,10 +961,10 @@ function resetWorkflow() {
   // Validierungs-Nachrichten ausblenden
   hideAllErrors();
   
-  // Progress zurücksetzen
+  // ✅ KORRIGIERT: Progress korrekt zurücksetzen
   const progressBar = document.getElementById('progressBar');
   if (progressBar) {
-    progressBar.style.width = '20%';
+    progressBar.style.width = '25%'; // 1/4 = 25%
   }
   
   const currentStepSpan = document.getElementById('currentStep');
@@ -1272,4 +1279,4 @@ function initGooglePlaces() {
 window.initShoppingCartProjekt = initShoppingCartProjekt;
 window.initGooglePlaces = initGooglePlaces;
 
-console.log("✅ Shopping Cart Projekt JavaScript geladen (BACKEND-ID KORRIGIERT)");
+console.log("✅ Shopping Cart Projekt JavaScript geladen (BACKEND-FEHLER + PROGRESSBAR KORRIGIERT)");
