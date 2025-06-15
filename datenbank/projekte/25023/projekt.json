@@ -1,0 +1,26 @@
+{
+  "projektname": "Dasda",
+  "wunschtermin": "2025-06-20",
+  "adresse": "Haltenstrasse, Neftenbach, Schweiz",
+  "gemeinde": "Neftenbach",
+  "parzellennummer": "eq54",
+  "gebaeudenummer": "124",
+  "art_des_gebaeudes": "Bürogebäude",
+  "kundenmail": "dominicgoulon@icloud.com",
+  "projektId": "25023",
+  "ausgewaehlteGewerke": [
+    {
+      "gewerk": "Wärmedämmung",
+      "nachweis": "EN102",
+      "typ": "AK",
+      "typLabel": "Ausführungskontrolle",
+      "preis": 250,
+      "titel": "EN102 – Fenster & Türen"
+    }
+  ],
+  "gesamtpreis": 1250,
+  "erstelltAm": "2025-06-15T14:55:48.021Z",
+  "status": "offerte_generiert",
+  "interneId": "20250615_Bürogebäud_Neftenbach_7GE8",
+  "letzteAenderung": "2025-06-15T14:55:48.021Z"
+}
