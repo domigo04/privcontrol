@@ -1,0 +1,26 @@
+{
+  "projektname": "MFH 1.1",
+  "wunschtermin": "2025-06-18",
+  "adresse": "Haltenstrasse 86, Niederscherli, Schweiz",
+  "gemeinde": "Köniz",
+  "parzellennummer": "q412",
+  "gebaeudenummer": "12easd",
+  "art_des_gebaeudes": "Bürogebäude",
+  "kundenmail": "dominicgoulon@icloud.com",
+  "projektId": "25001",
+  "ausgewaehlteGewerke": [
+    {
+      "gewerk": "Heizung",
+      "nachweis": "EN103",
+      "typ": "AK",
+      "typLabel": "Ausführungskontrolle",
+      "preis": 250,
+      "titel": "EN103 – Heizungsverteilung"
+    }
+  ],
+  "gesamtpreis": 1500,
+  "erstelltAm": "2025-06-17T10:35:41.225Z",
+  "status": "offerte_generiert",
+  "interneId": "20250617_Bürogebäud_Köniz_Y5WN",
+  "letzteAenderung": "2025-06-17T10:35:41.225Z"
+}

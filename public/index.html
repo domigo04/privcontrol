@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PrivControl – Private Kontrolle für Energienachweise</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+  <link href="css/index.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- HEADER -->
+  <div id="header-placeholder"></div>
+
+  <!-- MAIN -->
+  <main class="flex-grow-1">
+    <!-- HERO -->
+    <section class="container hero-section">
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0">
+          <h1 class="fw-bold mb-3 text-dark">
+            Ihre Kontrolle für sichere<br>und effiziente Gebäudetechnik.
+          </h1>
+          <p class="text-muted mb-4">
+            Unabhängige Private Kontrolle Für Energienachweise im Kanton Zürich.
+          </p>
+          <a href="contact.html" class="btn btn-primary">Kontakt</a>
+        </div>
+        <div class="col-md-6">
+          <img src="assets/images/Bild-1.jpg" class="hero-image" alt="Gebäudetechniker">
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION -->
+    <section class="py-4">
+      <div class="container">
+        <div class="section-gradient text-center text-white p-4 p-md-5">
+          <p class="text-uppercase small">Unsere Mission</p>
+          <h2 class="fw-bold mb-4">Prüfen. Bestätigen. Fertig.<br>Mit Priv-Control.</h2>
+          <a href="pruefcontrol.html" class="btn btn-dark">PrivControl starten</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE -->
+    <section class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <img src="assets/images/Bild-2.jpg" class="img-fluid rounded-4 shadow" alt="Teamarbeit">
+        </div>
+        <div class="col-md-6 mt-4 mt-md-0">
+          <p class="text-uppercase small text-muted">Was wir tun</p>
+          <h3 class="fw-bold mb-3">Wir übernehmen für Sie<br>die Private Kontrolle von Energienachweisen</h3>
+          <p class="text-muted">
+            Gemäss den kantonalen Energievorschriften muss bei Bauprojekten ein Energienachweis durch eine Fachperson geprüft werden. Genau hier kommen wir ins Spiel:
+          </p>
+          <a href="pruefcontrol.html" class="btn btn-outline-primary mt-2">Priv-Control starten</a>
+        </div>
+      </div>
+    </section>
+<!-- VERWEIS AUF ABLUF.HTML -->
+<section class="container py-5">
+  <div class="row align-items-center text-center text-md-start">
+    <div class="col-md-8">
+      <h5 class="fw-bold mb-2">So funktioniert PrivControl</h5>
+      <p class="text-muted mb-0">
+        Erfahren Sie im Detail, wie Sie mit wenigen Klicks eine vollständige Kontrolle Ihrer Energienachweise erhalten.
+      </p>
+    </div>
+    <div class="col-md-4 text-md-end mt-3 mt-md-0">
+      <a href="ablauf.html" class="btn btn-outline-primary">
+        Funktionsweise ansehen <i class="bi bi-arrow-right ms-1"></i>
+      </a>
+    </div>
+  </div>
+</section>
+  
+
+  </main>
+
+  <!-- FOOTER -->
+  <div id="footer-placeholder"></div>
+
+
+  <!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Header + Footer dynamisch laden
+  Promise.all([
+    fetch("components/header.html").then(res => res.text()),
+    fetch("components/footer.html").then(res => res.text())
+  ]).then(([headerHTML, footerHTML]) => {
+    document.getElementById("header-placeholder").innerHTML = headerHTML;
+    document.getElementById("footer-placeholder").innerHTML = footerHTML;
+
+    // Wichtig: Dropdowns neu initialisieren
+    const dropdownTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="dropdown"]'));
+    dropdownTriggerList.map(el => new bootstrap.Dropdown(el));
+  });
+
+  // ROADMAP-Hinweis einblenden (nur vom 8. bis 12. Juni 2025)
+  document.addEventListener("DOMContentLoaded", () => {
+    const today = new Date();
+    const start = new Date("2025-06-08");
+    const end = new Date("2025-06-12");
+
+    if (today >= start && today <= end) {
+      const hint = document.getElementById("roadmapHint");
+      setTimeout(() => {
+        hint.classList.add("show");
+      }, 700);
+    }
+  });
+
+  function dismissRoadmapHint() {
+    const hint = document.getElementById("roadmapHint");
+    hint.classList.remove("show");
+  }
+</script>
+
+
+
+</body>
+</html>

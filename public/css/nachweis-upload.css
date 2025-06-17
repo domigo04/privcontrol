@@ -1,0 +1,296 @@
+/* ========================== */
+/* 🧾 Layout & Container */
+/* ========================== */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+
+.container-box {
+  background: #ffffff;
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================== */
+/* 📋 Überschriften & Buttons */
+/* ========================== */
+h2, h4 {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+button.btn {
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  z-index: 5;
+}
+
+button.btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ========================== */
+/* 📂 Accordion Gewerke */
+/* ========================== */
+.accordion-button {
+  background-color: #f8fafc;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #e0f2fe;
+  color: #0284c7;
+}
+
+.accordion-body {
+  background-color: #f1f5f9;
+}
+
+/* ========================== */
+/* 📤 Uploadbereich - KORRIGIERT */
+/* ========================== */
+.dropzone-container {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 1;
+}
+
+#uploadbereich h4,
+.dropzone-container h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.dropzone {
+  border: 2px dashed #94a3b8;
+  border-radius: 0.75rem;
+  background: #f8fafc;
+  text-align: center;
+  padding: 2.5rem;
+  color: #64748b;
+  transition: border 0.3s ease;
+  min-height: 120px;
+  position: relative;
+  z-index: 2;
+}
+
+.dropzone:hover,
+.dropzone.dz-drag-hover {
+  border-color: #0ea5e9;
+  background: #f1f5f9;
+}
+
+.dz-message {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* ========================== */
+/* 🔄 Upload Button - KRITISCHER FIX */
+/* ========================== */
+#uploadBtn {
+  position: relative !important;
+  z-index: 10 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  padding: 0.75rem 1.5rem !important;
+  margin-top: 1rem;
+  width: 100%;
+  border: none;
+  background-color: #059669 !important;
+  color: white !important;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+#uploadBtn:hover:not(:disabled) {
+  background-color: #047857 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+
+#uploadBtn:disabled {
+  background-color: #9ca3af !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+#uploadBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Stelle sicher dass der Button über allem anderen liegt */
+.d-grid {
+  position: relative;
+  z-index: 10;
+}
+
+/* ========================== */
+/* ✅ Erfolgsmodal */
+/* ========================== */
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-box {
+  background: white;
+  padding: 2rem 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  max-width: 400px;
+}
+
+/* ========================== */
+/* 📥 Statusnachricht */
+/* ========================== */
+#status {
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  position: relative;
+  z-index: 5;
+  margin-top: 1rem;
+}
+
+/* ========================== */
+/* 🔧 Z-Index Hierarchie Fix */
+/* ========================== */
+/* Verhindere Überlappungen durch klare Z-Index Struktur */
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+.dropzone-container {
+  position: relative;
+  z-index: 2;
+}
+
+.dropzone {
+  position: relative;
+  z-index: 3;
+}
+
+#status {
+  position: relative;
+  z-index: 4;
+}
+
+button.btn {
+  position: relative;
+  z-index: 5;
+}
+
+#uploadBtn {
+  position: relative;
+  z-index: 10;
+}
+
+.modal-bg {
+  z-index: 9999;
+}
+
+/* ========================== */
+/* 🚫 Progress Sidebar - ENTFERNT */
+/* ========================== */
+/* Alle Progress Sidebar Styles entfernt */
+
+/* ========================== */
+/* 📱 Responsive Design */
+/* ========================== */
+@media (max-width: 768px) {
+  .container-box {
+    padding: 1.5rem;
+    margin-top: 3rem;
+  }
+  
+  .dropzone {
+    padding: 2rem 1.2rem;
+  }
+  
+  .dz-message {
+    font-size: 1rem;
+  }
+  
+  .dropzone-container {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  #uploadBtn {
+    font-size: 1rem !important;
+    padding: 0.75rem 1rem !important;
+  }
+}
+
+/* ========================== */
+/* 🎯 Weitere Button Fixes */
+/* ========================== */
+/* Stelle sicher dass alle wichtigen Buttons anklickbar sind */
+#berechnenBtn,
+#sendMailBtn,
+#closeModalBtn {
+  position: relative;
+  z-index: 5;
+  pointer-events: auto;
+}
+
+/* Dropzone Files */
+.dz-preview {
+  position: relative;
+  z-index: 3;
+}
+
+/* Form Inputs */
+.form-control {
+  position: relative;
+  z-index: 2;
+}
+
+/* Loading Spinner */
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dz-progress {
+  display: none !important;
+}

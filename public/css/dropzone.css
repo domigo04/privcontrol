@@ -1,0 +1,63 @@
+/* Container der Dropzone */
+.dropzone-container {
+  border-radius: 1rem;
+  background: #fff;
+  border: 2px dashed #198754;
+  padding: 2rem;
+  transition: background-color 0.3s;
+}
+
+.dropzone {
+  background-color: #f8f9fa;
+  border: none;
+  min-height: 150px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Vorschau-Layout */
+.dropzone .dz-preview {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 10px;
+  background-color: #fff;
+  width: 100%;
+  max-width: 500px;
+}
+
+.dropzone .dz-preview .dz-details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+  font-size: 0.9rem;
+}
+
+.dropzone .dz-preview .dz-filename {
+  font-weight: 500;
+  color: #212529;
+}
+
+.dropzone .dz-preview .dz-size {
+  color: #6c757d;
+  font-size: 0.8rem;
+}
+
+.dropzone .dz-preview .dz-remove {
+  color: #dc3545;
+  font-size: 0.85rem;
+  text-decoration: none;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+/* Upload Button */
+#uploadBtn {
+  font-weight: 600;
+  font-size: 1rem;
+}

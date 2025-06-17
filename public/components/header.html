@@ -1,0 +1,53 @@
+<link href="css/header.css" rel="stylesheet" />
+
+<!-- 🔷 Farbverlauf-Balken ganz oben -->
+<div id="top-gradient-bar"></div>
+
+<!-- 🔹 Navigationsleiste -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="assets/images/priv-control-logo.png" alt="PrivControl Logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="angebotDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Angebot
+          </a>
+          <ul class="dropdown-menu" id="angebotMenu">
+          <li class="nav-item"><a class="nav-link" href="offerte-erstellen.html">Offerte erstellen</a></li>
+          <li class="nav-item"><a class="nav-link" href="ablauf.html">Funktionsweise</a></li>
+          
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="team.html">Team</a></li>
+        <li class="nav-item"><a class="nav-link" href="roadmap.html">Roadmap</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Kontakt</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const angebotToggle = document.getElementById('angebotDropdown');
+    const angebotMenu = document.getElementById('angebotMenu');
+
+    function isMobile() {
+      return window.innerWidth < 992;
+    }
+
+    angebotToggle.addEventListener('click', function (e) {
+      if (isMobile()) {
+        e.preventDefault();
+        angebotMenu.classList.toggle('show');
+      }
+    });
+  });
+</script>

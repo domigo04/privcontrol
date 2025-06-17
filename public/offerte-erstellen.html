@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Priv-Control – Projekt erstellen</title>
+  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css/offerte-erstellen.css" />
+  
+
+</head>
+<body class="bg-light">
+  <div id="header-placeholder"></div>
+  
+  <!-- Initial Hero Section -->
+  <div class="hero-section" id="heroSection">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <i class="fas fa-star me-2"></i>
+              Schweizer Qualitätsstandard
+            </div>
+            <h1 class="display-3 fw-bold mb-4">
+              Energienachweise<br>
+              <span style="background: linear-gradient(45deg, #ff6b6b, #ffd93d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">revolutioniert</span>
+            </h1>
+            <p class="lead mb-5 opacity-90">
+              Erstellen Sie professionelle Energienachweise in Minuten. 
+              Unser intelligenter Konfigurator führt Sie durch jeden Schritt 
+              und erstellt sofort Ihre maßgeschneiderte Offerte.
+            </p>
+            
+            <div class="d-flex flex-column flex-sm-row gap-3 mb-5">
+              <button class="btn btn-light btn-lg px-4 py-3" id="startProjektBtn" style="border-radius: 12px; font-weight: 600; box-shadow: 0 8px 30px rgba(0,0,0,0.15);">
+                <i class="fas fa-rocket me-2"></i>
+                Projekt jetzt starten
+              </button>
+              <button class="btn btn-outline-light btn-lg px-4 py-3" style="border-radius: 12px; font-weight: 500; border-width: 2px;">
+                <i class="fas fa-play me-2"></i>
+                Demo ansehen
+              </button>
+            </div>
+            
+            <div class="hero-stats d-flex flex-wrap gap-4">
+              <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Projekte</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">24h</div>
+                <div class="stat-label">Express-Service</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">99%</div>
+                <div class="stat-label">Zufriedenheit</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-6">
+          <div class="hero-visual position-relative">
+            <!-- Floating Cards -->
+            <div class="floating-card card-1">
+              <div class="card-content">
+                <i class="fas fa-home mb-2"></i>
+                <h6>Einfamilienhaus</h6>
+                <p class="small mb-0">EN101 - Gebäudehülle</p>
+                <div class="price">CHF 450</div>
+              </div>
+            </div>
+            
+            <div class="floating-card card-2">
+              <div class="card-content">
+                <i class="fas fa-fire mb-2"></i>
+                <h6>Heizungssystem</h6>
+                <p class="small mb-0">EN103 - Verteilung</p>
+                <div class="price">CHF 200</div>
+              </div>
+            </div>
+            
+            <div class="floating-card card-3">
+              <div class="card-content">
+                <i class="fas fa-wind mb-2"></i>
+                <h6>Lüftungsanlage</h6>
+                <p class="small mb-0">EN106 - Kontrolle</p>
+                <div class="price">CHF 250</div>
+              </div>
+            </div>
+            
+            <!-- Central Element -->
+            <div class="hero-center-element">
+              <div class="pulse-ring"></div>
+              <div class="pulse-ring-2"></div>
+              <div class="center-icon">
+                <i class="fas fa-certificate"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Features Row -->
+      <div class="row mt-5 pt-5">
+        <div class="col-12">
+          <div class="features-container">
+            <div class="row g-4">
+              <div class="col-md-3">
+                <div class="feature-card">
+                  <div class="feature-icon-modern">
+                    <i class="fas fa-clock"></i>
+                  </div>
+                  <h6 class="fw-bold">Blitzschnell</h6>
+                  <p class="small opacity-75 mb-0">5 Minuten zur Offerte</p>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="feature-card">
+                  <div class="feature-icon-modern">
+                    <i class="fas fa-shield-check"></i>
+                  </div>
+                  <h6 class="fw-bold">Zertifiziert</h6>
+                  <p class="small opacity-75 mb-0">Schweizer Standards</p>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="feature-card">
+                  <div class="feature-icon-modern">
+                    <i class="fas fa-download"></i>
+                  </div>
+                  <h6 class="fw-bold">Sofort-Download</h6>
+                  <p class="small opacity-75 mb-0">PDF in Sekunden</p>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="feature-card">
+                  <div class="feature-icon-modern">
+                    <i class="fas fa-headset"></i>
+                  </div>
+                  <h6 class="fw-bold">Support</h6>
+                  <p class="small opacity-75 mb-0">Persönliche Betreuung</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Main Workflow Container -->
+  <div class="container d-none" id="workflowContainer">
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div class="card shopping-cart-progress">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <h5 class="mb-1"><i class="fas fa-shopping-cart me-2"></i>Ihr Projekt-Konfigurator</h5>
+            <div class="progress" style="height: 8px;">
+              <div class="progress-bar bg-gradient" id="progressBar" style="width: 20%"></div>
+            </div>
+            <small class="text-muted mt-1 d-block">Schritt <span id="currentStep">1</span> von 4</small>
+          </div>
+          <div class="col-md-4 text-end">
+            <button class="btn btn-outline-secondary btn-sm" id="resetBtn">
+              <i class="fas fa-redo me-1"></i>Neu starten
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 1: Projektgrundlagen -->
+    <div class="step-section active" id="step1">
+      <div class="card step-card">
+        <div class="step-header">
+          <h3 class="mb-0">
+            <i class="fas fa-info-circle me-3"></i>
+            Schritt 1: Projektgrundlagen
+          </h3>
+          <p class="mb-0 mt-2 opacity-75">Teilen Sie uns die wichtigsten Informationen zu Ihrem Projekt mit</p>
+        </div>
+        <div class="card-body p-4">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">
+                <i class="fas fa-tag me-2 text-primary"></i>Projektname <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control form-control-lg" id="projektname" placeholder="z.B. Einfamilienhaus Muster" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">
+                <i class="fas fa-calendar me-2 text-primary"></i>Gewünschter Termin <span class="text-danger">*</span>
+              </label>
+              <input type="date" class="form-control form-control-lg" id="wunschtermin" required>
+            </div>
+            <div class="col-12 mb-3">
+              <label class="form-label fw-bold">
+                <i class="fas fa-envelope me-2 text-primary"></i>Ihre E-Mail-Adresse <span class="text-danger">*</span>
+              </label>
+              <input type="email" class="form-control form-control-lg" id="kundenmail" placeholder="ihre.email@beispiel.ch" required>
+            </div>
+          </div>
+          <div class="text-end mt-4">
+            <button class="btn btn-primary btn-lg" id="step1Next">
+              Weiter zur Adresse <i class="fas fa-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Adressdaten -->
+    <div class="step-section" id="step2">
+      <div class="card step-card">
+        <div class="step-header">
+          <h3 class="mb-0">
+            <i class="fas fa-map-marker-alt me-3"></i>
+            Schritt 2: Gebäude-Adresse
+          </h3>
+          <p class="mb-0 mt-2 opacity-75">Wo befindet sich Ihr Gebäude?</p>
+        </div>
+        <div class="card-body p-4">
+          <div class="row">
+            <div class="col-12 mb-3">
+              <label class="form-label fw-bold">
+                <i class="fas fa-map-marker-alt me-2 text-primary"></i>Vollständige Adresse <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control form-control-lg" id="adresse" placeholder="Musterstraße 123, 8000 Zürich" required>
+              <div class="form-text">
+                <i class="fas fa-info-circle me-1"></i>
+                Beginnen Sie zu tippen für automatische Vorschläge
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">
+                <i class="fas fa-city me-2 text-primary"></i>Gemeinde/Ort <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control form-control-lg" id="gemeinde" placeholder="Zürich" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">
+                <i class="fas fa-building me-2 text-primary"></i>Art des Gebäudes <span class="text-danger">*</span>
+              </label>
+              <select class="form-control form-control-lg" id="art_des_gebaeudes" required>
+                <option value="">-- Bitte wählen --</option>
+                <option value="Einfamilienhaus">Einfamilienhaus</option>
+                <option value="Mehrfamilienhaus">Mehrfamilienhaus</option>
+                <option value="Geschäftshaus">Geschäftshaus</option>
+                <option value="Bürogebäude">Bürogebäude</option>
+                <option value="Industriegebäude">Industriegebäude</option>
+                <option value="Mischgebäude">Mischgebäude</option>
+                <option value="Sonstiges">Sonstiges</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">
+                <i class="fas fa-map me-2 text-primary"></i>Parzellennummer <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control form-control-lg" id="parzellennummer" placeholder="1234" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">
+                <i class="fas fa-home me-2 text-primary"></i>Gebäudenummer <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control form-control-lg" id="gebaeudenummer" placeholder="42A" required>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between mt-4">
+            <button class="btn btn-outline-secondary btn-lg" id="step2Back">
+              <i class="fas fa-arrow-left me-2"></i>Zurück
+            </button>
+            <button class="btn btn-primary btn-lg" id="step2Next">
+              Weiter zu Leistungen <i class="fas fa-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Gewerke auswählen -->
+    <div class="step-section" id="step3">
+      <div class="card step-card">
+        <div class="step-header">
+          <h3 class="mb-0">
+            <i class="fas fa-tools me-3"></i>
+            Schritt 3: Benötigte Leistungen
+          </h3>
+          <p class="mb-0 mt-2 opacity-75">Wählen Sie die Prüfungen und Kontrollen, die Sie benötigen</p>
+        </div>
+        <div class="card-body p-4">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="accordion" id="gewerkeAccordion">
+                <!-- Heizung -->
+                <div class="accordion-item mb-3">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHeizung">
+                      <div class="accordion-icon me-3">
+                        <i class="fas fa-fire text-danger"></i>
+                      </div>
+                      <div class="accordion-text">
+                        <span class="accordion-title fw-bold">Heizung</span>
+                        <small class="text-muted d-block">Heizungsverteilung & Wärmeerzeugung</small>
+                      </div>
+                    </button>
+                  </h2>
+                  <div id="collapseHeizung" class="accordion-collapse collapse" data-bs-parent="#gewerkeAccordion">
+                    <div class="accordion-body">
+                      <div class="row">
+                        <div class="col-md-6 mb-3">
+                          <div class="card h-100">
+                            <div class="card-body">
+                              <h6>EN103 – Heizungsverteilung</h6>
+                              <p class="small text-muted">Kontrolle der Heizungsverteilung und -regelung</p>
+                              <div class="btn-group w-100">
+                                <button class="btn btn-outline-primary btn-sm mini-btn" data-gewerk="Heizung" data-nachweis="EN103" data-typ="PK" data-preis="200">
+                                  <i class="fas fa-search me-1"></i>PK (200 CHF)
+                                </button>
+                                <button class="btn btn-outline-primary btn-sm mini-btn" data-gewerk="Heizung" data-nachweis="EN103" data-typ="AK" data-preis="250">
+                                  <i class="fas fa-check me-1"></i>AK (250 CHF)
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <div class="card h-100">
+                            <div class="card-body">
+                              <h6>EN105 – Wärmeerzeugung</h6>
+                              <p class="small text-muted">Prüfung der Wärmeerzeugungsanlage</p>
+                              <div class="btn-group w-100">
+                                <button class="btn btn-outline-primary btn-sm mini-btn" data-gewerk="Heizung" data-nachweis="EN105" data-typ="PK" data-preis="200">
+                                  <i class="fas fa-search me-1"></i>PK (200 CHF)
+                                </button>
+                                <button class="btn btn-outline-primary btn-sm mini-btn" data-gewerk="Heizung" data-nachweis="EN105" data-typ="AK" data-preis="250">
+                                  <i class="fas fa-check me-1"></i>AK (250 CHF)
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Lüftung -->
+                <div class="accordion-item mb-3">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLueftung">
+                      <div class="accordion-icon me-3">
+                        <i class="fas fa-wind text-info"></i>
+                      </div>
+                      <div class="accordion-text">
+                        <span class="accordion-title fw-bold">Lüftung</span>
+                        <small class="text-muted d-block">Lüftungsanlagen & Klima</small>
+                      </div>
+                    </button>
+                  </h2>
+                  <div id="collapseLueftung" class="accordion-collapse collapse" data-bs-parent="#gewerkeAccordion">
+                    <div class="accordion-body">
+                      <div class="card">
+                        <div class="card-body">
+                          <h6>EN106 – Lüftungsanlage</h6>
+                          <p class="small text-muted">Kontrolle der Lüftungsanlage</p>
+                          <div class="btn-group w-100">
+                            <button class="btn btn-outline-primary btn-sm mini-btn" data-gewerk="Lüftung" data-nachweis="EN106" data-typ="PK" data-preis="200">
+                              <i class="fas fa-search me-1"></i>PK (200 CHF)
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm mini-btn" data-gewerk="Lüftung" data-nachweis="EN106" data-typ="AK" data-preis="250">
+                              <i class="fas fa-check me-1"></i>AK (250 CHF)
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Wärmedämmung -->
+                <div class="accordion-item mb-3">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWaermedaemmung">
+                      <div class="accordion-icon me-3">
+                        <i class="fas fa-shield-alt text-success"></i>
+                      </div>
+                      <div class="accordion-text">
+                        <span class="accordion-title fw-bold">Wärmedämmung</span>
+                        <small class="text-muted d-block">Gebäudehülle & Dämmung</small>
+                      </div>
+                    </button>
+                  </h2>
+                  <div id="collapseWaermedaemmung" class="accordion-collapse collapse" data-bs-parent="#gewerkeAccordion">
+                    <div class="accordion-body">
+                      <div class="row">
+                        <div class="col-md-6 mb-3">
+                          <div class="card h-100">
+                            <div class="card-body">
+                              <h6>EN101 – Gebäudehülle</h6>
+                              <p class="small text-muted">Kontrolle der Wärmedämmung und Luftdichtheit</p>
+                              <div class="btn-group w-100">
+                                <button class="btn btn-outline-primary btn-sm mini-btn" data-gewerk="Wärmedämmung" data-nachweis="EN101" data-typ="PK" data-preis="200">
+                                  <i class="fas fa-search me-1"></i>PK (200 CHF)
+                                </button>
+                                <button class="btn btn-outline-primary btn-sm mini-btn" data-gewerk="Wärmedämmung" data-nachweis="EN101" data-typ="AK" data-preis="250">
+                                  <i class="fas fa-check me-1"></i>AK (250 CHF)
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <div class="card h-100">
+                            <div class="card-body">
+                              <h6>EN102 – Fenster & Türen</h6>
+                              <p class="small text-muted">Prüfung der Fenster- und Türenqualität</p>
+                              <div class="btn-group w-100">
+                                <button class="btn btn-outline-primary btn-sm mini-btn" data-gewerk="Wärmedämmung" data-nachweis="EN102" data-typ="PK" data-preis="200">
+                                  <i class="fas fa-search me-1"></i>PK (200 CHF)
+                                </button>
+                                <button class="btn btn-outline-primary btn-sm mini-btn" data-gewerk="Wärmedämmung" data-nachweis="EN102" data-typ="AK" data-preis="250">
+                                  <i class="fas fa-check me-1"></i>AK (250 CHF)
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Klima -->
+                <div class="accordion-item mb-3">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseKlima">
+                      <div class="accordion-icon me-3">
+                        <i class="fas fa-snowflake text-primary"></i>
+                      </div>
+                      <div class="accordion-text">
+                        <span class="accordion-title fw-bold">Klima</span>
+                        <small class="text-muted d-block">Klimaanlagen & Kühlung</small>
+                      </div>
+                    </button>
+                  </h2>
+                  <div id="collapseKlima" class="accordion-collapse collapse" data-bs-parent="#gewerkeAccordion">
+                    <div class="accordion-body">
+                      <div class="row">
+                        <div class="col-md-6 mb-3">
+                          <div class="card h-100">
+                            <div class="card-body">
+                              <h6>EN107 – Klimaanlage</h6>
+                              <p class="small text-muted">Kontrolle der Klimaanlage und Kühlung</p>
+                              <div class="btn-group w-100">
+                                <button class="btn btn-outline-primary btn-sm mini-btn" data-gewerk="Klima" data-nachweis="EN107" data-typ="PK" data-preis="200">
+                                  <i class="fas fa-search me-1"></i>PK (200 CHF)
+                                </button>
+                                <button class="btn btn-outline-primary btn-sm mini-btn" data-gewerk="Klima" data-nachweis="EN107" data-typ="AK" data-preis="250">
+                                  <i class="fas fa-check me-1"></i>AK (250 CHF)
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <div class="card h-100">
+                            <div class="card-body">
+                              <h6>EN108 – Wärmepumpe</h6>
+                              <p class="small text-muted">Prüfung der Wärmepumpenanlage</p>
+                              <div class="btn-group w-100">
+                                <button class="btn btn-outline-primary btn-sm mini-btn" data-gewerk="Klima" data-nachweis="EN108" data-typ="PK" data-preis="200">
+                                  <i class="fas fa-search me-1"></i>PK (200 CHF)
+                                </button>
+                                <button class="btn btn-outline-primary btn-sm mini-btn" data-gewerk="Klima" data-nachweis="EN108" data-typ="AK" data-preis="250">
+                                  <i class="fas fa-check me-1"></i>AK (250 CHF)
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sanitär -->
+                <div class="accordion-item mb-3">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSanitaer">
+                      <div class="accordion-icon me-3">
+                        <i class="fas fa-tint text-info"></i>
+                      </div>
+                      <div class="accordion-text">
+                        <span class="accordion-title fw-bold">Sanitär</span>
+                        <small class="text-muted d-block">Warmwasser & Wasserleitungen</small>
+                      </div>
+                    </button>
+                  </h2>
+                  <div id="collapseSanitaer" class="accordion-collapse collapse" data-bs-parent="#gewerkeAccordion">
+                    <div class="accordion-body">
+                      <div class="card">
+                        <div class="card-body">
+                          <h6>EN104 – Warmwasseranlage</h6>
+                          <p class="small text-muted">Kontrolle der Warmwasseraufbereitung</p>
+                          <div class="btn-group w-100">
+                            <button class="btn btn-outline-primary btn-sm mini-btn" data-gewerk="Sanitär" data-nachweis="EN104" data-typ="PK" data-preis="200">
+                              <i class="fas fa-search me-1"></i>PK (200 CHF)
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm mini-btn" data-gewerk="Sanitär" data-nachweis="EN104" data-typ="AK" data-preis="250">
+                              <i class="fas fa-check me-1"></i>AK (250 CHF)
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="mt-3">
+                <div id="gewerkValidierung" class="alert alert-warning d-none">
+                  <i class="fas fa-exclamation-triangle me-2"></i>
+                  Bitte wählen Sie mindestens eine Leistung aus.
+                </div>
+              </div>
+            </div>
+            
+            <!-- Shopping Cart Sidebar -->
+            <div class="col-lg-4">
+              <div class="card">
+                <div class="card-header bg-light">
+                  <h5 class="mb-0"><i class="fas fa-shopping-cart me-2"></i>Ihre Auswahl</h5>
+                </div>
+                <div class="card-body">
+                  <div id="cartItems">
+                    <p class="text-muted text-center py-3">
+                      <i class="fas fa-info-circle me-2"></i>
+                      Noch keine Leistungen ausgewählt
+                    </p>
+                  </div>
+                  <hr>
+                  <div class="d-flex justify-content-between fw-bold">
+                    <span>Zwischensumme:</span>
+                    <span id="subtotal">1000.00 CHF</span>
+                  </div>
+                  <small class="text-muted">zzgl. Grundbetrag: 1000 CHF</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="d-flex justify-content-between mt-4">
+            <button class="btn btn-outline-secondary btn-lg" id="step3Back">
+              <i class="fas fa-arrow-left me-2"></i>Zurück
+            </button>
+            <button class="btn btn-primary btn-lg" id="step3Next">
+              Zur Zusammenfassung <i class="fas fa-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: Zusammenfassung & Bestellung -->
+    <div class="step-section" id="step4">
+      <div class="card step-card">
+        <div class="step-header">
+          <h3 class="mb-0">
+            <i class="fas fa-check-circle me-3"></i>
+            Schritt 4: Zusammenfassung & Bestellung
+          </h3>
+          <p class="mb-0 mt-2 opacity-75">Überprüfen Sie Ihre Angaben und erstellen Sie Ihr Projekt</p>
+        </div>
+        <div class="card-body p-4">
+          <div class="row">
+            <div class="col-lg-8">
+              <h5>Projektdaten</h5>
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p><strong>Projektname:</strong> <span id="summaryProjektname"></span></p>
+                      <p><strong>Termin:</strong> <span id="summaryTermin"></span></p>
+                      <p><strong>E-Mail:</strong> <span id="summaryEmail"></span></p>
+                    </div>
+                    <div class="col-md-6">
+                      <p><strong>Adresse:</strong> <span id="summaryAdresse"></span></p>
+                      <p><strong>Gebäudeart:</strong> <span id="summaryGebaeudeart"></span></p>
+                      <p><strong>Parzelle:</strong> <span id="summaryParzelle"></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <h5>Ausgewählte Leistungen</h5>
+              <div id="summaryServices" class="mb-4">
+                <!-- Wird dynamisch gefüllt -->
+              </div>
+            </div>
+            
+            <div class="col-lg-4">
+              <div class="cart-summary">
+                <h5 class="text-white mb-3"><i class="fas fa-calculator me-2"></i>Kostenzusammenstellung</h5>
+                <div id="finalCalculation">
+                  <!-- Wird dynamisch gefüllt -->
+                </div>
+                <hr class="border-light">
+                <div class="d-flex justify-content-between fs-5 fw-bold">
+                  <span>Gesamtpreis:</span>
+                  <span id="finalTotal">1000.00 CHF</span>
+                </div>
+                <small class="opacity-75 d-block mt-2">
+                  <i class="fas fa-info-circle me-1"></i>
+                  Inkl. Express-Zuschlag (falls Termin &lt; 48h)
+                </small>
+              </div>
+            </div>
+          </div>
+          
+          <div class="d-flex justify-content-between mt-4">
+            <button class="btn btn-outline-secondary btn-lg" id="step4Back">
+              <i class="fas fa-arrow-left me-2"></i>Zurück
+            </button>
+            <button class="btn btn-success btn-lg" id="createProjectBtn">
+              <i class="fas fa-check me-2"></i>Projekt erstellen & Offerte erhalten
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Section -->
+    <div class="step-section" id="successSection">
+      <div class="card step-card border-success">
+        <div class="card-header bg-success text-white">
+          <h3 class="mb-0">
+            <i class="fas fa-check-circle me-3"></i>
+            Projekt erfolgreich erstellt!
+          </h3>
+          <p class="mb-0 mt-2 opacity-90">Ihr Projekt wurde gespeichert und die Offerte ist bereit</p>
+        </div>
+        <div class="card-body p-4">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="alert alert-success">
+                <h5><i class="fas fa-database me-2"></i>Projekt-ID: <span id="displayProjektId"></span></h5>
+                <p class="mb-0">Ihr Projekt wurde erfolgreich in unserer Datenbank gespeichert.</p>
+              </div>
+              
+              <div class="card">
+                <div class="card-body">
+                  <h5>Projektdetails</h5>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p><strong>Projektname:</strong> <span id="displayProjektname"></span></p>
+                      <p><strong>Adresse:</strong> <span id="displayAdresse"></span></p>
+                      <p><strong>Wunschtermin:</strong> <span id="displayWunschtermin"></span></p>
+                    </div>
+                    <div class="col-md-6">
+                      <p><strong>E-Mail:</strong> <span id="displayEmail"></span></p>
+                      <p><strong>Ausgewählte Gewerke:</strong> <span id="displayGewerke"></span></p>
+                      <p><strong>Status:</strong> <span class="badge bg-success">Erstellt</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="card bg-light">
+                <div class="card-body text-center">
+                  <i class="fas fa-file-pdf text-danger fa-3x mb-3"></i>
+                  <h5>Offerte bereit!</h5>
+                  <p class="text-muted">Laden Sie Ihre Offerte als PDF herunter</p>
+                  <button class="btn btn-success w-100 mb-2" id="downloadOfferteBtn">
+                    <i class="fas fa-download me-2"></i>PDF herunterladen
+                  </button>
+                  <button class="btn btn-outline-primary w-100" id="neuesProjektBtn">
+                    <i class="fas fa-plus me-2"></i>Neues Projekt
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div id="loading" class="d-none">
+    <div class="text-center my-4">
+      <div class="spinner-border text-primary" role="status"></div>
+      <p class="mt-2">Wird verarbeitet...</p>
+    </div>
+  </div>
+
+  <footer class="bg-light py-4 mt-5 border-top">
+    <div id="footer-placeholder"></div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- EmailJS v4 mit Cache-Busting -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js?v=2025"></script>
+  
+  <!-- PDF Make -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+  
+  <!-- Logo Base64 -->
+  <script src="js/base64cd.js"></script>
+  
+  <!-- Custom JavaScript -->
+  <script src="js/shopping-cart-projekt.js"></script>
+  
+  <script>
+    // EmailJS ROBUSTE INITIALISIERUNG (Funktioniert mit v3 und v4)
+    console.log("🔍 Prüfe EmailJS...");
+    
+    function initEmailJSRobust() {
+      console.log("📧 EmailJS Object:", typeof emailjs !== 'undefined' ? emailjs : 'NICHT GELADEN');
+      
+      if (typeof emailjs !== 'undefined') {
+        console.log("✅ EmailJS gefunden!");
+        console.log("📧 EmailJS Methoden:", Object.keys(emailjs));
+        
+        try {
+          // Prüfe welche Version und initialisiere entsprechend
+          if (emailjs.init && typeof emailjs.init === 'function') {
+            // Versuche v4 Syntax
+            try {
+              emailjs.init({
+                publicKey: "9Ql82xYiywzV_Ucb6"
+              });
+              console.log("✅ EmailJS v4 Syntax erfolgreich");
+            } catch (v4Error) {
+              console.log("⚠️ v4 Syntax fehlgeschlagen, versuche v3...");
+              // Fallback zu v3 Syntax
+              emailjs.init("9Ql82xYiywzV_Ucb6");
+              console.log("✅ EmailJS v3 Syntax erfolgreich");
+            }
+          } else {
+            console.log("ℹ️ Keine init-Methode gefunden, setze User-ID direkt");
+            // Für sehr alte Versionen
+            emailjs.user_id = "9Ql82xYiywzV_Ucb6";
+          }
+          
+          console.log("✅ EmailJS vollständig initialisiert");
+          
+        } catch (initError) {
+          console.error("❌ EmailJS Initialisierung fehlgeschlagen:", initError);
+        }
+        
+      } else {
+        console.error("❌ EmailJS ist nicht verfügbar");
+        // Retry nach 1 Sekunde
+        setTimeout(initEmailJSRobust, 1000);
+      }
+    }
+    
+    // Warte bis DOM geladen ist, dann EmailJS initialisieren
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initEmailJSRobust);
+    } else {
+      initEmailJSRobust();
+    }
+    
+    // Header und Footer laden
+    Promise.all([
+      fetch("components/header.html").then(res => res.text()),
+      fetch("components/footer.html").then(res => res.text())
+    ]).then(([headerData, footerData]) => {
+      document.getElementById("header-placeholder").innerHTML = headerData;
+      document.getElementById("footer-placeholder").innerHTML = footerData;
+
+      // Initialisierung
+      if (typeof initShoppingCartProjekt === "function") {
+        initShoppingCartProjekt();
+      }
+    }).catch(error => {
+      console.error("❌ Fehler beim Laden der Komponenten:", error);
+    });
+
+    // Google Maps initialisieren
+    function initGoogleMaps() {
+      if (typeof initGooglePlaces === "function") {
+        initGooglePlaces();
+      }
+    }
+    
+    // DEBUG: EmailJS Status prüfen
+    window.checkEmailJS = function() {
+      console.log("🔍 EmailJS Debug Info:");
+      console.log("- Verfügbar:", typeof emailjs !== 'undefined');
+      console.log("- Objekt:", emailjs);
+      console.log("- Methoden:", typeof emailjs !== 'undefined' ? Object.keys(emailjs) : 'N/A');
+      console.log("- Version:", emailjs?.version || 'Unbekannt');
+    };
+    
+    console.log("ℹ️ Rufen Sie checkEmailJS() in der Konsole auf für Debug-Infos");
+  </script>
+  <!-- Google Maps API KORRIGIERT -->
+<script>
+  // Google Maps initialisieren
+  function initGoogleMaps() {
+    console.log("🗺️ Google Maps callback ausgeführt");
+    if (typeof initGooglePlaces === "function") {
+      initGooglePlaces();
+    }
+  }
+  
+  // Google Places API laden
+  function loadGoogleMapsAPI() {
+    const script = document.createElement('script');
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyALZO8X0R_t8Y2Ic9cPPDtc_Yz0L5GgGxQ&libraries=places&callback=initGoogleMaps';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  }
+  
+  // Lade Google Maps API wenn DOM bereit ist
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadGoogleMapsAPI);
+  } else {
+    loadGoogleMapsAPI();
+  }
+</script>
+</body>
+</html>

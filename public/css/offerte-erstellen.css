@@ -1,0 +1,684 @@
+/* =============================================================================
+   APPLE-STYLE OFFERTE ERSTELLEN CSS
+   Datei: css/offerte-erstellen.css
+   ============================================================================= */
+
+/* Apple-Style Basis-Styling */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  line-height: 1.47059;
+  letter-spacing: -0.022em;
+  padding-top: 90px;
+}
+
+/* Apple-Style Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #007aff 0%, #5856d6 100%);
+  color: white;
+  padding: 120px 0 100px;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 32px 32px;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" fill-opacity="0.05"/><circle cx="75" cy="75" r="1" fill="white" fill-opacity="0.03"/><circle cx="50" cy="10" r="0.5" fill="white" fill-opacity="0.04"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badge {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 8px 16px;
+  display: inline-block;
+  margin-bottom: 24px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.hero-stats {
+  margin-top: 32px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 14px;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+/* Apple-Style Floating Cards */
+.hero-visual {
+  height: 500px;
+  margin: 50px 0;
+  position: relative;
+}
+
+.floating-card {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  animation: float 3s ease-in-out infinite;
+  color: #1d1d1f;
+  min-width: 160px;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.floating-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.card-1 {
+  top: 50px;
+  right: 50px;
+  animation-delay: 0s;
+}
+
+.card-2 {
+  top: 200px;
+  left: 30px;
+  animation-delay: 1s;
+}
+
+.card-3 {
+  top: 350px;
+  right: 80px;
+  animation-delay: 2s;
+}
+
+.card-content i {
+  font-size: 24px;
+  color: #007aff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 122, 255, 0.1);
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.card-content h6 {
+  margin: 8px 0 4px 0;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.price {
+  font-weight: 700;
+  color: #30d158;
+  margin-top: 8px;
+  font-size: 1.1rem;
+}
+
+/* Apple-Style Center Element */
+.hero-center-element {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pulse-ring {
+  width: 120px;
+  height: 120px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  position: absolute;
+  animation: pulse 2s infinite;
+}
+
+.pulse-ring-2 {
+  width: 160px;
+  height: 160px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  animation: pulse 2s infinite 0.5s;
+}
+
+.center-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  margin: 20px;
+}
+
+.center-icon i {
+  font-size: 32px;
+  color: white;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.2); opacity: 0; }
+}
+
+/* Apple-Style Feature Cards */
+.features-container {
+  margin-top: 40px;
+}
+
+.feature-card {
+  text-align: center;
+  padding: 32px 24px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon-modern {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: white;
+  font-size: 24px;
+}
+
+/* Apple-Style Progress Container */
+.progress-container {
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.shopping-cart-progress {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Apple-Style Step Sections */
+.step-section {
+  display: none;
+  animation: fadeInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.step-section.active {
+  display: block;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.step-card {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.step-header {
+  background: rgba(255, 255, 255, 0.95);
+  color: #1d1d1f;
+  padding: 32px;
+  border-bottom: 1px solid rgba(142, 142, 147, 0.2);
+  margin-bottom: 0;
+}
+
+.step-header h3 {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.14286;
+}
+
+/* Apple-Style Buttons */
+.cta-button {
+  background: white;
+  color: #007aff;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.cta-button:hover {
+  background: #f8f9fa;
+  color: #007aff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #007aff 0%, #5856d6 100%);
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  padding: 12px 24px;
+  font-size: 16px;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 16px rgba(0, 122, 255, 0.25);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #5856d6 0%, #007aff 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 122, 255, 0.35);
+}
+
+.btn-primary.btn-lg {
+  padding: 16px 32px;
+  font-size: 17px;
+  border-radius: 16px;
+}
+
+.btn-outline-primary {
+  border: 2px solid #007aff;
+  color: #007aff;
+  background: transparent;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-outline-primary:hover {
+  background: #007aff;
+  border-color: #007aff;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #30d158 0%, #32d74b 100%);
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(48, 209, 88, 0.25);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #32d74b 0%, #30d158 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(48, 209, 88, 0.35);
+}
+
+.btn-outline-secondary {
+  border: 2px solid #8e8e93;
+  color: #8e8e93;
+  background: transparent;
+  border-radius: 12px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+  background: #8e8e93;
+  color: white;
+}
+
+/* Apple-Style Forms */
+.form-control {
+  border-radius: 12px;
+  border: 2px solid rgba(142, 142, 147, 0.3);
+  padding: 16px 20px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #007aff;
+  box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.form-control-lg {
+  border-radius: 16px;
+  padding: 20px 24px;
+  font-size: 17px;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+/* Apple-Style Progress Bar */
+.progress {
+  background-color: rgba(229, 229, 234, 0.5);
+  border-radius: 8px;
+  height: 8px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #007aff 0%, #5856d6 100%);
+  border-radius: 8px;
+  transition: width 0.6s ease;
+}
+
+/* Apple-Style Shopping Cart */
+.cart-item {
+  background: rgba(248, 249, 250, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 8px;
+  border-left: 4px solid #007aff;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.cart-item:hover {
+  background: rgba(242, 242, 247, 0.9);
+  transform: translateX(4px);
+}
+
+.cart-summary {
+  background: rgba(29, 29, 31, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Apple-Style Accordion */
+.accordion-button {
+  border-radius: 12px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+  background: rgba(0, 122, 255, 0.1);
+  color: #007aff;
+  border-color: rgba(0, 122, 255, 0.3);
+}
+
+.accordion-button:hover {
+  background: rgba(248, 249, 250, 0.9);
+}
+
+.accordion-item {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.accordion-body {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Apple-Style Mini Buttons */
+.mini-btn {
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.mini-btn.btn-primary {
+  background: #007aff;
+  border-color: #007aff;
+}
+
+.mini-btn.btn-outline-primary {
+  border-color: #007aff;
+  color: #007aff;
+}
+
+.mini-btn.btn-outline-primary.active {
+  background: #007aff;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+}
+
+/* Apple-Style Cards */
+.card {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(142, 142, 147, 0.2);
+  border-radius: 16px 16px 0 0;
+}
+
+.card-body {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* Apple-Style Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: #1d1d1f;
+  font-weight: 600;
+}
+
+.display-3 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+.text-primary {
+  color: #007aff !important;
+}
+
+/* Apple-Style Feature Icons */
+.feature-icon {
+  width: 56px;
+  height: 56px;
+  background: rgba(242, 242, 247, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #007aff;
+  font-size: 24px;
+  margin: 0 auto 20px;
+  transition: all 0.3s ease;
+}
+
+.feature-icon:hover {
+  background: rgba(0, 122, 255, 0.1);
+  transform: scale(1.05);
+}
+
+/* Apple-Style Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding-top: 70px;
+  }
+  
+  .hero-section {
+    padding: 80px 0 60px;
+    border-radius: 0 0 24px 24px;
+  }
+  
+  .display-3 {
+    font-size: 2.5rem;
+  }
+  
+  .floating-card {
+    display: none; /* Hide floating cards on mobile */
+  }
+  
+  .hero-visual {
+    height: 300px;
+  }
+  
+  .feature-card {
+    padding: 24px 16px;
+  }
+  
+  .step-header {
+    padding: 24px;
+  }
+  
+  .step-header h3 {
+    font-size: 24px;
+  }
+  
+  .form-control-lg {
+    padding: 16px 20px;
+    font-size: 16px;
+  }
+  
+  .btn-lg {
+    padding: 14px 28px;
+    font-size: 16px;
+  }
+}
+
+/* Apple-Style Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #000000;
+    color: #f5f5f7;
+  }
+  
+  .step-card {
+    background: rgba(44, 44, 46, 0.9);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .step-header {
+    background: rgba(44, 44, 46, 0.95);
+    color: #f5f5f7;
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .card {
+    background: rgba(44, 44, 46, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .form-control {
+    background: rgba(44, 44, 46, 0.8);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #f5f5f7;
+  }
+  
+  .form-control:focus {
+    background: rgba(44, 44, 46, 0.95);
+  }
+  
+  .accordion-button {
+    background: rgba(44, 44, 46, 0.8);
+    color: #f5f5f7;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .accordion-body {
+    background: rgba(44, 44, 46, 0.8);
+  }
+}

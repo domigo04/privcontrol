@@ -1,0 +1,152 @@
+
+/* =============================
+   Farben, Schrift & Layout
+============================= */
+body {
+  background: #fdfdfd;
+  color: #1a1a1a;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+h1, h2, h3, h4 {
+  color: #111;
+}
+
+.text-muted {
+  color: #666 !important;
+}
+
+/* =============================
+   Container & Karten
+============================= */
+.container-box {
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.card {
+  border-radius: 1.5rem;
+}
+
+.card .form-control {
+  border-radius: 0.75rem;
+}
+
+/* =============================
+   Buttons
+============================= */
+.btn {
+  border-radius: 999px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:not(.mini-btn):not(.btn-sm) {
+  min-width: 200px;
+}
+
+.btn-primary {
+  background: #3c91e6;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #317acc;
+}
+
+.btn-danger {
+  background: #f17b83;
+  border: none;
+}
+
+.btn-danger:hover {
+  background: #d95f67;
+}
+
+.btn-dark {
+  background: #111;
+  border: none;
+}
+
+.btn-outline-primary {
+  border-color: #3c91e6;
+  color: #3c91e6;
+}
+
+.btn-outline-primary:hover {
+  background: #3c91e6;
+  color: #fff;
+}
+
+.btn.mini-btn {
+  font-size: 0.65rem;
+  padding: 0.15rem 0.35rem;
+  line-height: 1;
+  min-width: unset;
+  width: auto;
+  white-space: nowrap;
+  border-radius: 999px;
+  text-align: center;
+}
+
+/* =============================
+   Listen & Formulare
+============================= */
+.list-group-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+#preisBox {
+  font-size: 1.25rem;
+  padding: 1rem;
+}
+
+/* =============================
+   Bilder
+============================= */
+.hero-image {
+  width: 100%;
+  max-width: 550px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 25px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+img.rounded-4 {
+  border-radius: 20px;
+}
+
+/* =============================
+   Dropzone fÃ¼r Uploads
+============================= */
+.dropzone {
+  border: 2px dashed #ccc;
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  color: #777;
+  transition: border-color 0.3s ease;
+}
+
+.dropzone:hover {
+  border-color: #3c91e6;
+  background-color: #f9fbff;
+}
+
+
+/* =============================
+   Navbar
+============================= */
+.navbar-brand img {
+  height: 30px;
+  margin-right: 0.5rem;
+}
+
+body {
+  padding-top: 70px; /* Je nach Höhe der Navbar anpassen */
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Unser Team – PrivControl</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css">
+   <link rel="stylesheet" href="css/team.css">
+
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- HEADER -->
+  <div id="header-placeholder"></div>
+
+  <main class="flex-grow-1">
+    <div id="gradient-wrapper" class="gradient-wrapper">
+      <div class="container hero-content">
+        <h1 class="display-5 fw-bold">Wir sind PrivControl</h1>
+        <p class="lead mt-3">Technisches Know-how. Praxisnahe Kontrolle. Einfach effizient.</p>
+        <button class="btn btn-dark" onclick="expandTeam()">Team entdecken</button>
+      </div>
+
+      <div id="team-wrapper" style="display: none;">
+        <div class="team-card row align-items-center dom">
+          <div class="col-md-3 text-center">
+            <img src="assets/images/team-dominic.jpg" class="team-image" alt="Dominic Goulon">
+            <br><button class="join-btn mt-3">Contact me</button>
+          </div>
+          <div class="col-md-9">
+            <h5>Dominic Goulon</h5>
+            <p>Fachbauleitung Heizung/Kälte – Verantwortung übernehmen für Technik, Entscheidungen und smarte Lösungen.</p>
+          </div>
+        </div>
+
+        <div class="team-card row align-items-center flex-md-row-reverse mike">
+          <div class="col-md-3 text-center">
+            <img src="assets/images/team-mike.png" class="team-image" alt="Michael Repolusk">
+            <br><button class="join-btn mt-3">Contact me</button>
+          </div>
+          <div class="col-md-9">
+            <h5>Michael Repolusk</h5>
+            <p>Dipl. Ing. Energie FH – Technik, die funktioniert – für Menschen, die auf Effizienz setzen.</p>
+          </div>
+        </div>
+
+        <div class="team-card row align-items-center kevin">
+          <div class="col-md-3 text-center">
+            <img src="assets/images/team-Kevin.png" class="team-image" alt="Kevin Holbe">
+            <br><button class="join-btn mt-3">Contact me</button>
+          </div>
+          <div class="col-md-9">
+            <h5>Kevin Holbe</h5>
+            <p>Dipl. Techniker Klima HF – Dokumentation, Beratung, Präzision – für nachhaltige Entscheidungen.</p>
+          </div>
+        </div>
+
+        <div class="team-card row align-items-center flex-md-row-reverse timon">
+          <div class="col-md-3 text-center">
+            <img src="assets/images/team-timon.jpg" class="team-image" alt="Timon Günthard">
+            <br><button class="join-btn mt-3">Contact me</button>
+          </div>
+          <div class="col-md-9">
+            <h5>Timon Günthard</h5>
+            <p>Fachbauleitung Lüftung/Klima – Ich mache Daten greifbar – für Kontrolle, Nachvollziehbarkeit und Präzision.</p>
+          </div>
+        </div>
+
+        <div class="text-center mt-5">
+          <h4>Möchtest du auch Teil unseres Teams werden?</h4>
+          <a href="mailto:info@privcontrol.ch" class="btn btn-dark mt-2">Jetzt bewerben</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    fetch("components/header.html").then(res => res.text()).then(data => {
+      document.getElementById("header-placeholder").innerHTML = data;
+    });
+    fetch("components/footer.html").then(res => res.text()).then(data => {
+      document.getElementById("footer-placeholder").innerHTML = data;
+    });
+
+    function expandTeam() {
+      const wrapper = document.getElementById("gradient-wrapper");
+      const content = document.getElementById("team-wrapper");
+      wrapper.classList.add("expanded");
+      setTimeout(() => {
+        content.style.display = "block";
+        content.scrollIntoView({ behavior: 'smooth' });
+      }, 500);
+    }
+  </script>
+</body>
+</html>

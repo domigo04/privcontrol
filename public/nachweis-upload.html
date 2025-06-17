@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Priv-Control – Dokumente hochladen</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/nachweis-upload.css" />
+  <link rel="stylesheet" href="css/header.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/dropzone.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css" />
+</head>
+<body class="modern-bg">
+  <div id="header-placeholder"></div>
+  
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="container">
+      <div class="hero-content text-center">
+        <div class="hero-icon mb-4">
+          <i class="fas fa-cloud-upload-alt fa-3x"></i>
+        </div>
+        <h1 class="hero-title mb-3">Dokumente hochladen</h1>
+        <p class="hero-subtitle">Laden Sie Ihre Energienachweis-Unterlagen hoch</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <!-- Main Card -->
+    <div class="main-card">
+      <div class="card-header">
+        <div class="row align-items-center">
+          <div class="col">
+            <h2 class="card-title mb-0">
+              <i class="fas fa-cloud-upload-alt me-3"></i>
+              Projekt: <span id="projektNameDisplay">Wird geladen...</span>
+            </h2>
+          </div>
+          <div class="col-auto">
+            <div class="status-indicator">
+              <span class="status-dot"></span>
+              <span id="projektStatusDisplay">Projekt wird geladen...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <!-- Projekt-Info (nur anzeigen) -->
+        <div id="projektInfoBereich" class="info-section mb-5" style="display: none;">
+          <div class="section-header mb-4">
+            <h3 class="section-title">
+              <i class="fas fa-info-circle me-2"></i>
+              Projektinformationen
+            </h3>
+            <p class="section-subtitle">Ihre Offerte-Details</p>
+          </div>
+
+          <div class="project-info-grid">
+            <div class="info-item">
+              <label>Projekt-ID:</label>
+              <span id="displayProjektId">-</span>
+            </div>
+            <div class="info-item">
+              <label>Projektname:</label>
+              <span id="displayProjektname">-</span>
+            </div>
+            <div class="info-item">
+              <label>Gemeinde:</label>
+              <span id="displayGemeinde">-</span>
+            </div>
+            <div class="info-item">
+              <label>Wunschtermin:</label>
+              <span id="displayWunschtermin">-</span>
+            </div>
+            <div class="info-item">
+              <label>Gebäudeart:</label>
+              <span id="displayArtDesGebaeudes">-</span>
+            </div>
+            <div class="info-item">
+              <label>E-Mail:</label>
+              <span id="displayKundenmail">-</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Benötigte Dokumente -->
+        <div id="dokumenteBereich" class="documents-section mb-5" style="display: none;">
+          <div class="section-header mb-4">
+            <h3 class="section-title">
+              <i class="fas fa-file-alt me-2"></i>
+              Benötigte Dokumente
+            </h3>
+            <p class="section-subtitle">Basierend auf Ihrer Gewerke-Auswahl</p>
+          </div>
+          
+          <div id="dokumentenListe" class="documents-list">
+            <!-- Wird dynamisch befüllt -->
+          </div>
+        </div>
+
+        <!-- Upload Bereich -->
+        <div class="upload-section">
+          <div class="section-header mb-4">
+            <h3 class="section-title">
+              <i class="fas fa-cloud-upload-alt me-2"></i>
+              Dokumente hochladen
+            </h3>
+            <p class="section-subtitle">Laden Sie Ihre Energienachweis-Dokumente hoch</p>
+          </div>
+          
+          <!-- Hidden field für Projekt-ID -->
+          <input type="hidden" id="projektId" value="">
+          
+          <!-- Modern Dropzone -->
+          <div class="dropzone-wrapper">
+            <form action="/upload" class="dropzone modern-dropzone" id="nachweisDropzone" enctype="multipart/form-data">
+              <div class="dropzone-content">
+                <div class="dropzone-icon">
+                  <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <h4>Dateien hierher ziehen</h4>
+                <p>oder klicken zum Durchsuchen</p>
+                <div class="file-types">
+                  <span class="file-type">PDF</span>
+                  <span class="file-type">DOCX</span>
+                  <span class="file-type">XLSX</span>
+                  <span class="file-type">ZIP</span>
+                  <span class="file-type">JPG</span>
+                </div>
+              </div>
+            </form>
+            
+            <!-- Upload Progress -->
+            <div class="upload-progress" id="uploadProgress" style="display: none;">
+              <div class="progress-bar">
+                <div class="progress-fill"></div>
+              </div>
+              <span class="progress-text">Wird hochgeladen...</span>
+            </div>
+          </div>
+          
+          <!-- Upload Button -->
+          <div class="upload-controls">
+            <button class="btn btn-success btn-lg upload-btn" id="uploadBtn" type="button" disabled>
+              <i class="fas fa-upload me-2"></i>
+              <span>Upload starten</span>
+              <div class="btn-shine"></div>
+            </button>
+          </div>
+          
+          <!-- Status Anzeige -->
+          <div id="status" class="alert modern-alert text-center d-none" role="alert"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Zugang verweigert Modal -->
+  <div class="modal fade" id="noAccessModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <i class="fas fa-exclamation-triangle me-2 text-warning"></i>
+            Zugang nicht möglich
+          </h5>
+        </div>
+        <div class="modal-body">
+          <p>Um Dokumente hochzuladen, müssen Sie zuerst eine Offerte erstellen.</p>
+          <p class="text-muted">Sie werden automatisch zur Offerte-Erstellung weitergeleitet.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="goToOfferteBtn">
+            <i class="fas fa-arrow-right me-2"></i>Zur Offerte-Erstellung
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="uploadSuccessModal" class="modern-modal" style="display: none;">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h4>Upload erfolgreich!</h4>
+      <p>Ihre Dateien wurden erfolgreich hochgeladen und werden nun verarbeitet.</p>
+      <button class="btn btn-primary" id="closeModalBtn">
+        <i class="fas fa-check me-2"></i>Verstanden
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div id="loading" class="modern-loading" style="display: none;">
+    <div class="loading-content">
+      <div class="loading-spinner"></div>
+      <p>Projektdaten werden geladen...</p>
+    </div>
+  </div>
+
+  <footer class="modern-footer">
+    <div id="footer-placeholder"></div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+  
+  <!-- Upload Script -->
+  <script src="js/nachweis-upload/upload.js"></script>
+  
+  <script>
+    Promise.all([
+      fetch("components/header.html").then(res => res.text()),
+      fetch("components/footer.html").then(res => res.text())
+    ]).then(([headerData, footerData]) => {
+      document.getElementById("header-placeholder").innerHTML = headerData;
+      document.getElementById("footer-placeholder").innerHTML = footerData;
+
+      // ✅ Upload-Logik initialisieren
+      if (typeof initUploadLogik === "function") {
+        initUploadLogik();
+        console.log("✅ Upload-Logik erfolgreich initialisiert");
+      } else {
+        console.error("❌ initUploadLogik Funktion nicht gefunden!");
+      }
+    }).catch(error => {
+      console.error("❌ Fehler beim Laden der Komponenten:", error);
+    });
+
+    // Zugang verweigert Button
+    document.getElementById('goToOfferteBtn')?.addEventListener('click', function() {
+      window.location.href = '/offerte-erstellen.html';
+    });
+  </script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

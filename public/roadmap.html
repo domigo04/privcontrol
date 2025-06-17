@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Roadmap - Priv-Control</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+  <link href="css/roadmap.css" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <div id="header-placeholder"></div>
+
+  <div class="container px-3 px-sm-5 py-5 roadmap">
+    <h2 class="text-center mb-5">🚀 Unsere Roadmap</h2>
+
+    <!-- NEU: 8. Juni 2025 -->
+    <div class="step" data-aos="fade-up">
+      <h5><i class="bi bi-stars"></i>8. Juni 2025 <span class="badge bg-info text-dark">Neu</span></h5>
+      <p>Framework umgestellt, neues UI für Offertenerstellung eingebaut, Versandfunktion vorbereitet.</p>
+      <button class="btn btn-outline-primary btn-sm more-info">Mehr Info</button>
+      <div class="more-info-content">
+        <ul>
+          <li>Wechsel auf moderne HTML-Komponentenstruktur</li>
+          <li>Neues seitliches Popup</li>
+          <li>Erste Version Email-Versand eingebaut (noch nicht vollständig funktionsfähig)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step" data-aos="fade-up">
+      <h5><i class="bi bi-rocket-takeoff"></i>12. Mai 2025 <span class="badge bg-success">Gestartet ✅</span></h5>
+      <p>Start mit Index-, Offerten- und Kontakt-Seite (noch ohne Funktionalität).</p>
+      <button class="btn btn-outline-primary btn-sm more-info">Mehr Info</button>
+      <div class="more-info-content">
+        <p>Initialer Aufbau der Grundstruktur – Navigation, Layout, erste Style-Versuche.</p>
+      </div>
+    </div>
+
+    <div class="step" data-aos="fade-right">
+      <h5><i class="bi bi-brush"></i>13. Mai 2025</h5>
+      <p>Visuelles Redesign der Startseite, erste Version der Teamseite erstellt.</p>
+      <button class="btn btn-outline-primary btn-sm more-info">Mehr Info</button>
+      <div class="more-info-content">
+        <p>Header neu gestaltet, einheitliche Farben und Fonts eingebaut. Erste Team-Daten von GitHub übernommen.</p>
+      </div>
+    </div>
+
+    <div class="step" data-aos="fade-left">
+      <h5><i class="bi bi-tools"></i>14. Mai 2025</h5>
+      <p>Offerten-Tool funktionsfähig gemacht, Teammitglieder eingefügt.</p>
+      <button class="btn btn-outline-primary btn-sm more-info">Mehr Info</button>
+      <div class="more-info-content">
+        <p>Formulareingaben werden verarbeitet, Grundlogik für Preisberechnung implementiert.</p>
+      </div>
+    </div>
+
+    <div class="step" data-aos="fade-up">
+      <h5><i class="bi bi-file-earmark-pdf"></i>15. Mai 2025</h5>
+      <p>Offerten-Download per PDF implementiert, Domain privcontrol.ch gekauft.</p>
+      <button class="btn btn-outline-primary btn-sm more-info">Mehr Info</button>
+      <div class="more-info-content">
+        <p>PDF-Generierung mit Logo und Basis-Layout. Setup der Domain und DNS-Weiterleitung auf Azure Static Web App.</p>
+      </div>
+    </div>
+
+    <div class="step" data-aos="fade-right">
+      <h5><i class="bi bi-ui-checks"></i>16. Mai 2025</h5>
+      <p>Dropdown-Menüs, Privat-/Ausführungskontrolle, PDF-Layout verfeinert.</p>
+      <button class="btn btn-outline-primary btn-sm more-info">Mehr Info</button>
+      <div class="more-info-content">
+        <p>Komplexere Auswahloptionen im Formular, neue Preislogik integriert. Erste Branch Tests via GitHub Actions.</p>
+      </div>
+    </div>
+
+    <div class="step" data-aos="fade-left">
+      <h5><i class="bi bi-layout-text-sidebar-reverse"></i>17. Mai 2025</h5>
+      <p>Seiten <code>ablauf.html</code> und <code>leistungen.html</code> hinzugefügt, Teamseite aufpoliert.</p>
+      <button class="btn btn-outline-primary btn-sm more-info">Mehr Info</button>
+      <div class="more-info-content">
+        <p>Schritte des Energienachweises mit Icons, animierte Scrollfunktionen vorbereitet.</p>
+      </div>
+    </div>
+
+    <div class="step" data-aos="fade-up">
+      <h5><i class="bi bi-cloud-arrow-up"></i>18. Mai 2025 <span class="badge bg-warning text-dark">Aktuell 🔧</span></h5>
+      <p>Azure Blob Storage eingerichtet, Backend-Funktionen für Upload und OCR werden entwickelt.</p>
+      <button class="btn btn-outline-primary btn-sm more-info">Mehr Info</button>
+      <div class="more-info-content">
+        <ul>
+          <li>Streamifier-Parsing integriert</li>
+          <li>Formidable + Binary Body Support aktiviert</li>
+          <li>Upload-API auf relativen Pfad umgestellt</li>
+        </ul>
+        <img src="/assets/github-actions-overview.png" alt="GitHub Actions Übersicht" class="img-fluid rounded mt-2" />
+      </div>
+    </div>
+
+    <hr class="my-5"/>
+    <h4 class="mb-4">🔮 Was als Nächstes kommt:</h4>
+
+    <div class="step" data-aos="fade-right">
+      <h5><i class="bi bi-search"></i>PDF-Erkennung & Nachweis-Analyse <span class="badge bg-secondary">Geplant</span></h5>
+      <p>Automatische Erkennung des Nachweistyps beim Upload und Daten-Auslesung.</p>
+    </div>
+
+    <div class="step" data-aos="fade-left">
+      <h5><i class="bi bi-cpu"></i>Automatische Offerte nach Upload <span class="badge bg-secondary">Geplant</span></h5>
+      <p>Kompletter Flow von Upload bis fertige Offerte mit Mail-Versand.</p>
+    </div>
+
+    <div class="step" data-aos="fade-up">
+      <h5><i class="bi bi-envelope-arrow-up"></i>Rückversand unterschriebener Nachweise <span class="badge bg-secondary">Vision</span></h5>
+      <p>Digital signierte Energienachweise direkt an Kunden zurücksenden.</p>
+    </div>
+
+    <div class="step" data-aos="fade-up">
+      <h5><i class="bi bi-person-badge"></i>Kunden-Login mit Projekt-Status <span class="badge bg-secondary">Vision</span></h5>
+      <p>Kundenbereich mit Upload-Übersicht, Projektstatus und Dokumentation.</p>
+    </div>
+
+    <div class="step" data-aos="fade-up">
+      <h5><i class="bi bi-exclamation-triangle"></i>Fehlermeldungs-Buttons <span class="badge bg-secondary">Vision</span></h5>
+      <p>Visuelle Warnungen bei fehlerhaften Eingaben im Formular mit aufklappbaren Hinweisen.</p>
+    </div>
+
+    <div class="step" data-aos="fade-up">
+      <h5><i class="bi bi-robot"></i>Chatbot für Nutzerfragen <span class="badge bg-secondary">Vision</span></h5>
+      <p>Integrierter Chatbot zur Klärung von Begriffen, Hilfe beim Ausfüllen und technischer Support.</p>
+    </div>
+
+    <div class="step" data-aos="fade-up">
+      <h5><i class="bi bi-funnel"></i>Filter für Pflichtunterlagen <span class="badge bg-secondary">Vision</span></h5>
+      <p>Automatische Anzeige einer angepassten Liste benötigter Pflichtunterlagen je nach Auswahl (z. B. Heizung, Lüftung).</p>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    document.querySelectorAll('.more-info').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const info = btn.nextElementSibling;
+        info.style.display = info.style.display === 'block' ? 'none' : 'block';
+        btn.innerText = info.style.display === 'block' ? 'Weniger Info' : 'Mehr Info';
+      });
+    });
+
+    fetch("components/header.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("header-placeholder").innerHTML = data);
+
+    fetch("components/footer.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("footer-placeholder").innerHTML = data);
+  </script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+/* ========================== */
+/* 📊 Fortschritts-Sidebar    */
+/* ========================== */
+
+.progress-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 22%;
+  max-width: 300px;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(14px);
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.15);
+  padding: 2rem 1.2rem;
+  z-index: 1050;
+  transition: transform 0.4s ease;
+  border-left: 1px solid rgba(255,255,255,0.2);
+}
+
+.progress-sidebar.collapsed {
+  transform: translateX(100%);
+}
+
+.toggle-handle {
+  position: absolute;
+  top: 20px;
+  left: -44px;
+  background: linear-gradient(135deg, #3b82f6, #0ea5e9);
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px 0 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.progress-timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 5rem;
+  position: relative;
+  padding-left: 2.2rem;
+}
+
+.progress-timeline::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: 32px;
+  height: calc(100% - 28px);
+  width: 4px;
+  background: linear-gradient(to bottom, #93c5fd, #3b82f6);
+  border-radius: 4px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.step .circle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: #e5e7eb;
+  border: 3px solid #94a3b8;
+  margin-right: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step.active .circle {
+  background: radial-gradient(circle, #3b82f6 0%, #0ea5e9 100%);
+  border-color: #2563eb;
+  box-shadow: 0 0 10px #3b82f6aa;
+}
+
+.step span {
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 1.05rem;
+  white-space: nowrap;
+}
+
+body.sidebar-open .container-box {
+  margin-right: 22%;
+  transition: margin 0.4s ease;
+}
+
+/* ========================== */
+/* 📱 Responsive              */
+/* ========================== */
+
+@media (max-width: 768px) {
+  .progress-sidebar {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    bottom: 0;
+    top: auto;
+    flex-direction: row;
+    display: flex;
+    overflow-x: auto;
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding: 1rem 1rem;
+    transform: translateY(100%);
+  }
+
+  .progress-sidebar.collapsed {
+    transform: translateY(100%);
+  }
+
+  .progress-sidebar:not(.collapsed) {
+    transform: translateY(0%);
+  }
+
+  .progress-timeline {
+    flex-direction: row;
+    padding-left: 0;
+    margin-top: 0;
+  }
+
+  .progress-timeline::before {
+    display: none;
+  }
+
+  .step {
+    flex-direction: column;
+    align-items: center;
+    margin: 0 1rem;
+  }
+
+  .step span {
+    font-size: 0.8rem;
+    text-align: center;
+    margin-top: 0.3rem;
+  }
+
+  .toggle-handle {
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 12px 12px 0 0;
+  }
+}
