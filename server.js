@@ -23,7 +23,7 @@ console.log(`   💾 Lokale Kopien: ${SAVE_LOCAL_COPIES ? '✅ Aktiviert' : '❌
 console.log(`   🔍 Debug Modus: ${DEBUG_MODE ? '✅ An' : '❌ Aus'}`);
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;  // ← GEÄNDERT für Azure!
 
 // Middleware
 app.use(express.static('public'));
@@ -465,9 +465,9 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Starte Server
+// Starte Server - GEÄNDERT für Azure!
 app.listen(port, () => {
-  console.log(`🚀 Server läuft unter http://localhost:${port}`);
+  console.log(`🚀 Server läuft auf Port ${port}`);
   console.log(`📁 Azure Container: ${process.env.AZURE_STORAGE_CONTAINER_NAME || 'uploads'}`);
   console.log(`🏥 Health Check: http://localhost:${port}/health`);
   console.log(`💾 Lokale Kopien: ${SAVE_LOCAL_COPIES ? 'Aktiviert' : 'Deaktiviert'}`);
