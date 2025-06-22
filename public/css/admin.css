@@ -1,0 +1,357 @@
+/* Admin Dashboard Styles */
+:root {
+    --admin-primary: #1a5490;
+    --admin-secondary: #2c3e50;
+    --admin-success: #28a745;
+    --admin-warning: #ffc107;
+    --admin-danger: #dc3545;
+    --admin-info: #17a2b8;
+    --admin-light: #f8f9fa;
+    --admin-dark: #343a40;
+}
+
+/* Layout */
+.admin-container {
+    display: flex;
+    min-height: calc(100vh - 80px);
+    background-color: #f5f6fa;
+}
+
+/* Sidebar */
+.admin-sidebar {
+    width: 250px;
+    background-color: white;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    padding: 20px;
+    background-color: var(--admin-primary);
+    color: white;
+    font-weight: 600;
+}
+
+.sidebar-header h5 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-nav .nav-link:hover {
+    background-color: var(--admin-light);
+    color: var(--admin-primary);
+    border-left-color: var(--admin-primary);
+}
+
+.sidebar-nav .nav-link.active {
+    background-color: #e8f0fe;
+    color: var(--admin-primary);
+    font-weight: 600;
+    border-left-color: var(--admin-primary);
+}
+
+.sidebar-nav .nav-link i {
+    width: 20px;
+    margin-right: 10px;
+}
+
+/* Main Content */
+.admin-main {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.admin-section {
+    display: none;
+}
+
+.admin-section.active {
+    display: block;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.section-header h2 {
+    margin: 0;
+    color: var(--admin-dark);
+    font-size: 28px;
+}
+
+.section-header i {
+    margin-right: 10px;
+    color: var(--admin-primary);
+}
+
+.section-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    font-size: 24px;
+    color: white;
+}
+
+.stat-icon.bg-primary { background-color: var(--admin-primary); }
+.stat-icon.bg-success { background-color: var(--admin-success); }
+.stat-icon.bg-warning { background-color: var(--admin-warning); }
+.stat-icon.bg-info { background-color: var(--admin-info); }
+
+.stat-info h3 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--admin-dark);
+}
+
+.stat-info p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+/* Cards */
+.card {
+    border: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: var(--admin-light);
+    border-bottom: 1px solid #e3e6ea;
+    padding: 15px 20px;
+}
+
+.card-header h6 {
+    margin: 0;
+    color: var(--admin-dark);
+    font-weight: 600;
+}
+
+.card-header i {
+    margin-right: 8px;
+    color: var(--admin-primary);
+}
+
+/* Tables */
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background-color: var(--admin-light);
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+    color: var(--admin-dark);
+    padding: 12px;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    padding: 12px;
+}
+
+/* Action List */
+.action-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.action-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background-color: var(--admin-light);
+    border-radius: 8px;
+    gap: 10px;
+}
+
+.action-item i {
+    font-size: 20px;
+}
+
+.action-item span {
+    flex: 1;
+    font-size: 14px;
+}
+
+.action-item .btn {
+    margin-left: auto;
+}
+
+/* Badges */
+.badge {
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 4px;
+}
+
+/* Buttons */
+.btn-sm {
+    padding: 5px 12px;
+    font-size: 13px;
+}
+
+/* Modal */
+.modal-header {
+    background-color: var(--admin-light);
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-title {
+    color: var(--admin-dark);
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-container {
+        flex-direction: column;
+    }
+    
+    .admin-sidebar {
+        width: 100%;
+        height: auto;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .admin-main {
+        padding: 20px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: start;
+        gap: 15px;
+    }
+    
+    .section-actions {
+        width: 100%;
+    }
+    
+    .table-responsive {
+        overflow-x: auto;
+    }
+}
+
+/* Loading Spinner */
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+    border-width: 0.3em;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-state i {
+    font-size: 48px;
+    color: #dee2e6;
+    margin-bottom: 20px;
+}
+
+.empty-state h5 {
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    color: #adb5bd;
+}
+
+/* Chart Container */
+#registrationChart {
+    max-height: 200px;
+}
+
+/* Form Controls */
+.form-select-sm {
+    padding: 5px 30px 5px 10px;
+    font-size: 13px;
+}
+
+/* Success/Error States */
+.text-success i { color: var(--admin-success) !important; }
+.text-warning i { color: var(--admin-warning) !important; }
+.text-danger i { color: var(--admin-danger) !important; }
+.text-info i { color: var(--admin-info) !important; }

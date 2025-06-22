@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Befugte Person auswählen - Priv Control</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/marketplace.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="marketplace-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1><i class="fas fa-users"></i> Befugte Person auswählen</h1>
+                <p>Wählen Sie aus unserem Netzwerk qualifizierter Fachpersonen für Ihren Energienachweis</p>
+                <div class="project-summary" id="projectSummary">
+                    <div class="summary-card">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h5><i class="fas fa-clipboard-list"></i> <span id="projectName">Projekt wird geladen...</span></h5>
+                                <div class="services-needed" id="servicesNeeded"></div>
+                            </div>
+                            <div class="col-md-4 text-end">
+                                <div class="total-price">
+                                    <small>Geschätzter Preis:</small>
+                                    <h4 id="totalPrice">CHF 0.00</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-card">
+                <div class="row align-items-center">
+                    <div class="col-md-3">
+                        <label class="filter-label">
+                            <i class="fas fa-map-marker-alt"></i> Standort
+                        </label>
+                        <select class="form-select" id="locationFilter">
+                            <option value="">Alle Kantone</option>
+                            <option value="ZH">Zürich</option>
+                            <option value="BE">Bern</option>
+                            <option value="LU">Luzern</option>
+                            <option value="AG">Aargau</option>
+                            <option value="SG">St. Gallen</option>
+                            <option value="BS">Basel-Stadt</option>
+                            <option value="BL">Basel-Landschaft</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="filter-label">
+                            <i class="fas fa-star"></i> Bewertung
+                        </label>
+                        <select class="form-select" id="ratingFilter">
+                            <option value="">Alle Bewertungen</option>
+                            <option value="5">5 Sterne</option>
+                            <option value="4">4+ Sterne</option>
+                            <option value="3">3+ Sterne</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="filter-label">
+                            <i class="fas fa-clock"></i> Verfügbarkeit
+                        </label>
+                        <select class="form-select" id="availabilityFilter">
+                            <option value="">Alle</option>
+                            <option value="sofort">Sofort verfügbar</option>
+                            <option value="woche">Diese Woche</option>
+                            <option value="monat">Diesen Monat</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="filter-label">
+                            <i class="fas fa-building"></i> Typ
+                        </label>
+                        <select class="form-select" id="typeFilter">
+                            <option value="">Alle</option>
+                            <option value="privatperson">Privatperson</option>
+                            <option value="unternehmen">Unternehmen</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Providers Section -->
+    <section class="providers-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h3><i class="fas fa-users-cog"></i> Verfügbare befugte Personen</h3>
+                        <p class="text-muted">Alle angezeigten Personen haben die erforderlichen Befugnisse für Ihr Projekt</p>
+                    </div>
+                    <div class="col-auto">
+                        <div class="results-count">
+                            <span id="resultsCount">12</span> Anbieter gefunden
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="providers-grid" id="providersGrid">
+                <!-- Provider cards will be dynamically loaded here -->
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-primary" id="loadMoreBtn">
+                    <i class="fas fa-plus"></i> Weitere Anbieter laden
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Selection Modal -->
+    <div class="modal fade" id="providerModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-user-check"></i> 
+                        Auftrag erteilen
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="provider-selection-summary" id="modalProviderInfo">
+                        <!-- Provider info will be filled here -->
+                    </div>
+                    
+                    <div class="project-details">
+                        <h6><i class="fas fa-clipboard-list"></i> Projektdetails</h6>
+                        <div id="modalProjectDetails"></div>
+                    </div>
+
+                    <div class="deadline-selection">
+                        <h6><i class="fas fa-calendar"></i> Gewünschter Fertigstellungstermin</h6>
+                        <input type="date" class="form-control" id="deadlineDate" min="">
+                    </div>
+
+                    <div class="upload-section">
+                        <h6><i class="fas fa-cloud-upload-alt"></i> Dokumente hochladen</h6>
+                        <p class="text-muted">Laden Sie Ihre Unterlagen direkt für den ausgewählten Anbieter hoch</p>
+                        
+                        <div class="upload-dropzone" id="modalDropzone">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h6>Dateien hierher ziehen oder klicken</h6>
+                            <small>PDF, DOCX, XLSX, ZIP, JPG (max. 10MB pro Datei)</small>
+                        </div>
+                        
+                        <div class="uploaded-files" id="uploadedFilesList"></div>
+                    </div>
+
+                    <div class="special-notes">
+                        <h6><i class="fas fa-comment"></i> Besondere Wünsche (optional)</h6>
+                        <textarea class="form-control" id="specialNotes" rows="3" 
+                                  placeholder="Hier können Sie besondere Wünsche oder Anmerkungen für den Anbieter hinterlassen..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times"></i> Abbrechen
+                    </button>
+                    <button type="button" class="btn btn-success" id="confirmOrderBtn">
+                        <i class="fas fa-handshake"></i> Auftrag erteilen
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-check-circle"></i> 
+                        Auftrag erfolgreich erteilt!
+                    </h5>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="fas fa-check-circle text-success fa-4x mb-3"></i>
+                    <h5>Vielen Dank!</h5>
+                    <p>Ihr Auftrag wurde erfolgreich an <strong id="selectedProviderName"></strong> übermittelt.</p>
+                    
+                    <div class="next-steps">
+                        <h6>Nächste Schritte:</h6>
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item border-0">
+                                <i class="fas fa-envelope text-primary"></i>
+                                Sie erhalten eine Bestätigungs-E-Mail
+                            </div>
+                            <div class="list-group-item border-0">
+                                <i class="fas fa-bell text-warning"></i>
+                                Der Anbieter wird über Ihren Auftrag benachrichtigt
+                            </div>
+                            <div class="list-group-item border-0">
+                                <i class="fas fa-phone text-success"></i>
+                                Der Anbieter kontaktiert Sie zur Terminvereinbarung
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="index.html" class="btn btn-primary">
+                        <i class="fas fa-home"></i> Zur Startseite
+                    </a>
+                    <a href="offerte-erstellen.html" class="btn btn-outline-primary">
+                        <i class="fas fa-plus"></i> Neues Projekt
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h5>Anbieter werden geladen...</h5>
+            <p class="text-muted">Wir suchen die besten Fachpersonen für Ihr Projekt</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/marketplace.js"></script>
+    <script>
+        // Load header
+        fetch('components/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+
+        // Set minimum date for deadline to today
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('deadlineDate').min = today;
+        });
+    </script>
+</body>
+</html>

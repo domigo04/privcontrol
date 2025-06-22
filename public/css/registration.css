@@ -1,0 +1,454 @@
+/* Registration Section */
+.registration-section {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 100px 0 50px;
+}
+
+.registration-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+/* Header */
+.registration-header {
+    background: linear-gradient(135deg, #007bff, #6610f2);
+    color: white;
+    text-align: center;
+    padding: 40px 30px;
+}
+
+.header-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+}
+
+.registration-header h1 {
+    margin: 0 0 15px;
+    font-weight: 700;
+    font-size: 32px;
+}
+
+.registration-header p {
+    margin: 0;
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* Form */
+.registration-form {
+    padding: 40px;
+}
+
+.form-section {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.form-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.form-section h3 {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+}
+
+.form-section h3 i {
+    color: #007bff;
+}
+
+.section-description {
+    color: #6c757d;
+    margin-bottom: 25px;
+    font-size: 15px;
+}
+
+/* Person Type Selection */
+.person-type-selection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.type-option {
+    position: relative;
+}
+
+.type-option input[type="radio"] {
+    display: none;
+}
+
+.type-card {
+    display: block;
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 15px;
+    padding: 30px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.type-card:hover {
+    background: #e3f2fd;
+    border-color: #007bff;
+    transform: translateY(-2px);
+}
+
+.type-option input[type="radio"]:checked + .type-card {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border-color: #007bff;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+}
+
+.type-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 15px;
+    background: rgba(0, 123, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #007bff;
+    transition: all 0.3s ease;
+}
+
+.type-option input[type="radio"]:checked + .type-card .type-icon {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.type-card h5 {
+    margin: 0 0 10px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.type-card p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Form Fields */
+.form-label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    background: white;
+}
+
+.form-control:valid {
+    border-color: #28a745;
+}
+
+/* Person Fields Toggle */
+.person-fields {
+    transition: all 0.3s ease;
+}
+
+/* Competences Grid */
+.competences-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.competence-item {
+    position: relative;
+}
+
+.competence-item input[type="checkbox"] {
+    display: none;
+}
+
+.competence-card {
+    display: block;
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 20px 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.competence-card:hover {
+    background: #e3f2fd;
+    border-color: #007bff;
+    transform: translateY(-2px);
+}
+
+.competence-item input[type="checkbox"]:checked + .competence-card {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    border-color: #28a745;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
+
+.competence-icon {
+    width: 45px;
+    height: 45px;
+    margin: 0 auto 10px;
+    background: rgba(0, 123, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #007bff;
+    transition: all 0.3s ease;
+}
+
+.competence-item input[type="checkbox"]:checked + .competence-card .competence-icon {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.competence-card h6 {
+    margin: 0 0 5px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.competence-code {
+    font-size: 12px;
+    opacity: 0.7;
+    font-weight: 500;
+}
+
+/* Form Check */
+.form-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.form-check-input {
+    width: 18px;
+    height: 18px;
+    margin: 3px 0 0 0;
+    border-radius: 4px;
+    border: 2px solid #dee2e6;
+    flex-shrink: 0;
+}
+
+.form-check-input:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.form-check-label {
+    font-size: 14px;
+    color: #6c757d;
+    line-height: 1.5;
+}
+
+.form-check-label a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.form-check-label a:hover {
+    text-decoration: underline;
+}
+
+/* Submit Button */
+.btn-lg {
+    padding: 15px 40px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #007bff, #6610f2);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-lg:hover {
+    background: linear-gradient(135deg, #0056b3, #520dc2);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 123, 255, 0.3);
+}
+
+.btn-lg i {
+    margin-right: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .registration-section {
+        padding: 80px 0 30px;
+    }
+    
+    .registration-form {
+        padding: 30px 20px;
+    }
+    
+    .registration-header {
+        padding: 30px 20px;
+    }
+    
+    .registration-header h1 {
+        font-size: 28px;
+    }
+    
+    .registration-header p {
+        font-size: 16px;
+    }
+    
+    .person-type-selection {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .type-card {
+        padding: 25px 15px;
+    }
+    
+    .competences-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .competence-card {
+        height: 110px;
+        padding: 15px 10px;
+    }
+    
+    .competence-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    
+    .competence-card h6 {
+        font-size: 13px;
+    }
+    
+    .competence-code {
+        font-size: 11px;
+    }
+    
+    .form-section h3 {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 576px) {
+    .competences-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .competence-card {
+        height: 90px;
+        padding: 12px;
+        flex-direction: row;
+        text-align: left;
+        gap: 15px;
+    }
+    
+    .competence-icon {
+        margin: 0;
+        flex-shrink: 0;
+    }
+    
+    .btn-lg {
+        width: 100%;
+        padding: 12px 30px;
+    }
+}
+
+/* Animation */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.registration-card {
+    animation: slideInUp 0.6s ease;
+}
+
+/* Form Validation States */
+.form-control.is-invalid {
+    border-color: #dc3545;
+}
+
+.form-control.is-valid {
+    border-color: #28a745;
+}
+
+.invalid-feedback {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    color: #dc3545;
+}
+
+.valid-feedback {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    color: #28a745;
+}
+
+/* Loading state */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
